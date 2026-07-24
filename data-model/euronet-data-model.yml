@@ -1,0 +1,66 @@
+generated: '2026-07-24'
+method: derived
+source: >-
+  Derived from schema definitions and id-reference path parameters across the Xe
+  Payments and Mass Payments OpenAPI definitions (openapi/).
+entities:
+  - name: Quote
+    api: Xe Payments API
+    key: quoteId
+    fields: [content, message, errors, warnings, information]
+    note: An FX quote; consumed when booking a transaction.
+  - name: Recipient
+    api: Xe Payments API
+    key: recipientId
+    fields: [country, currency, recipient fields per RecipientFieldDefinitions]
+  - name: RecipientFieldDefinitions
+    api: Xe Payments API
+    note: Country+currency-specific required recipient field schema.
+  - name: TradeableCurrency
+    api: Xe Payments API
+  - name: PurposeOfPayment
+    api: Xe Payments API
+    note: Valid payment purposes for a given currency.
+  - name: Transaction
+    api: Xe Payments API / Xe Mass Payments API
+    key: transactionId
+  - name: Payment
+    api: Xe Mass Payments API
+    key: paymentId
+    note: An individual payment inside a mass-payment transaction.
+  - name: Invoice
+    api: Xe Mass Payments API
+    key: transactionId
+  - name: Currency
+    api: Xe Currency Data API
+relationships:
+  - from: Transaction
+    to: Quote
+    type: belongs_to
+    via: quoteId
+    note: A booked payment transaction references the quote it was priced from.
+  - from: Transaction
+    to: Recipient
+    type: belongs_to
+    via: recipientId
+    note: A payment is sent to a recipient.
+  - from: Transaction
+    to: Payment
+    type: has_many
+    via: transactionid
+    note: (Mass Payments) a transaction contains many payments — /transactions/{transactionid}/payments.
+  - from: Transaction
+    to: Invoice
+    type: has_one
+    via: transactionId
+    note: (Mass Payments) /invoices/{transactionId}.
+  - from: Recipient
+    to: RecipientFieldDefinitions
+    type: has_one
+    via: country+currency
+  - from: Quote
+    to: PurposeOfPayment
+    type: references
+    via: currency
+id_prefixes:
+  note: No documented id-prefix scheme published; ids are opaque path parameters (quoteId, recipientId, transactionId, paymentId).

@@ -1,0 +1,38 @@
+generated: '2026-07-24'
+method: derived
+source: >-
+  Derived from the harvested Xe Swagger 2.0 definitions and Dandelion product
+  documentation. Assertions reflect what the specs/docs evidence, not a published
+  Euronet compliance program (none was downloadable; trust-center probe found none).
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 securityScheme in any harvested spec.
+  - id: oidc
+    conforms: false
+  - id: http-basic-auth
+    conforms: true
+    evidence: openapi/xe-currency-data-api-openapi.json securityDefinitions.basicAuth (RFC 7617).
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error bodies use custom ErrorResponse/Message envelopes, not application/problem+json.
+  - id: rfc6585-429
+    conforms: true
+    evidence: Xe Currency Data API returns 429 Too Many Requests with X-RateLimit-* / X-RateRequest-* headers.
+  - id: iso20022
+    conforms: true
+    evidence: Dandelion by Euronet is an ISO 20022-compliant cross-border payments network (pacs.008 / pacs.002 over SWIFT InterAct, plus direct HTTPS and SFTP channels).
+    surface: Dandelion Cross-Border Payments API
+  - id: pagination
+    conforms: true
+    evidence: Xe Payments API listings paginate via pageNumber/pageSize.
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key contract documented in any spec.
+  - id: fapi
+    conforms: false
+  - id: json-api
+    conforms: false
+notes:
+  - No downloadable Euronet/Xe compliance attestation (SOC 2, PCI DSS, ISO 27001) was
+    located publicly, so no `Compliance` pointer is emitted (would require a published program).

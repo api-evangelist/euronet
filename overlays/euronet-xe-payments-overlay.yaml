@@ -1,0 +1,14 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Xe Payments API
+  version: 1.0.0
+extends: openapi/xe-payments-api-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-brand: Xe (Euronet Money Transfer)
+      x-apievangelist-host: payments-api.xe.com (partner-onboarded; sandbox available)
+      x-apievangelist-pagination: pageNumber / pageSize
+      x-apievangelist-idempotency: none documented — do not blindly retry POST /transactions
+      x-apievangelist-error-envelope: wrapper with errors[]/warnings[]/information[]; Message = {code,data}
+      x-apievangelist-status-page: https://status.xe.com/

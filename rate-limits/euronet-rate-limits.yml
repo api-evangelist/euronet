@@ -1,0 +1,30 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  openapi/xe-currency-data-api-openapi.json (429 responses + rate headers) and
+  Xe Help Centre "Currency Data API packages, pricing and payment".
+apis:
+  - api: Xe Currency Data API
+    model: monthly request quota by package tier
+    limits:
+      - tier: Medium
+        limit_count: 100000
+        window: month
+        unit: rate requests
+      - tier: Enterprise
+        limit_count: null
+        window: month
+        unit: rate requests
+        note: unlimited
+    counting: Each rate returned counts as one request toward the monthly package limit.
+    signaling:
+      over_limit_status: 429
+      headers:
+        - X-RateRequest-Limit
+        - X-RateRequest-Remaining
+        - X-RateRequest-Reset
+        - X-RateLimit-Limit
+        - X-RateLimit-Remaining
+        - X-RateLimit-Reset
+    alerts: Email alerts at 75%, 90%, 100% of allowance.
+    docs: https://help.xe.com/hc/en-gb/articles/4414092026769-Currency-Data-API-packages-pricing-and-payment

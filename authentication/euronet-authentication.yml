@@ -1,0 +1,21 @@
+generated: '2026-07-24'
+method: derived
+source: openapi/xe-currency-data-api-openapi.json, openapi/xeta-api-openapi.json
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  sources:
+  - openapi/xe-currency-data-api-openapi.json
+- name: xeta-drupal-authorizer
+  type: apiKey
+  in: header
+  parameter: Cookie
+  sources:
+  - openapi/xeta-api-openapi.json

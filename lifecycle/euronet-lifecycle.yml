@@ -1,0 +1,31 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  Xe status page (status.xe.com), harvested Swagger 2.0 versions, and Xe/Dandelion
+  documentation. No public deprecation policy or Sunset/Deprecation header support
+  was located for any Xe or Dandelion surface at review time.
+versioning:
+  scheme: uri-path
+  detail: Currency Data and XETA version in the URI path (/v1); SwaggerHub definitions carry semantic versions.
+  current:
+    xe_currency_data: v1 (1.0.2)
+    xe_payments: 1.3.0
+    xe_mass_payments: 0.4.1
+    xeta: v1.0.0
+    xe_tradable_rates: 1.0.0
+deprecation:
+  policy_url: null
+  sunset_header: false
+  note: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: https://status.xe.com/
+  detail: Xe publishes 90-day uptime per component on its status page (Currency Data API and payments-api.xe.com tracked separately). No contractual uptime target published publicly.
+status_page: https://status.xe.com/
+status_page_components:
+  - Xe Currency Data API
+  - payments-api.xe.com
+  - Money Transfer Website
+  - Accounting Integrations (Dynamics 365, Sage Intacct)
+  - Xe Mobile App
+status_notifications: [email, sms, slack, webhook]
+deprecated_operations: []

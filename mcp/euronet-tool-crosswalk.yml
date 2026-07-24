@@ -1,0 +1,75 @@
+generated: '2026-07-24'
+method: derived
+source: >-
+  Binds the derived candidate MCP tools (mcp/euronet-mcp.yml) to their backing Xe
+  OpenAPI operations. No hosted MCP server or GraphQL surface exists; every tool is
+  a 1:1 projection of a real REST operation, so each inherits that operation's
+  parameters/requestBody as its real inputSchema.
+surfaces:
+  openapi:
+    - openapi/xe-currency-data-api-openapi.json
+    - openapi/xe-payments-api-openapi.json
+    - openapi/xe-mass-payments-api-openapi.json
+  graphql: null
+  mcp:
+    url: null
+    status: candidate
+    note: No published MCP endpoint; tools/list not live.
+crosswalk:
+  - tool: xe_convert_from
+    category: currency-data
+    rest: ["GET /convert_from"]
+    binding: rest
+    confidence: high
+  - tool: xe_convert_to
+    category: currency-data
+    rest: ["GET /convert_to"]
+    binding: rest
+    confidence: high
+  - tool: xe_list_currencies
+    category: currency-data
+    rest: ["GET /currencies"]
+    binding: rest
+    confidence: high
+  - tool: xe_historic_rate
+    category: currency-data
+    rest: ["GET /historic_rate"]
+    binding: rest
+    confidence: high
+  - tool: xe_payments_create_quote
+    category: payments
+    rest: ["POST /quotes"]
+    binding: rest
+    confidence: high
+  - tool: xe_payments_book_transaction
+    category: payments
+    rest: ["POST /transactions"]
+    binding: rest
+    confidence: high
+    note: Booking executes a real cross-border payment; treat as safety-relevant.
+  - tool: xe_payments_create_recipient
+    category: payments
+    rest: ["POST /recipients"]
+    binding: rest
+    confidence: high
+  - tool: xe_mass_create_transaction
+    category: mass-payments
+    rest: ["POST /transactions"]
+    binding: rest
+    confidence: high
+mcp_only: []
+rest_only:
+  - group: currency-data
+    operations: ["GET /account_info", "GET /historic_rate/period", "GET /monthly_average", "GET /stats"]
+  - group: payments
+    operations: ["GET /permissions", "GET /purposesofpayment/{currency}", "GET /quotes/{quoteId}", "PATCH /quotes/{quoteId}", "GET /recipients", "DELETE /recipients/{recipientId}", "GET /recipients/fields/{country}/{currency}", "GET /tradeablecurrencies", "GET /transactions", "GET /transactions/{transactionId}"]
+  - group: mass-payments
+    operations: ["GET /accounts", "GET /invoices/{transactionId}", "GET /terms", "GET /quotes/{transactionId}", "GET /transactions", "DELETE /transactions/{transactionId}"]
+  - group: xeta
+    operations: ["16 budget/expense/trip/user operations — no MCP tools derived (consumer trip-expense app surface)"]
+coverage:
+  tools_named: 19
+  tools_bound: 19
+  mcp_only: 0
+  rest_ops_total: 65
+  rest_ops_with_tool: 19

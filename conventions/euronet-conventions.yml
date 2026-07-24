@@ -1,0 +1,72 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  Derived from the harvested Xe Swagger 2.0 definitions (openapi/) and Xe Help
+  Centre documentation; cross-links errors/, lifecycle/, authentication/.
+scope: >-
+  Cross-cutting request/response semantics for Euronet's Xe developer surface.
+  Conventions differ per Xe API family; captured per surface below. No unified
+  Euronet-wide convention set exists (fragmented, per-brand surfaces).
+authentication:
+  currency_data:
+    style: HTTP Basic
+    detail: Account id as username, API key as password (basicAuth securityDefinition).
+    source: openapi/xe-currency-data-api-openapi.json
+  xeta:
+    style: apiKey (Cookie header)
+    detail: Drupal-based custom authorizer (xeta-drupal-authorizer).
+    source: openapi/xeta-api-openapi.json
+  payments:
+    style: Partner-onboarded (not declared in published SwaggerHub definitions).
+  see_also: authentication/euronet-authentication.yml
+pagination:
+  payments:
+    style: page-number
+    params: [pageNumber, pageSize]
+    detail: Transaction and recipient listings on the Xe Payments API use page-number/page-size query parameters.
+    source: openapi/xe-payments-api-openapi.json
+  note: The Currency Data API returns full result sets (currency lists, rate tables) without pagination.
+rate_limiting:
+  currency_data:
+    model: monthly request quota by package tier
+    documented_tiers:
+      - "Medium: 100,000 rate requests / month"
+      - "Enterprise: unlimited rate requests / month"
+    counting: Each rate returned counts as one API request toward the monthly package limit.
+    alerts: Automated email alerts at 75%, 90%, and 100% of allowance; API stops returning rates at 100%.
+    response_headers:
+      - X-RateRequest-Limit
+      - X-RateRequest-Remaining
+      - X-RateRequest-Reset
+      - X-RateLimit-Limit
+      - X-RateLimit-Remaining
+      - X-RateLimit-Reset
+    over_limit_status: 429 Too Many Requests
+    source: openapi/xe-currency-data-api-openapi.json + https://help.xe.com/hc/en-gb/articles/4414092026769
+  see_also: rate-limits/euronet-rate-limits.yml
+error_envelope:
+  currency_data:
+    shape: '{ code: number, message: string, documentationUrl: string }'
+    schema: ErrorResponse
+    format: custom-json
+    source: openapi/xe-currency-data-api-openapi.json
+  payments:
+    shape: 'response wrapper with content + message + errors[] + warnings[] + information[]; each Message = { code: string, data: [{key,value}] }'
+    schema: Message
+    format: custom-json
+    source: openapi/xe-payments-api-openapi.json
+  see_also: errors/euronet-problem-types.yml
+versioning:
+  scheme: uri-path
+  detail: Currency Data (/v1) and XETA (/v1) version in the URI path; SwaggerHub definitions carry semantic versions (Payments 1.3.0, Mass Payments 0.4.1).
+  see_also: lifecycle/euronet-lifecycle.yml
+idempotency:
+  supported: false
+  note: >-
+    No idempotency-key header or parameter is documented in any harvested Xe spec.
+    Payment booking (POST /transactions) is not declared idempotent; retries are
+    not protected. No Idempotency pointer emitted (none to claim).
+request_tracing:
+  documented: false
+metadata:
+  documented: false

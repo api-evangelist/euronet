@@ -1,0 +1,50 @@
+generated: '2026-07-24'
+method: derived
+source: >-
+  Derived from 4xx/5xx responses across the harvested Xe Swagger 2.0 definitions
+  (openapi/). Xe does not publish RFC 9457 problem+json; error bodies use custom
+  envelopes (ErrorResponse for Currency Data; a content/message/errors wrapper
+  for Payments).
+format: custom-json
+envelopes:
+  currency_data:
+    schema: ErrorResponse
+    shape: '{ code: number, message: string, documentationUrl: string }'
+  payments:
+    schema: Message
+    shape: '{ code: string, data: [{ key, value }] } inside errors[]/warnings[]/information[]'
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: Invalid or missing query/body parameters.
+    surfaces: [Xe Currency Data API, Xe Payments API, Xe Mass Payments API, XETA API, Xe Tradable Rates API]
+    envelope: ErrorResponse / Message
+  - status: 401
+    title: Unauthorized
+    meaning: Missing or invalid credentials (Basic auth account id + API key, or cookie authorizer).
+    surfaces: [Xe Currency Data API, Xe Mass Payments API]
+  - status: 403
+    title: Forbidden
+    meaning: Authenticated but not permitted for the requested resource/rate.
+    surfaces: [Xe Currency Data API, Xe Tradable Rates API]
+  - status: 404
+    title: Not Found
+    meaning: Referenced quote, recipient, transaction, or payment does not exist.
+    surfaces: [Xe Payments API, Xe Mass Payments API]
+  - status: 422
+    title: Unprocessable Entity
+    meaning: Well-formed request that fails business validation (e.g. transaction posting).
+    surfaces: [Xe Mass Payments API]
+  - status: 429
+    title: Too Many Requests
+    meaning: Monthly package rate-request quota exceeded; see X-RateRequest-* / X-RateLimit-* headers.
+    surfaces: [Xe Currency Data API]
+    retry: Wait for X-RateRequest-Reset; upgrade package tier for a higher monthly quota.
+  - status: 500
+    title: Internal Server Error
+    meaning: Unexpected server-side failure.
+    surfaces: [all Xe APIs]
+notes:
+  - No application/problem+json (RFC 9457) usage detected in any spec.
+  - Xe Payments returns a 200 wrapper carrying errors[]/warnings[] rather than
+    always mapping validation failures to 4xx codes.

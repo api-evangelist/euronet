@@ -1,0 +1,18 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Xe Currency Data API
+  version: 1.0.0
+extends: openapi/xe-currency-data-api-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-brand: Xe (Euronet Money Transfer)
+      x-apievangelist-auth: HTTP Basic (account id + API key)
+      x-apievangelist-rate-limit: Monthly package quota; 429 with X-RateRequest-*/X-RateLimit-* headers
+      x-apievangelist-sdks:
+        - "@xe/xecd-rates-client (npm)"
+        - "xecd-rates-client (PyPI)"
+        - "xe/xecd-rates-client (Packagist)"
+        - "com.xe.xecd:xecd-rates-client (Maven)"
+      x-apievangelist-status-page: https://status.xe.com/
+      x-apievangelist-signup: https://xecd.xe.com/account/signup.php?freetrial

@@ -66,6 +66,7 @@ apis:
     tradeable currencies, purposes of payment, transactions, and permissions for
     sending payments to 200+ countries with a sandbox for integration testing.
   humanURL: https://www.xe.com/platform/payments-api/
+  baseURL: https://payments-api.xe.com
   tags:
   - Cross-Border
   - Payments
@@ -152,6 +153,48 @@ apis:
   - type: HelpCenter
     url: https://help.dandelionpayments.com/hc/en-gb
 common:
+- type: AgenticAccess
+  url: agentic-access/euronet-agentic-access.yml
+- type: DomainSecurity
+  url: security/euronet-domain-security.yml
+- type: Authentication
+  url: authentication/euronet-authentication.yml
+- type: Packages
+  url: packages/euronet-packages.yml
+- type: SDKs
+  url: packages/euronet-packages.yml
+- type: Conventions
+  url: conventions/euronet-conventions.yml
+- type: RateLimits
+  url: rate-limits/euronet-rate-limits.yml
+- type: ErrorCatalog
+  url: errors/euronet-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/euronet-lifecycle.yml
+- type: StatusPage
+  url: https://status.xe.com/
+- type: Conformance
+  url: conformance/euronet-conformance.yml
+- type: MCPServer
+  url: mcp/euronet-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/euronet-tool-crosswalk.yml
+- type: LLMsTxt
+  url: llms/euronet-llms.txt
+- type: Overlay
+  url: overlays/euronet-xe-currency-data-overlay.yaml
+- type: DataModel
+  url: data-model/euronet-data-model.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: APIReference
+  url: https://app.swaggerhub.com/apis/XE.com
+- type: Pricing
+  url: https://www.xe.com/xecurrencydata/
+- type: TermsOfService
+  url: https://www.xe.com/legal/
+- type: Blog
+  url: https://www.xe.com/blog/
 - type: Website
   url: https://www.euronet.com/
 - type: DeveloperPortal

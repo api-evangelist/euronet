@@ -1,0 +1,43 @@
+generated: '2026-07-24'
+method: searched
+source: >-
+  Xe (Euronet Money Transfer brand) publishes first-party xecd-rates-client SDKs
+  for the Xe Currency Data API under the vendor namespaces @xe (npm),
+  xe/ (Packagist), com.xe.xecd (Maven), and xecd-rates-client (PyPI).
+packages:
+  - language: javascript
+    registry: npm
+    name: "@xe/xecd-rates-client"
+    url: https://www.npmjs.com/package/@xe/xecd-rates-client
+    install: npm install @xe/xecd-rates-client
+    official: true
+    api: openapi/xe-currency-data-api-openapi.json
+    note: Official Node.js SDK for the Xe Currency Data (XECD) API; requires account id + API key.
+  - language: python
+    registry: pypi
+    name: xecd-rates-client
+    url: https://pypi.org/project/xecd-rates-client/
+    install: pip install xecd-rates-client
+    official: true
+    api: openapi/xe-currency-data-api-openapi.json
+    note: Official Python SDK for the Xe Currency Data (XECD) API.
+  - language: php
+    registry: packagist
+    name: xe/xecd-rates-client
+    url: https://packagist.org/packages/xe/xecd-rates-client
+    install: composer require xe/xecd-rates-client
+    official: true
+    api: openapi/xe-currency-data-api-openapi.json
+    note: Official PHP SDK for the Xe Currency Data (XECD) API.
+  - language: java
+    registry: maven
+    name: com.xe.xecd:xecd-rates-client
+    url: https://mvnrepository.com/artifact/com.xe.xecd/xecd-rates-client
+    install: "implementation 'com.xe.xecd:xecd-rates-client'"
+    official: true
+    api: openapi/xe-currency-data-api-openapi.json
+    note: Official Java SDK for the Xe Currency Data (XECD) API.
+notes:
+  - The four SDKs all target the Xe Currency Data API (Currency Exchange / FX rates).
+    No first-party SDK was found for the Xe Payments, Mass Payments, XETA, or
+    Dandelion cross-border payout surfaces (partner-onboarded).

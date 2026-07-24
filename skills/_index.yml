@@ -1,0 +1,12 @@
+generated: '2026-07-24'
+method: generated
+source: Grounded in real operations in the harvested Xe OpenAPI definitions (openapi/).
+skills:
+  - file: euronet-currency-convert.md
+    name: Convert currency with Xe Currency Data
+    api: openapi/xe-currency-data-api-openapi.json
+    operations: ["GET /currencies", "GET /convert_from", "GET /convert_to", "GET /historic_rate", "GET /account_info"]
+  - file: euronet-cross-border-payment.md
+    name: Send a cross-border payment with Xe Payments
+    api: openapi/xe-payments-api-openapi.json
+    operations: ["GET /permissions", "GET /tradeablecurrencies", "POST /quotes", "POST /recipients", "POST /transactions", "GET /transactions/{transactionId}"]

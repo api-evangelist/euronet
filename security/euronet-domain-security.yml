@@ -1,0 +1,38 @@
+generated: '2026-07-24'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: www.euronet.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct 14 09:33:17 2026 GMT
+  hsts: false
+- host: xecdapi.xe.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Feb  2 23:59:59 2027 GMT
+  hsts: null
+- host: www.xe.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 22 23:59:59 2026 GMT
+  hsts: null
+domains:
+- domain: euronet.com
+  dnssec: false
+  caa:
+  - 0 issue ";"
+  - 0 issuewild "amazon.com"
+  - 0 issue "amazon.com"
+  - 0 issue "letsencrypt.org"
+  - 0 issuewild "globalsign.com"
+  - 0 issuewild "digicert.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: none
+- domain: xe.com
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

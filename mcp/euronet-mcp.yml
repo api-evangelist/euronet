@@ -1,0 +1,72 @@
+generated: '2026-07-24'
+method: derived
+status: candidate
+source: >-
+  Derived candidate tool list from the harvested Xe OpenAPI operations. No official
+  hosted/remote MCP server was found for Euronet, Xe, or Dandelion at review time.
+server:
+  name: euronet-xe
+  transport: http
+  url: null
+  note: Candidate only — no published MCP endpoint. Tools map 1:1 to real Xe operations.
+tools:
+  # Xe Currency Data API (read; HTTP Basic)
+  - name: xe_get_account_info
+    description: Get the authenticated account's plan and usage info.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /account_info
+  - name: xe_list_currencies
+    description: List currencies supported by the Xe Currency Data API.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /currencies
+  - name: xe_convert_from
+    description: Convert an amount from one currency to one or more target currencies.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /convert_from
+  - name: xe_convert_to
+    description: Convert to a target currency from one or more source currencies.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /convert_to
+  - name: xe_historic_rate
+    description: Get a historic exchange rate for a given date.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /historic_rate
+  - name: xe_historic_rate_period
+    description: Get historic exchange rates across a date range.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /historic_rate/period
+  - name: xe_monthly_average
+    description: Get monthly average exchange rates.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /monthly_average
+  - name: xe_usage_stats
+    description: Get API usage statistics for the account.
+    source_operation: openapi/xe-currency-data-api-openapi.json#GET /stats
+  # Xe Payments API (partner-onboarded)
+  - name: xe_payments_get_permissions
+    description: Get permissions for the authenticated payments account.
+    source_operation: openapi/xe-payments-api-openapi.json#Get (GET /permissions)
+  - name: xe_payments_purposes_of_payment
+    description: List valid purposes of payment for a currency.
+    source_operation: openapi/xe-payments-api-openapi.json#Get (GET /purposesofpayment/{currency})
+  - name: xe_payments_create_quote
+    description: Create an FX quote for a cross-border payment.
+    source_operation: openapi/xe-payments-api-openapi.json#Create (POST /quotes)
+  - name: xe_payments_refresh_quote
+    description: Refresh an existing quote by id.
+    source_operation: openapi/xe-payments-api-openapi.json#Refresh (GET /quotes/{quoteId})
+  - name: xe_payments_list_recipients
+    description: List saved payment recipients.
+    source_operation: openapi/xe-payments-api-openapi.json#Get (GET /recipients)
+  - name: xe_payments_create_recipient
+    description: Create a payment recipient.
+    source_operation: openapi/xe-payments-api-openapi.json#Create (POST /recipients)
+  - name: xe_payments_book_transaction
+    description: Book (execute) a cross-border payment transaction from a quote.
+    source_operation: openapi/xe-payments-api-openapi.json#Book (POST /transactions)
+  - name: xe_payments_get_transaction
+    description: Get a payment transaction by id.
+    source_operation: openapi/xe-payments-api-openapi.json#Get (GET /transactions/{transactionId})
+  # Xe Mass Payments API (partner-onboarded)
+  - name: xe_mass_create_transaction
+    description: Create a batch/bulk mass-payment transaction.
+    source_operation: openapi/xe-mass-payments-api-openapi.json#Post (POST /transactions)
+  - name: xe_mass_approve_quote
+    description: Approve a mass-payment quote.
+    source_operation: openapi/xe-mass-payments-api-openapi.json#Approve (POST /quotes)
+  - name: xe_mass_list_payments
+    description: List payments within a mass-payment transaction.
+    source_operation: openapi/xe-mass-payments-api-openapi.json#Get (GET /transactions/{transactionid}/payments)
