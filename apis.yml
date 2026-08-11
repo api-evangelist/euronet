@@ -56,7 +56,7 @@ apis:
     url: https://xecdapi.xe.com/docs/v1/
   - type: APIReference
     url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
-  - type: SignUp
+  - type: Signup
     url: https://xecd.xe.com/account/signup.php?freetrial
 - aid: euronet:xe-payments-api
   name: Xe Payments API
@@ -185,7 +185,7 @@ common:
   url: overlays/euronet-xe-currency-data-overlay.yaml
 - type: DataModel
   url: data-model/euronet-data-model.yml
-- type: AgentSkill
+- type: AgentSkills
   url: skills/_index.yml
 - type: APIReference
   url: https://app.swaggerhub.com/apis/XE.com
@@ -203,7 +203,7 @@ common:
   url: https://xecdapi.xe.com/docs/v1/
 - type: HelpCenter
   url: https://help.dandelionpayments.com/hc/en-gb
-- type: SignUp
+- type: Signup
   url: https://xecd.xe.com/account/signup.php?freetrial
 - type: PrivacyPolicy
   url: https://www.euronet.com/legal-privacy-statement/
