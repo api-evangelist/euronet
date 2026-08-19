@@ -1,0 +1,327 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xe.Api.MassPayments",
+    "version": "0.4.1"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of accounts that the user has access to.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/accounts"
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanGetAccounts\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /accounts"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Invoice",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get the invoice for an authorised transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/invoices/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of transaction to get the invoice for."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanViewInvoice\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /invoices/4251"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Payments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update a payment in a transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/transactions/:transactionid/payments/:paymentId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the transaction."
+              },
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the payment."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanEditPayments\r\n            \r\n\\\r\nSample request:\r\n            \r\n    PATCH /transactions/35271/payments/107346"
+        },
+        {
+          "info": {
+            "name": "Get a paged list of payment(s) for a transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionid/payments",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the transaction the requested payments belong to."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page to return."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of transactions per page."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanViewPayments\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions/35271/payments?pagesize=10"
+        },
+        {
+          "info": {
+            "name": "Get a single payment.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionid/payments/:paymentid",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the transaction the request payment belongs to."
+              },
+              {
+                "name": "paymentId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the payment to get."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n\r\n    CanViewPayments\r\n    \r\n\\\r\nSample request:\r\n\r\n    GET /transactions/35271/payments/107346"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a list of permissions for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/permissions"
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /permissions"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quote",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a quote for a transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotes/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of transaction to quote for."
+              },
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "ID of account the transaction is for. If not set, it defaults to the user's account."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanGetQuote\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /quotes/6724"
+        },
+        {
+          "info": {
+            "name": "Approve a quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/quotes"
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanApproveQuote\r\n            \r\n\\\r\nSample request:\r\n            \r\n    POST /quotes"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Terms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets the important information relating to making a transaction. This will have to be read, understood and agreed to, in order to approve a quote for a transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/terms"
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /terms"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a paged list of transactions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "query",
+                "description": "ID of account the transactions are for. If not set, it defaults to the user's account."
+              },
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page to return."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of transactions per page."
+              },
+              {
+                "name": "sortCol",
+                "value": "",
+                "type": "query",
+                "description": "Column to sort on."
+              },
+              {
+                "name": "sortDir",
+                "value": "",
+                "type": "query",
+                "description": "Sort direction."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanViewTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions?pagesize=10\r\n            \r\n\\\r\nSort columns:\r\n            \r\n    DateUploaded\r\n    TransactionName\r\n    TransactionReference\r\n    TransactionStatus\r\n    NumberOfPayments\r\n    ApprovedBy\r\n            \r\n\\\r\nSort directions:\r\n            \r\n    desc\r\n    asc"
+        },
+        {
+          "info": {
+            "name": "Load a list of payments.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/transactions"
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanLoadTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    POST /transactions"
+        },
+        {
+          "info": {
+            "name": "Get the details for a single transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the transaction."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanViewTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions/35271"
+        },
+        {
+          "info": {
+            "name": "Delete an unapproved transaction.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of transaction to delete."
+              }
+            ]
+          },
+          "docs": "Permissions Required:\r\n            \r\n    CanDeleteTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    DELETE /transactions/4682"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

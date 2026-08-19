@@ -1,0 +1,2485 @@
+{
+  "item": [
+    {
+      "id": "bdf45aa7-1c5e-477e-bc04-0cfcfeced79e",
+      "name": "Permission",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c3c0addf-31cb-491d-b970-7f20943e5486",
+          "name": "Gets all permissions for the current user.",
+          "request": {
+            "name": "Gets all permissions for the current user.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /permissions\r\n            \r\n\\\r\n<details><summary>**The complete set of permissions are**</summary>\r\n* OnlineCardSettlementEnabled\r\n* CanQuote\r\n* CanQuoteAndCreateTransaction\r\n* CanUseOnlineDealing\r\n* CanAccessRecipients\r\n* CanEditOwnAddress\r\n* CanAddRecipient\r\n* CanDeleteRecipient\r\n* ViewPaymentsAwaitingAuthorisation\r\n* CanSubmitPayment\r\n* AllowOnlineForwards\r\n</details>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a7a83ec-1bc2-4e85-92df-69ff9d7b62b1",
+              "name": "Returns the list of permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"CanQuote\",\n  \"CanQuoteAndCreateTransaction\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10fd4bd8-76c6-4e37-9465-45e7191dc54a",
+              "name": "Error getting permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "5ddabd62-1933-47c8-ab63-d7c4c199f568",
+      "name": "PurposesOfPayment",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ec507b1f-6e5f-4ba9-8a9a-8676b39f2171",
+          "name": "Get purposes of payment for given user.",
+          "request": {
+            "name": "Get purposes of payment for given user.",
+            "description": {
+              "content": "Sample request:\r\n\r\n    Get /purposesofpayment/INR\r\n\r\n\\\r\n<details><summary>**The complete set of purposes of payment for all currencies are**</summary>\r\n* BONUS_SALARY\r\n* CORP_BONUS\r\n* CORP_CHARITY\r\n* CORP_CUSTOMER_PAYMENT\r\n* CORP_DIVIDEND\r\n* CORP_EMPLOYEE_EXPENSES\r\n* CORP_FREIGHT\r\n* CORP_IMPORT_EXPORT\r\n* CORP_INR_BANKERS\r\n* CORP_INR_COOP\r\n* CORP_INR_CREDIT\r\n* CORP_INR_EDUCATIONAL\r\n* CORP_INR_EMI\r\n* CORP_INR_FAMILIES\r\n* CORP_INR_POSTMASTER\r\n* CORP_INR_TAX\r\n* CORP_INR_TRADE\r\n* CORP_INR_TRAVEL\r\n* CORP_INR_UTILTY\r\n* CORP_INSURANCE\r\n* CORP_INVESTMENT\r\n* CORP_INVOICE\r\n* CORP_OPERATING_COST\r\n* CORP_OTHER\r\n* CORP_OUTSOURCING\r\n* CORP_PENSION\r\n* CORP_PROPERTY_BUY_SELL\r\n* CORP_PROPERTY_MANAGEMENT\r\n* CORP_REPATRIATION\r\n* CORP_SALARY\r\n* CORP_SUPPLIER_PAYMENT\r\n* CORP_TAX\r\n* CORP_TRAVEL_SERVICES\r\n* DIVIDEND_PAYMENT\r\n* EXPENSES\r\n* INSURANCE_CLAIMS\r\n* INVOICES\r\n* OTHER\r\n* PENSION\r\n* PRIV_BILL_PAYMENT\r\n* PRIV_BUSINESS_PAYMENT\r\n* PRIV_CHARITY\r\n* PRIV_FAMILY_SUPPORT\r\n* PRIV_GIFT\r\n* PRIV_GOODS_SERVICES\r\n* PRIV_HOLIDAY\r\n* PRIV_INHERITANCE\r\n* PRIV_INR_BANKERS\r\n* PRIV_INR_COOP\r\n* PRIV_INR_CREDIT\r\n* PRIV_INR_EDUCATIONAL\r\n* PRIV_INR_EMI\r\n* PRIV_INR_FAMILIES\r\n* PRIV_INR_HOTELS\r\n* PRIV_INR_MEDICAL\r\n* PRIV_INR_POSTMASTER\r\n* PRIV_INR_TAX\r\n* PRIV_INR_TRADE\r\n* PRIV_INR_TRAVEL\r\n* PRIV_INR_UTILTY\r\n* PRIV_INVESTMENT\r\n* PRIV_LIVING\r\n* PRIV_LOAN_REPAYMENT\r\n* PRIV_MEDICAL\r\n* PRIV_MORTGAGE\r\n* PRIV_OTHER\r\n* PRIV_PENSION\r\n* PRIV_PROPERTY_BUY_SELL\r\n* PRIV_RELOCATION\r\n* PRIV_SALARY\r\n* PRIV_TAX\r\n* PRIV_TEST_TRANSFER\r\n* PRIV_TRAVEL_EXPENSES\r\n* PRIV_TRAVEL_MONEY\r\n* PRIV_TUITION\r\n* PRIV_WEDDING\r\n* PROPERTY_MANAGEMENT\r\n* SALARY\r\n* SUPPLIERS\r\n* TAX\r\n* TEMPORARY_CODE_102\r\n* TEMPORARY_CODE_103\r\n* TRAVEL_SERVICES\r\n</details>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "purposesofpayment",
+                ":currency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency",
+                  "description": "(Required) Currency code to get purposes of payment for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6898f7e5-90f9-4c3f-bcc5-ec21c5f54272",
+              "name": "Returns list of purposes of payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purposesofpayment",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get purposes of payment for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"code\": \"PRIV_BILL_PAYMENT\",\n      \"allowFreeText\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "888ec113-351d-4cbc-ad97-505a3e06b997",
+              "name": "Purposes of payment not found for this user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purposesofpayment",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get purposes of payment for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"CURRENCY_VALIDATION\",\n      \"data\": [\n        {\n          \"key\": \"currency\",\n          \"value\": \"Currency is required.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fc367ad9-13e8-412a-9da9-1f5949324043",
+              "name": "Error getting purposes of payment for this user.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "purposesofpayment",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get purposes of payment for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "58e6e3ef-4a8f-4b5d-a65b-6923ff067bc0",
+      "name": "Quote",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "df9fd3d4-1c99-4095-ab1f-bd44932d0008",
+          "name": "Creates a quote for the currencies and amount provided.",
+          "request": {
+            "name": "Creates a quote for the currencies and amount provided.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    POST /quotes\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<double>\",\n  \"buyOrSell\": \"<string>\",\n  \"buyCurrency\": \"<string>\",\n  \"sellCurrency\": \"<string>\",\n  \"recipientId\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"purposeOfPaymentCode\": \"<string>\",\n  \"purposeOfPaymentFreeText\": \"<string>\",\n  \"recipientEmailAddress\": \"<string>\",\n  \"privateReference\": \"<string>\",\n  \"valueDate\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff0214ed-c7bb-46ba-a693-40d332004960",
+              "name": "Returns the created quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"buyOrSell\": \"Sell\",\n  \"buyCurrency\": \"GBP\",\n  \"sellCurrency\": \"USD\",\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"CORP_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"quoteId\": \"Quote_12016fea-5310-32b2-eca3-917c1ad62f87\",\n    \"quoteStatus\": 2,\n    \"quoteStatusText\": \"Quoted\",\n    \"expiryTimeMilliseconds\": 14127,\n    \"buyCurrency\": \"GBP\",\n    \"sellCurrency\": \"USD\",\n    \"baseCurrency\": \"GBP\",\n    \"rate\": \"1.7471\",\n    \"inverseRate\": \"0.5724\",\n    \"rateMovement\": \"\",\n    \"buyOrSell\": \"Sell\",\n    \"buyAmount\": \"57.24\",\n    \"sellAmount\": \"100.00\",\n    \"fees\": \"6.90\",\n    \"settlementAmount\": \"117.50\",\n    \"balanceAmount\": \"106.90\",\n    \"balanceDueDate\": \"2019-01-25\",\n    \"securityDeposit\": \"10.60\",\n    \"securityDepositDueDate\": \"2019-01-11\",\n    \"valueDate\": \"2019-01-25\",\n    \"availableDate\": \"\"\n  },\n  \"warnings\": [\n    {\n      \"code\": \"WARN001\"\n    }\n  ],\n  \"information\": [\n    {\n      \"code\": \"INFO001\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b96ea76-2ef3-47c4-94d5-5d7d8ad0a6ef",
+              "name": "Request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"buyOrSell\": \"Sell\",\n  \"buyCurrency\": \"GBP\",\n  \"sellCurrency\": \"USD\",\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"CORP_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"CREATE_QUOTE_REQUEST_VALIDATION\",\n      \"data\": [\n        {\n          \"key\": \"BuyCurrency\",\n          \"value\": \"Currency code must be 3 characters.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5cbe8631-bcd5-434e-b0f3-979278618308",
+              "name": "Error creating quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 100,\n  \"buyOrSell\": \"Sell\",\n  \"buyCurrency\": \"GBP\",\n  \"sellCurrency\": \"USD\",\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"CORP_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-25\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e23763fb-45a2-434e-9abd-c1994da836ab",
+          "name": "Refreshes a quote to gain an up-to-date quote.",
+          "request": {
+            "name": "Refreshes a quote to gain an up-to-date quote.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /quotes/Quote_123456-1234\r\n    GET /quotes/Quote_123456-1234?refresh=false\r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ":quoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "refresh",
+                  "value": "<boolean>",
+                  "description": "Set to false to return a cached quote if available, or 404 if no cached quote is found."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) ID of the quote to be refreshed."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52bd711e-d2d6-421d-a40c-e4b391fc867c",
+              "name": "Returns the refreshed quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be refreshed."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"quoteId\": \"Quote_12016fea-5310-32b2-eca3-917c1ad62f87\",\n    \"quoteStatus\": 2,\n    \"quoteStatusText\": \"Quoted\",\n    \"expiryTimeMilliseconds\": 14127,\n    \"buyCurrency\": \"GBP\",\n    \"sellCurrency\": \"USD\",\n    \"baseCurrency\": \"GBP\",\n    \"rate\": \"1.7471\",\n    \"inverseRate\": \"0.5724\",\n    \"rateMovement\": \"\",\n    \"buyOrSell\": \"Sell\",\n    \"buyAmount\": \"57.24\",\n    \"sellAmount\": \"100.00\",\n    \"fees\": \"6.90\",\n    \"settlementAmount\": \"117.50\",\n    \"balanceAmount\": \"106.90\",\n    \"balanceDueDate\": \"2019-01-25\",\n    \"securityDeposit\": \"10.60\",\n    \"securityDepositDueDate\": \"2019-01-11\",\n    \"valueDate\": \"2019-01-25\",\n    \"availableDate\": \"\"\n  },\n  \"warnings\": [\n    {\n      \"code\": \"WARN001\"\n    }\n  ],\n  \"information\": [\n    {\n      \"code\": \"INFO001\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07e6c50a-f971-4b3f-af36-2705a0727174",
+              "name": "Quote not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be refreshed."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e610d12f-88be-43c4-a247-5331729b4660",
+              "name": "Error refreshing quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "refresh",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be refreshed."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17d4b509-72eb-4a50-9dca-b67d5e289354",
+          "name": "Updates a quote to change or add more details.",
+          "request": {
+            "name": "Updates a quote to change or add more details.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    PATCH /quotes/Quote_123456-1234\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ":quoteId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "quoteId",
+                  "description": "(Required) ID of the quote to be updated."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": \"<double>\",\n  \"recipientId\": \"<integer>\",\n  \"reference\": \"<string>\",\n  \"purposeOfPaymentCode\": \"<string>\",\n  \"purposeOfPaymentFreeText\": \"<string>\",\n  \"recipientEmailAddress\": \"<string>\",\n  \"privateReference\": \"<string>\",\n  \"valueDate\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "1e39312c-da6c-473b-8e59-208120acb40d",
+              "name": "Returns the updated quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 150,\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-26\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"quoteId\": \"Quote_12016fea-5310-32b2-eca3-917c1ad62f87\",\n    \"quoteStatus\": 2,\n    \"quoteStatusText\": \"Quoted\",\n    \"expiryTimeMilliseconds\": 14127,\n    \"buyCurrency\": \"GBP\",\n    \"sellCurrency\": \"USD\",\n    \"baseCurrency\": \"GBP\",\n    \"rate\": \"1.7471\",\n    \"inverseRate\": \"0.5724\",\n    \"rateMovement\": \"\",\n    \"buyOrSell\": \"Sell\",\n    \"buyAmount\": \"57.24\",\n    \"sellAmount\": \"100.00\",\n    \"fees\": \"6.90\",\n    \"settlementAmount\": \"117.50\",\n    \"balanceAmount\": \"106.90\",\n    \"balanceDueDate\": \"2019-01-25\",\n    \"securityDeposit\": \"10.60\",\n    \"securityDepositDueDate\": \"2019-01-11\",\n    \"valueDate\": \"2019-01-25\",\n    \"availableDate\": \"\"\n  },\n  \"warnings\": [\n    {\n      \"code\": \"WARN001\"\n    }\n  ],\n  \"information\": [\n    {\n      \"code\": \"INFO001\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b228c556-25d7-45f8-9d43-6a9e7353dade",
+              "name": "Request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be updated."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 150,\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-26\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"UPDATE_QUOTE_REQUEST_VALIDATION\",\n      \"data\": [\n        {\n          \"key\": \"Amount\",\n          \"value\": \"Must be greater than 0.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e62d2aab-aac0-4225-9626-c53699974b30",
+              "name": "Quote not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be updated."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 150,\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-26\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "874a8086-a03a-40cc-9f9e-4b26224652dd",
+              "name": "Error updating quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":quoteId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "quoteId",
+                      "description": "(Required) ID of the quote to be updated."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"amount\": 150,\n  \"recipientId\": 1234567,\n  \"reference\": \"Reference\",\n  \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n  \"purposeOfPaymentFreeText\": \"Free text\",\n  \"recipientEmailAddress\": \"recip@email.co.uk\",\n  \"privateReference\": \"Private reference\",\n  \"valueDate\": \"2019-01-26\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "301d84e6-e497-4255-aae4-6edaa1f1af5c",
+      "name": "Recipient",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "02c0d6c9-ddfc-439f-ad4e-ae4577ad8431",
+          "name": "Gets recipients for a currency.",
+          "request": {
+            "name": "Gets recipients for a currency.",
+            "description": {
+              "content": "Sample requests:\r\n            \r\n    GET /recipients?currency=GBP\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAccessRecipients",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "currency",
+                  "value": "<string>",
+                  "description": "Get recipients for a specific currency."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "94e77568-7f26-4c2c-88fa-58c2c766d719",
+              "name": "Returns the list of recipients.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"id\": 1234567,\n      \"name\": \"Joe Smith\",\n      \"currency\": \"GBP\",\n      \"accountNumber\": \"87654321\",\n      \"accountName\": \"Joe Smith\",\n      \"bankName\": \"BankName\",\n      \"bankCountry\": \"GB\",\n      \"nickname\": \"Nickname\",\n      \"paymentReference\": \"Reference\",\n      \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n      \"purposeOfPaymentFreeText\": \"Free text\",\n      \"bankAddressLine1\": \"Bank 1\",\n      \"bankAddressLine2\": \"Bank 2\",\n      \"bankAddressLine3\": \"Bank 3\",\n      \"bankBic\": \"194857\",\n      \"nationalClearingCode\": \"1235457\",\n      \"addressLine1\": \"Address1\",\n      \"addressLine2\": \"Address2\",\n      \"addressLine3\": \"Address3\",\n      \"email\": \"Joe.Smith@email.com\",\n      \"intermediaryBankAddressLine1\": \"IntBank1\",\n      \"intermediaryBankAddressLine2\": \"IntBank2\",\n      \"intermediaryBankAddressLine3\": \"IntBank3\",\n      \"intermediaryBankBic\": \"6582342\",\n      \"intermediaryNationalClearingCode\": \"6534211\",\n      \"intermediaryBankName\": \"IntBankName\",\n      \"intermediaryBankAddressCountryCode\": \"GB\",\n      \"intermediaryAccountNumber\": \"564245821\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e114a3ff-f254-49f1-b201-6765f8bf286f",
+              "name": "Request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Invalid currency code.\",\n  \"errors\": [\n    {\n      \"code\": \"RECIPIENT001\",\n      \"data\": [\n        {\n          \"key\": \"currency\",\n          \"value\": \"123\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8418bea1-386b-4b74-8c96-cddd1727664d",
+              "name": "No recipients were found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ef5fa0ef-e6d6-49ff-89c2-6fdd19793f2f",
+              "name": "Error getting recipients.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9863b23-ef39-4103-97b5-20b54d29e2e9",
+          "name": "Creates a recipient with the details provided.",
+          "request": {
+            "name": "Creates a recipient with the details provided.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    POST /recipients\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAddRecipient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recipients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"bankCountryCode\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cce1621d-3851-423c-8b11-9a5995be6575",
+              "name": "Returns the created recipient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bankCountryCode\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"id\": 1234567,\n    \"name\": \"Joe Smith\",\n    \"currency\": \"GBP\",\n    \"accountNumber\": \"87654321\",\n    \"accountName\": \"Joe Smith\",\n    \"bankName\": \"BankName\",\n    \"bankCountry\": \"GB\",\n    \"nickname\": \"Nickname\",\n    \"paymentReference\": \"Reference\",\n    \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n    \"purposeOfPaymentFreeText\": \"Free text\",\n    \"bankAddressLine1\": \"Bank 1\",\n    \"bankAddressLine2\": \"Bank 2\",\n    \"bankAddressLine3\": \"Bank 3\",\n    \"bankBic\": \"194857\",\n    \"nationalClearingCode\": \"1235457\",\n    \"addressLine1\": \"Address1\",\n    \"addressLine2\": \"Address2\",\n    \"addressLine3\": \"Address3\",\n    \"email\": \"Joe.Smith@email.com\",\n    \"intermediaryBankAddressLine1\": \"IntBank1\",\n    \"intermediaryBankAddressLine2\": \"IntBank2\",\n    \"intermediaryBankAddressLine3\": \"IntBank3\",\n    \"intermediaryBankBic\": \"6582342\",\n    \"intermediaryNationalClearingCode\": \"6534211\",\n    \"intermediaryBankName\": \"IntBankName\",\n    \"intermediaryBankAddressCountryCode\": \"GB\",\n    \"intermediaryAccountNumber\": \"564245821\"\n  },\n  \"warnings\": [\n    {\n      \"code\": \"WARN001\"\n    }\n  ],\n  \"information\": [\n    {\n      \"code\": \"INFO001\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b56c4b27-a12a-467d-b77b-3c3bd9d7bae3",
+              "name": "Request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bankCountryCode\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"CREATE_RECIPIENT_REQUEST_VALIDATION\",\n      \"data\": [\n        {\n          \"key\": \"BankCountryCode\",\n          \"value\": \"Country code must be 2 characters.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66c0c366-04bf-47bb-a19b-304a2174c142",
+              "name": "Error creating recipient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"bankCountryCode\": \"<string>\",\n  \"currencyCode\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "040031d6-8004-42c2-947c-62df06883f54",
+          "name": "Delete a recipient.",
+          "request": {
+            "name": "Delete a recipient.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    DELETE /recipients/{recipientId}\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanDeleteRecipient",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recipients",
+                ":recipientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "recipientId",
+                  "description": "(Required) Recipient ID of recipient to delete."
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fbef4fa1-51f8-48ed-8311-240ed9246421",
+              "name": "Recipient has been deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    ":recipientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recipientId",
+                      "description": "(Required) Recipient ID of recipient to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "9f71668d-3290-469e-9e88-a1f2c3477776",
+              "name": "Recipient not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    ":recipientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recipientId",
+                      "description": "(Required) Recipient ID of recipient to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "741c4af8-29f0-4423-922d-f9b405f8aab0",
+              "name": "Error occurred while deleting the recipient.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    ":recipientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "recipientId",
+                      "description": "(Required) Recipient ID of recipient to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7c73cdf3-962d-4eb9-8bd2-7716ad993291",
+          "name": "Gets all recipient field definitions for a user for a specified currency and a country.",
+          "request": {
+            "name": "Gets all recipient field definitions for a user for a specified currency and a country.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /recipients/fields/AU/GBP\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAccessRecipients\r\n            \r\n\\\r\n<details><summary>**Names and descriptions for the fields that can be returned**</summary>\r\n*   ibanOrAccountNumber - Used if either an IBAN, or an domestic Account Number can be provided.\r\n*   accountNumber - Account Number (Domestic - with respect to the Bank Address Country Code) for the recipient's bank account.\r\n*   iban - International Bank Account Number for the recipient's bank account.\r\n*   nationalClearingCode - National Clearing Code for the recipient's bank.\r\n*   bankAccountType - The type of bank account. (NOTE: is looking for an integer value that should map to the values stored for each type, e.g. 10 for Savings)\r\n*   bankBic - Bank Identification Code for the recipient's bank.\r\n*   bankName - Name of the bank for the recipient's account.\r\n*   bankAddressLine1 - Line 1 of the address for the recipient's bank.\r\n*   bankAddressLine2 - Line 2 of the address for the recipient's bank.\r\n*   bankAddressLine3 - Line 3 of the address for the recipient's bank.\r\n*   bankAddressCountryCode - Country code for the recipient's bank.\r\n*   accountName - Name of the recipient on their bank account.\r\n*   email -  Email for the recipient.\r\n*   addressLine1 - Line 1 of the address for the recipient.\r\n*   addressLine2 - Line 2 of the address for the recipient.\r\n*   addressCountryCode - Country code of the address for the recipient.\r\n*   paymentReference - Client specified reference when making payments to the recipient.\r\n*   intermediaryBankNationalClearingCode - National Clearing Code for an intermediary bank.\r\n*   intermediaryBankBic - Bank Identification Code for an intermediary bank.\r\n*   intermediaryBankName - Name of the intermediary bank.\r\n*   intermediaryBankIbanOrAccountNumber - IBAN or Account Number for an intermediary bank.\r\n*   intermediaryBankAddressLine1 - Line 1 of the address for an intermediary bank.\r\n*   intermediaryBankAddressLine2 - Line 2 of the address for an intermediary bank.\r\n*   intermediaryBankAddressLine3 - Line 3 of the address for an intermediary bank.\r\n*   intermediaryBankAddressCountryCode - Country code for an intermediary bank.\r\n*   purposeOfPaymentCode - Default purpose of payment code for the recipient.\r\n*   purposeOfPaymentFreeText - Default purpose of payment free text for the recipient.\r\n*   nickname - Nickname specified by the client.\r\n</details>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recipients",
+                "fields",
+                ":country",
+                ":currency"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "country",
+                  "description": "(Required) Country code to get recipient field definitions for."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "currency",
+                  "description": "(Required) Currency code to get recipient field definitions for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4611eef9-0d2a-4cc0-812a-206fed4128c1",
+              "name": "Returns all Recipient Field definitions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    "fields",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) Country code to get recipient field definitions for."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get recipient field definitions for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"fieldDefinitions\": [\n      {\n        \"fieldName\": \"accountName\",\n        \"regEx\": \"^[a-zA-Z0-9\\\\s\\\\(\\\\)\\\\+\\\\-'/\\\\?\\\\.:,]{1,70}$\",\n        \"required\": false,\n        \"fieldType\": \"Text\",\n        \"allowedValues\": []\n      },\n      {\n        \"fieldName\": \"addressLine1\",\n        \"regEx\": \"^$|^[a-zA-Z0-9,\\\\s\\\\(\\\\)\\\\+\\\\-'/\\\\?\\\\.:]{3,35}$\",\n        \"required\": false,\n        \"fieldType\": \"Text\",\n        \"allowedValues\": []\n      }\n    ],\n    \"contentReplacements\": {\n      \"COUNTRY_CODE\": \"GB\",\n      \"ACCOUNT_LENGTH\": \"8\"\n    },\n    \"errors\": {},\n    \"infos\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fc765e3-cfbe-4659-98db-32b1fe097f8c",
+              "name": "Request was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    "fields",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) Country code to get recipient field definitions for."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get recipient field definitions for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"COUNTRY_VALIDATION\",\n      \"data\": [\n        {\n          \"key\": \"GBR\",\n          \"value\": \"Country code must be 2 characters.\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d3188f3-911d-4fcc-b7a5-86efa3ed9c87",
+              "name": "Error getting all Recipient Field definitions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recipients",
+                    "fields",
+                    ":country",
+                    ":currency"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "country",
+                      "description": "(Required) Country code to get recipient field definitions for."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "currency",
+                      "description": "(Required) Currency code to get recipient field definitions for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cf7cc0b2-a2b2-4c66-99e7-6e0e8a7a4ad4",
+      "name": "TradeableCurrency",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45c0808e-f9c2-4b77-aaf5-e1ef62ad0a7e",
+          "name": "Get tradeable currencies.",
+          "request": {
+            "name": "Get tradeable currencies.",
+            "description": {
+              "content": "Sample request:\r\n\r\n    Get /tradeablecurrencies",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tradeablecurrencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d674864c-6e0f-47a0-affa-60038ecf1564",
+              "name": "Returns list of Tradeable currencies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeablecurrencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"amountPrecision\": 2,\n      \"isoCode\": \"AED\",\n      \"name\": \"UAE Dirham\",\n      \"canBuy\": true,\n      \"canSell\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8282437f-c4ec-4256-a3e9-0501058bc351",
+              "name": "Tradeable currencies not found for this user",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeablecurrencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8fbca21a-28aa-474e-890a-32a5ce647b90",
+              "name": "Error getting Tradeable currencies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeablecurrencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "087754f5-b11a-4e6f-80d1-14b795ee9444",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bf89a2c6-04cb-48e2-8cfd-463216ffcbb9",
+          "name": "Gets a list of transactions for the specified page number and page size, filtered by creation date.",
+          "request": {
+            "name": "Gets a list of transactions for the specified page number and page size, filtered by creation date.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /transactions?fromDate=2019-01-10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "0",
+                  "description": "The page to return (First page is page 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "4",
+                  "description": "The number of transactions per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "fromDate",
+                  "value": "2019-01-01",
+                  "description": "Date to get transactions from."
+                },
+                {
+                  "disabled": false,
+                  "key": "toDate",
+                  "value": "<string>",
+                  "description": "Date to get transactions up to."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d0bda709-f17e-41ac-8662-ba8712478382",
+              "name": "Returns the specified page of transactions, filtered by creation date.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "4"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "2019-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"content\": [\n      {\n        \"transactionId\": 12345678,\n        \"isValidTransaction\": true,\n        \"buyOrSell\": \"Sell\",\n        \"transactionReference\": \"C4281953\",\n        \"transactionDate\": \"2019-01-08\",\n        \"transactionStatus\": \"Confirmed\",\n        \"workflowState\": \"AwaitingBalance\",\n        \"buyCurrency\": \"GBP\",\n        \"buyAmount\": 57.24,\n        \"sellCurrency\": \"USD\",\n        \"sellAmount\": 100,\n        \"baseCurrency\": \"GBP\",\n        \"rate\": 1.7471,\n        \"fees\": 6.9,\n        \"feeCurrency\": \"USD\",\n        \"valueDate\": \"2019-01-25\",\n        \"payments\": [\n          {\n            \"amount\": 57.24,\n            \"recipientId\": 1234567,\n            \"reference\": \"Reference\",\n            \"recipientEmailAddress\": \"recip@email.co.uk\",\n            \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n            \"purposeOfPaymentFreeText\": \"Free text\"\n          }\n        ],\n        \"settlementAccountDetails\": {\n          \"accountName\": \"AccountName\",\n          \"accountNumber\": \"123456789\",\n          \"iban\": \"GB41ABCD285627869934271\",\n          \"bankName\": \"BankName\",\n          \"branch\": \"BranchName\",\n          \"addressLine1\": \"Address1\",\n          \"addressLine2\": \"Address2\",\n          \"addressLine3\": \"Address3\",\n          \"swiftCode\": \"ABCDGB64\",\n          \"nationalClearingCode\": \"273841\",\n          \"supportsBPayPayment\": false,\n          \"bPayPaymentName\": \"\",\n          \"bPayBillerCode\": null\n        },\n        \"bPayCustomerReferenceNumber\": 0,\n        \"settlementAmount\": 117.5,\n        \"balanceAmount\": 106.9,\n        \"balanceDueDate\": \"2019-01-25\",\n        \"securityDeposit\": 10.6,\n        \"securityDepositDueDate\": \"2019-01-11\"\n      },\n      {\n        \"transactionId\": 12345682,\n        \"isValidTransaction\": true,\n        \"buyOrSell\": \"Buy\",\n        \"transactionReference\": \"C4287591\",\n        \"transactionDate\": \"2019-01-27\",\n        \"transactionStatus\": \"Confirmed\",\n        \"workflowState\": \"AwaitingBalance\",\n        \"buyCurrency\": \"GBP\",\n        \"buyAmount\": 150,\n        \"sellCurrency\": \"USD\",\n        \"sellAmount\": 262.05,\n        \"baseCurrency\": \"GBP\",\n        \"rate\": 1.747,\n        \"fees\": 12,\n        \"feeCurrency\": \"USD\",\n        \"valueDate\": \"2019-01-29\",\n        \"payments\": [\n          {\n            \"amount\": 57.24,\n            \"recipientId\": 1234567,\n            \"reference\": \"Reference\",\n            \"recipientEmailAddress\": \"recip@email.co.uk\",\n            \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n            \"purposeOfPaymentFreeText\": \"Free text\"\n          }\n        ],\n        \"settlementAccountDetails\": {\n          \"accountName\": \"AccountName\",\n          \"accountNumber\": \"123456789\",\n          \"iban\": \"GB41ABCD285627869934271\",\n          \"bankName\": \"BankName\",\n          \"branch\": \"BranchName\",\n          \"addressLine1\": \"Address1\",\n          \"addressLine2\": \"Address2\",\n          \"addressLine3\": \"Address3\",\n          \"swiftCode\": \"ABCDGB64\",\n          \"nationalClearingCode\": \"273841\",\n          \"supportsBPayPayment\": false,\n          \"bPayPaymentName\": \"\",\n          \"bPayBillerCode\": null\n        },\n        \"bPayCustomerReferenceNumber\": 0,\n        \"settlementAmount\": 274.05,\n        \"balanceAmount\": 274.05,\n        \"balanceDueDate\": \"2019-01-29\",\n        \"securityDeposit\": 0,\n        \"securityDepositDueDate\": \"\"\n      }\n    ],\n    \"totalRecords\": 2,\n    \"pageSize\": 4,\n    \"pageNumber\": 0\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f07d283b-3890-41b0-8a35-3649c4ae7e02",
+              "name": "Invalid dates or paging parameters.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "4"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "2019-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"fromDate must be earlier than toDate.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b00cefb-89d7-4cc8-b93c-a7710235cdfa",
+              "name": "No transactions found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "4"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "2019-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "67aaf451-572e-4bf3-9f77-e749a0fb8aaa",
+              "name": "Error getting transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "0"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "4"
+                    },
+                    {
+                      "key": "fromDate",
+                      "value": "2019-01-01"
+                    },
+                    {
+                      "key": "toDate",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fdc9cb3c-8b12-40da-8960-f7457422c98d",
+          "name": "Creates a transaction for the quote specified.",
+          "request": {
+            "name": "Creates a transaction for the quote specified.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    POST /transactions\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuoteAndCreateTransaction",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"quoteId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d4fba48-cdf1-481b-94f4-c81a1f68dfdf",
+              "name": "Returns the created transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"Quote_123456-1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"transactionId\": 12345678,\n    \"isValidTransaction\": true,\n    \"buyOrSell\": \"Sell\",\n    \"transactionReference\": \"C4281953\",\n    \"transactionDate\": \"2019-01-08\",\n    \"transactionStatus\": \"Confirmed\",\n    \"workflowState\": \"AwaitingBalance\",\n    \"buyCurrency\": \"GBP\",\n    \"buyAmount\": 57.24,\n    \"sellCurrency\": \"USD\",\n    \"sellAmount\": 100,\n    \"baseCurrency\": \"GBP\",\n    \"rate\": 1.7471,\n    \"fees\": 6.9,\n    \"feeCurrency\": \"USD\",\n    \"valueDate\": \"2019-01-25\",\n    \"payments\": [\n      {\n        \"amount\": 57.24,\n        \"recipientId\": 1234567,\n        \"reference\": \"Reference\",\n        \"recipientEmailAddress\": \"recip@email.co.uk\",\n        \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n        \"purposeOfPaymentFreeText\": \"Free text\"\n      }\n    ],\n    \"settlementAccountDetails\": {\n      \"accountName\": \"AccountName\",\n      \"accountNumber\": \"123456789\",\n      \"iban\": \"GB41ABCD285627869934271\",\n      \"bankName\": \"BankName\",\n      \"branch\": \"BranchName\",\n      \"addressLine1\": \"Address1\",\n      \"addressLine2\": \"Address2\",\n      \"addressLine3\": \"Address3\",\n      \"swiftCode\": \"ABCDGB64\",\n      \"nationalClearingCode\": \"273841\",\n      \"supportsBPayPayment\": false,\n      \"bPayPaymentName\": \"\",\n      \"bPayBillerCode\": null\n    },\n    \"bPayCustomerReferenceNumber\": 0,\n    \"settlementAmount\": 117.5,\n    \"balanceAmount\": 106.9,\n    \"balanceDueDate\": \"2019-01-25\",\n    \"securityDeposit\": 10.6,\n    \"securityDepositDueDate\": \"2019-01-11\"\n  },\n  \"warnings\": [\n    {\n      \"code\": \"WARN004\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e30d5217-1712-4852-a602-9c60164516f4",
+              "name": "There was an issue with the quote data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"Quote_123456-1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Quote failed validation.\",\n  \"errors\": [\n    {\n      \"code\": \"TRANSACTION001\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4e056ccc-1c37-417a-b248-c5cf9cd43c5c",
+              "name": "Quote for the transaction was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"Quote_123456-1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7205df8b-fd50-4214-9cb4-fcbacdaff1b4",
+              "name": "Error creating transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"quoteId\": \"Quote_123456-1234\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "75069e2d-a500-4862-b1c1-fff68a68e905",
+          "name": "Gets a transaction with the specified ID.",
+          "request": {
+            "name": "Gets a transaction with the specified ID.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /transactions/20258137",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of the transaction to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3f8dece1-1835-4f3c-991c-dac6ec50a703",
+              "name": "Returns the transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": {\n    \"transactionId\": 12345678,\n    \"isValidTransaction\": true,\n    \"buyOrSell\": \"Sell\",\n    \"transactionReference\": \"C4281953\",\n    \"transactionDate\": \"2019-01-08\",\n    \"transactionStatus\": \"Confirmed\",\n    \"workflowState\": \"AwaitingBalance\",\n    \"buyCurrency\": \"GBP\",\n    \"buyAmount\": 57.24,\n    \"sellCurrency\": \"USD\",\n    \"sellAmount\": 100,\n    \"baseCurrency\": \"GBP\",\n    \"rate\": 1.7471,\n    \"fees\": 6.9,\n    \"feeCurrency\": \"USD\",\n    \"valueDate\": \"2019-01-25\",\n    \"payments\": [\n      {\n        \"amount\": 57.24,\n        \"recipientId\": 1234567,\n        \"reference\": \"Reference\",\n        \"recipientEmailAddress\": \"recip@email.co.uk\",\n        \"purposeOfPaymentCode\": \"PRIV_OTHER\",\n        \"purposeOfPaymentFreeText\": \"Free text\"\n      }\n    ],\n    \"settlementAccountDetails\": {\n      \"accountName\": \"AccountName\",\n      \"accountNumber\": \"123456789\",\n      \"iban\": \"GB41ABCD285627869934271\",\n      \"bankName\": \"BankName\",\n      \"branch\": \"BranchName\",\n      \"addressLine1\": \"Address1\",\n      \"addressLine2\": \"Address2\",\n      \"addressLine3\": \"Address3\",\n      \"swiftCode\": \"ABCDGB64\",\n      \"nationalClearingCode\": \"273841\",\n      \"supportsBPayPayment\": false,\n      \"bPayPaymentName\": \"\",\n      \"bPayBillerCode\": null\n    },\n    \"bPayCustomerReferenceNumber\": 0,\n    \"settlementAmount\": 117.5,\n    \"balanceAmount\": 106.9,\n    \"balanceDueDate\": \"2019-01-25\",\n    \"securityDeposit\": 10.6,\n    \"securityDepositDueDate\": \"2019-01-11\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "499e7f01-b7e4-4873-8e63-38b78ca2ee7b",
+              "name": "Invalid transaction ID.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"transactionId must be greater than 0.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bae1ead1-ec46-4f51-afd3-3e37a2a3cd90",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f34c9da7-890f-420d-a3ba-ff6d4e0e700e",
+              "name": "Error getting transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5207e178-e6f4-41c6-9c26-061c9eb50609",
+    "name": "Xe.Api.Payments",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

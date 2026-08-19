@@ -1,0 +1,295 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Xe.Api.Payments",
+    "version": "1.3.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Permission",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets all permissions for the current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/permissions"
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /permissions\r\n            \r\n\\\r\n<details><summary>**The complete set of permissions are**</summary>\r\n* OnlineCardSettlementEnabled\r\n* CanQuote\r\n* CanQuoteAndCreateTransaction\r\n* CanUseOnlineDealing\r\n* CanAccessRecipients\r\n* CanEditOwnAddress\r\n* CanAddRecipient\r\n* CanDeleteRecipient\r\n* ViewPaymentsAwaitingAuthorisation\r\n* CanSubmitPayment\r\n* AllowOnlineForwards\r\n</details>"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "PurposesOfPayment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get purposes of payment for given user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/purposesofpayment/:currency",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "path",
+                "description": "Currency code to get purposes of payment for."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n\r\n    Get /purposesofpayment/INR\r\n\r\n\\\r\n<details><summary>**The complete set of purposes of payment for all currencies are**</summary>\r\n* BONUS_SALARY\r\n* CORP_BONUS\r\n* CORP_CHARITY\r\n* CORP_CUSTOMER_PAYMENT\r\n* CORP_DIVIDEND\r\n* CORP_EMPLOYEE_EXPENSES\r\n* CORP_FREIGHT\r\n* CORP_IMPORT_EXPORT\r\n* CORP_INR_BANKERS\r\n* CORP_INR_COOP\r\n* CORP_INR_CREDIT\r\n* CORP_INR_EDUCATIONAL\r\n* CORP_INR_EMI\r\n* CORP_INR_FAMILIES\r\n* CORP_INR_POSTMASTER\r\n* CORP_INR_TAX\r\n* CORP_INR_TRADE\r\n* CORP_INR_TRAVEL\r\n* C"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Quote",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Creates a quote for the currencies and amount provided.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/quotes"
+          },
+          "docs": "Sample request:\r\n            \r\n    POST /quotes\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote"
+        },
+        {
+          "info": {
+            "name": "Refreshes a quote to gain an up-to-date quote.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/quotes/:quoteId",
+            "params": [
+              {
+                "name": "quoteId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the quote to be refreshed."
+              },
+              {
+                "name": "refresh",
+                "value": "",
+                "type": "query",
+                "description": "Set to false to return a cached quote if available, or 404 if no cached quote is found."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /quotes/Quote_123456-1234\r\n    GET /quotes/Quote_123456-1234?refresh=false\r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote"
+        },
+        {
+          "info": {
+            "name": "Updates a quote to change or add more details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/quotes/:quoteId",
+            "params": [
+              {
+                "name": "quoteId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the quote to be updated."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    PATCH /quotes/Quote_123456-1234\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuote"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Recipient",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets recipients for a currency.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/recipients",
+            "params": [
+              {
+                "name": "currency",
+                "value": "",
+                "type": "query",
+                "description": "Get recipients for a specific currency."
+              }
+            ]
+          },
+          "docs": "Sample requests:\r\n            \r\n    GET /recipients?currency=GBP\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAccessRecipients"
+        },
+        {
+          "info": {
+            "name": "Creates a recipient with the details provided.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/recipients"
+          },
+          "docs": "Sample request:\r\n            \r\n    POST /recipients\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAddRecipient"
+        },
+        {
+          "info": {
+            "name": "Delete a recipient.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "Recipient ID of recipient to delete."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    DELETE /recipients/{recipientId}\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanDeleteRecipient"
+        },
+        {
+          "info": {
+            "name": "Gets all recipient field definitions for a user for a specified currency and a country.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/recipients/fields/:country/:currency",
+            "params": [
+              {
+                "name": "country",
+                "value": "",
+                "type": "path",
+                "description": "Country code to get recipient field definitions for."
+              },
+              {
+                "name": "currency",
+                "value": "",
+                "type": "path",
+                "description": "Currency code to get recipient field definitions for."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /recipients/fields/AU/GBP\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanAccessRecipients\r\n            \r\n\\\r\n<details><summary>**Names and descriptions for the fields that can be returned**</summary>\r\n*   ibanOrAccountNumber - Used if either an IBAN, or an domestic Account Number can be provided.\r\n*   accountNumber - Account Number (Domestic - with respect to the Bank Address Country Code) for the recipient's bank account.\r\n*   iban - Internat"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "TradeableCurrency",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get tradeable currencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tradeablecurrencies"
+          },
+          "docs": "Sample request:\r\n\r\n    Get /tradeablecurrencies"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Transaction",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Gets a list of transactions for the specified page number and page size, filtered by creation date.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions",
+            "params": [
+              {
+                "name": "pageNumber",
+                "value": "",
+                "type": "query",
+                "description": "The page to return (First page is page 0)."
+              },
+              {
+                "name": "pageSize",
+                "value": "",
+                "type": "query",
+                "description": "The number of transactions per page."
+              },
+              {
+                "name": "fromDate",
+                "value": "",
+                "type": "query",
+                "description": "Date to get transactions from."
+              },
+              {
+                "name": "toDate",
+                "value": "",
+                "type": "query",
+                "description": "Date to get transactions up to."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /transactions?fromDate=2019-01-10"
+        },
+        {
+          "info": {
+            "name": "Creates a transaction for the quote specified.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/transactions"
+          },
+          "docs": "Sample request:\r\n            \r\n    POST /transactions\r\n            \r\n\\\r\nRequired user rights:\r\n            \r\n    CanQuoteAndCreateTransaction"
+        },
+        {
+          "info": {
+            "name": "Gets a transaction with the specified ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/transactions/:transactionId",
+            "params": [
+              {
+                "name": "transactionId",
+                "value": "",
+                "type": "path",
+                "description": "ID of the transaction to get."
+              }
+            ]
+          },
+          "docs": "Sample request:\r\n            \r\n    GET /transactions/20258137"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

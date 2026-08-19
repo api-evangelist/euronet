@@ -1,0 +1,432 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "XETA",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GET /",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /budget-category",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/budget-category"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /budget-category",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/budget-category"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /budget-category/{budgetCategoryId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/budget-category/:budgetCategoryId",
+        "params": [
+          {
+            "name": "budgetCategoryId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "PUT /budget-category/{budgetCategoryId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/budget-category/:budgetCategoryId",
+        "params": [
+          {
+            "name": "budgetCategoryId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "DELETE /budget-category/{budgetCategoryId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/budget-category/:budgetCategoryId",
+        "params": [
+          {
+            "name": "budgetCategoryId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "GET /expense",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/expense"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /expense",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/expense"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /expense/{expenseId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/expense/:expenseId",
+        "params": [
+          {
+            "name": "expenseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "PUT /expense/{expenseId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/expense/:expenseId",
+        "params": [
+          {
+            "name": "expenseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "DELETE /expense/{expenseId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/expense/:expenseId",
+        "params": [
+          {
+            "name": "expenseId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "GET /friend",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/friend"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /friend",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/friend"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /friend/{friendId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/friend/:friendId",
+        "params": [
+          {
+            "name": "friendId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "PUT /friend/{friendId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/friend/:friendId",
+        "params": [
+          {
+            "name": "friendId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "DELETE /friend/{friendId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/friend/:friendId",
+        "params": [
+          {
+            "name": "friendId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "POST /invitation",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/invitation",
+        "params": [
+          {
+            "name": "type",
+            "value": "",
+            "type": "query"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "PUT /invitation/{invitationId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/invitation/:invitationId",
+        "params": [
+          {
+            "name": "type",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "invitationId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "DELETE /invitation/{invitationId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/invitation/:invitationId",
+        "params": [
+          {
+            "name": "type",
+            "value": "",
+            "type": "query"
+          },
+          {
+            "name": "invitationId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "GET /trip",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/trip"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /trip",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/trip"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /trip/{tripId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/trip/:tripId",
+        "params": [
+          {
+            "name": "tripId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "PUT /trip/{tripId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "PUT",
+        "url": "{{baseUrl}}/trip/:tripId",
+        "params": [
+          {
+            "name": "tripId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "DELETE /trip/{tripId}",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/trip/:tripId",
+        "params": [
+          {
+            "name": "tripId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "GET /trip/{tripId}/expense",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/trip/:tripId/expense",
+        "params": [
+          {
+            "name": "tripId",
+            "value": "",
+            "type": "path"
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "name": "GET /user",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/user"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /user",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/user"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /user/login",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/user/login"
+      }
+    },
+    {
+      "info": {
+        "name": "GET /user/logout",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/user/logout"
+      }
+    },
+    {
+      "info": {
+        "name": "POST /user/register",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/user/register"
+      }
+    }
+  ],
+  "bundled": true
+}

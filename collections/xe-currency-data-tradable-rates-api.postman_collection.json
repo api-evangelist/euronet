@@ -1,0 +1,272 @@
+{
+  "item": [
+    {
+      "id": "0abf6b53-f3ad-47e7-848e-2f2dea755b5a",
+      "name": "tradable-rates",
+      "description": {
+        "content": "Tradable rates API",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8684f39c-3d53-4f46-b067-74ce23dfc4d6",
+          "name": "get tradable rates",
+          "request": {
+            "name": "get tradable rates",
+            "description": {
+              "content": "Get tradable rates\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tradeable_rate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "sell",
+                  "value": "<string>",
+                  "description": "(Required) currency symbol (e.g. CAD) to be sold"
+                },
+                {
+                  "disabled": false,
+                  "key": "buy",
+                  "value": "<string>",
+                  "description": "(Required) currency symbol (e.g. USD) to be bought"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<double64>",
+                  "description": "amount of currencies to sell"
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "(Required) country code (e.g. CA) where the client resides"
+                },
+                {
+                  "disabled": false,
+                  "key": "account_type",
+                  "value": "<string>",
+                  "description": "(Required) type of client account, either PRIVATE or CORPORATE"
+                },
+                {
+                  "disabled": false,
+                  "key": "fixed_currency",
+                  "value": "<string>",
+                  "description": "which currency for the amount parameter, either \"sell\" or \"buy\""
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1592249d-4089-4b46-94ba-7e48624256c1",
+              "name": "tradable rate for the specific currency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeable_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sell",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<double64>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15a502b1-0067-4f3a-953a-4337634ee98c",
+              "name": "bad input parameter",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeable_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sell",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<double64>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "adb22345-5995-49db-8d3a-dc90d7507431",
+              "name": "no access to this endpoint",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tradeable_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "sell",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "buy",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<double64>"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "account_type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "fixed_currency",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://virtserver.swaggerhub.com/XE.com/xecdapi-tradable/1.0.0",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c66e66c4-d99d-4abe-ac27-8a4081255252",
+    "name": "XE Currency Data Tradable Rates API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This is a simple API",
+      "type": "text/plain"
+    }
+  }
+}

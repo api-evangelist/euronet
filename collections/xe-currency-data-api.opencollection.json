@@ -1,0 +1,484 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "XE Currency Data API",
+    "version": "1.0.2"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "This endpoint will return basic information for a specific account.\n",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/account_info"
+          },
+          "docs": "Requires Headers \"username\" and \"password\"\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Currency Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Access a list of all available currencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/currencies",
+            "params": [
+              {
+                "name": "iso",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Comma separated list of ISO 4217 codes. This will limit the data returned to only those currencies that are specified. If this parameter is omitted, this endpoint will return results for all currencies. \n\n It is a prefix match; you can provide it with one, two, or three characters and it will return a list of all the currencies with ISO 4217 codes that match. \n\n A list of acceptable ISO 4217 currency codes can be found here:http://www.xe.com/iso4217.php"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If 'true' then endpoint will display currencies that are obsolete but for which historical data is available"
+              },
+              {
+                "name": "language",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Default is en. Specified as an RFC-1766-compliant language tag.\n\nLanguages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK."
+              },
+              {
+                "name": "additionalInfo",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL - If 'symbol' then returns 'currency_symbol' and 'currency_symbol_on_right' in response"
+              }
+            ]
+          },
+          "docs": "This endpoint will return a list of all currencies, active and obsolete, available via the XE Currency Data Feed API.\n\nIf the obsolete optional parameter is included, then the list will contain both active and obsolete currencies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Conversions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Convert from one base currency to one or multiple counter currencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/convert_from",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies ISO 4217 codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "inverse",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will include inverse rates. An inverse rate is a quote for which the base currency and counter currency are switched. An inverse is calculated by dividing one by the exchange rate. Example: If the exchange rate for $1 USD to EUR = 0.874852, then the inverse rate would be 1/0.874852 = 1.14305, meaning that US$1.14305 would buy 1 euro."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              },
+              {
+                "name": "margin",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+              }
+            ]
+          },
+          "docs": "In the example below, the Convert FROM API query endpoint is to convert from GBP to all available currencies (the asterisk * represents ALL currencies).\n<a href=\"https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1\">https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1</a>"
+        },
+        {
+          "info": {
+            "name": "Convert to a currency amount from one or multiple other currencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/convert_to",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies ISO codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL - Currency you want to convert to ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "inverse",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              },
+              {
+                "name": "margin",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+              }
+            ]
+          },
+          "docs": "In the example below, the Convert TO API query endpoint is to convert to GBP from all available currencies (the asterisk * represents ALL currencies).\n<a href=\"https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1\">https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1</a>"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Historic Rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get historic rates for one base currency against one or more counter currencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/historic_rate",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Currency you want to convert from ISO code.\nNote if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies ISO 4217 codes.\nThis will limit the data returned to only those currencies you are interested in. Use an asterisk * to specify all currencies.\n Note: Obsolete currencies are replaced by their precursor or successor currency. \n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1.00 is assumed.\n"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "UTC date should be in the form of YYYY-MM-DD, up to 1995-11-16.\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time.\nIf your account is registered for a Live package your endpoint will return XE mid-day rate unless you specify a time parameter in your call request.\n"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – *Time parameter is applicable to Live package only*.\nUTC time is in format of HH:MM Time option is only available for the last 24 hours, if time is not specified, only one table is returned using the XE mid-day rates (As returned in http://www.xe.com/currencytables/)\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "inverse",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              },
+              {
+                "name": "margin",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+              }
+            ]
+          },
+          "docs": "The Currency Data API provides you with access to daily historical rates back to 1998. When retrieving historical rates through our Currency Data API, you would specify your requested currencies along with the date and/or date range and time (hh:mm). If your account is registered for a Live package then you have access to minutely rates for the past 7 days and outside of 7 days you have access to rates on the hour. Historical rates are available with all API packages. The time parameter (hh:mm) "
+        },
+        {
+          "info": {
+            "name": "Get historic rates for one base currency against one or more counter currencies over a period of time.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/historic_rate/period",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies based on ISO 4217 codes.\nThis will limit the data returned to only those currencies you are interested in.\n Note: Obsolete currencies are replaced by their precursor or successor currency. \n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1.00 is assumed.\n"
+              },
+              {
+                "name": "start_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL - ISO 8601 timestamp in the format yyyy-mm-ddThh:mm giving the UTC date and time of the start of the period for which you would like rates returned.\n\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time starting on the date specified in your request.  If your account does not have a preferred daily lock-in time then rates will return as of 00:00 UTC\nIf your account is registered for a Live package your endpoint will return rates starting at 00:00 UTC if no time portion is specified.\n"
+              },
+              {
+                "name": "end_timestamp",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-ddThh:mm giving the UTC date and time of the end of the period for which you would like rates returned. If a time in the future is specified, the current time will be used. If no end_time is specified, the time specified in the  “start_timestamp” paramenter will also be used for the end_timestamp.”\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time ending on the date specified in your request.  If your account does not have a preferred daily lock-in time then rates will return as of 00:00 UTC.\nIf your account is registered for a Live package your endpoint will return rates at 00:00 UTC unless you specify a time parameter in your rate request.\n"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Interval is applicable to Live packages only.  Using one of the interval values below in your call request will return rates for that specific interval within the time period specified.\n\nExample: adding the interval of \"hourly\" will return rates for every hour in the time period you specified.\n\n  \"daily\" - Returns one rate for the days specified in your time period, \n\"hourly\" - Returns rates for every hour in the time period you specify\n\nIf omitted, \"daily\" is used.  This parameter is only used if both the \"start_timestamp\" and \"end_timestamp\" parameters have been specified"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – You can specify the page number you want to request.\nNote: that page numbering is 1-based (the first page being page 1).\nOmitting this parameter will return the first page.\n"
+              },
+              {
+                "name": "per_page",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – You can specify the number of results per page. The default is 30 results per page with a maximum of 500 results per page.\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "inverse",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              },
+              {
+                "name": "margin",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+              }
+            ]
+          },
+          "docs": "This endpoint returns a daily historic rate for a single base currency and one or more counter currencies over a period of time.\n\n<a href=\"https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500\">https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500</a>\n\nOptional parameters available with Live accounts:\n\n&interval=minutely\n&interval=hourly \n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Monthly Averages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get monthly average rates for a single base currency and one or more counter currency for the month/year you specify in your API query. ",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/monthly_average",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+              },
+              {
+                "name": "year",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter specifies the year to calculate average monthly rates.\n"
+              },
+              {
+                "name": "month",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter specifies the month in the given year to return average monthly rates. This is a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "inverse",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will include inverse rates."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              }
+            ]
+          },
+          "docs": "The monthly average endpoint returns monthly average rates for a single base currency and one or more counter currency for the year you specify in your API query. The monthly average rate is calculated by taking the 00:00 UTC Daily rate for each day in the month/year you specify in your query. Months are returned as a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Stats",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/stats",
+            "params": [
+              {
+                "name": "from",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+              },
+              {
+                "name": "to",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+              },
+              {
+                "name": "start_date",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the start of the period for which you would like to compute the volatility from. Note if this parameter is omitted, the start date will default to today.\n"
+              },
+              {
+                "name": "end_date",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the end of the period for which you would like to compute the volatility to. Note if this parameter is omitted, the end date will default to today.\n"
+              },
+              {
+                "name": "obsolete",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+              },
+              {
+                "name": "decimal_places",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+              },
+              {
+                "name": "daysInPeriod",
+                "value": "",
+                "type": "query",
+                "description": "OPTIONAL – This parameter can be used to specify the number of days in the period that we are considering."
+              }
+            ]
+          },
+          "docs": "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage. At XE, volatility is measured by applying the standard deviation of the logarithmic daily returns, expressed in a percentage score.\n\nDaily returns are the gain or loss of a currency pair in a particular period. We take the values of two consecutive days at 00:00 UTC. That is why we call it daily return. Then, we apply a logarithm to the ratio between those two values. "
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

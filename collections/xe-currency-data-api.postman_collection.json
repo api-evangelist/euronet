@@ -1,0 +1,4905 @@
+{
+  "item": [
+    {
+      "id": "2a9b9ac2-3564-48d2-8166-352cde839529",
+      "name": "Account Information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9f0adf0c-5900-4a2d-8d62-80d7fb3d34e9",
+          "name": "This endpoint will return basic information for a specific account.\n",
+          "request": {
+            "name": "This endpoint will return basic information for a specific account.\n",
+            "description": {
+              "content": "Requires Headers \"username\" and \"password\"\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account_info"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "35574a22-f705-44a2-8cb1-a6692c0dfcd6",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"organization\": \"string\",\n  \"package\": \"string\",\n  \"service_start_timestamp\": \"string\",\n  \"package_limit_duration\": \"string\",\n  \"package_limit\": 5353.401130683598,\n  \"package_limit_remaining\": 7808.387077113913,\n  \"package_limit_reset\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a8f9e5c2-077d-489b-889e-85680b55d253",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "51ed20e0-7618-4b0a-877d-2cb1ff9a00a2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de1f516a-723a-47a1-9809-9c19306afbde",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a147d6b7-3210-4ab7-a5ad-61cc3701be09",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account_info"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6e832ea0-18c3-4425-8731-ab6ef9c5cc1d",
+      "name": "Currency Information",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "afb4f0e8-957b-40f0-95cb-6456de7275c3",
+          "name": "Access a list of all available currencies.",
+          "request": {
+            "name": "Access a list of all available currencies.",
+            "description": {
+              "content": "This endpoint will return a list of all currencies, active and obsolete, available via the XE Currency Data Feed API.\n\nIf the obsolete optional parameter is included, then the list will contain both active and obsolete currencies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "currencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "iso",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Comma separated list of ISO 4217 codes. This will limit the data returned to only those currencies that are specified. If this parameter is omitted, this endpoint will return results for all currencies. \n\n It is a prefix match; you can provide it with one, two, or three characters and it will return a list of all the currencies with ISO 4217 codes that match. \n\n A list of acceptable ISO 4217 currency codes can be found here:http://www.xe.com/iso4217.php"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If 'true' then endpoint will display currencies that are obsolete but for which historical data is available"
+                },
+                {
+                  "disabled": false,
+                  "key": "language",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Default is en. Specified as an RFC-1766-compliant language tag.\n\nLanguages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK."
+                },
+                {
+                  "disabled": false,
+                  "key": "additionalInfo",
+                  "value": "<string>",
+                  "description": "OPTIONAL - If 'symbol' then returns 'currency_symbol' and 'currency_symbol_on_right' in response"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03411306-48c5-49a2-916d-220786fc032f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"currencies\": [\n    {\n      \"iso\": \"string\",\n      \"currency_name\": \"string\",\n      \"is_obsolete\": false,\n      \"superseded_by\": \"string\",\n      \"currency_symbol\": \"string\",\n      \"currency_symbol_on_right\": false\n    },\n    {\n      \"iso\": \"string\",\n      \"currency_name\": \"string\",\n      \"is_obsolete\": false,\n      \"superseded_by\": \"string\",\n      \"currency_symbol\": \"string\",\n      \"currency_symbol_on_right\": true\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3764d01d-ed2b-4f23-89cd-d83f303e7e1b",
+              "name": "Not Modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8bc55bea-158e-40e8-8684-dbdeed462d94",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "115a4255-88a8-4907-8f18-0c81d1f9cc24",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8b56d523-a9f1-4df8-ab49-bf7dcfb63c20",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ca47311a-e368-40d3-9c29-a8b25b809f17",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "currencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "iso",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "language",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "additionalInfo",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8c1ccd63-ec29-487a-85d1-87955499e10f",
+      "name": "Conversions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dde98125-109f-46df-947b-2f57b37768ea",
+          "name": "Convert from one base currency to one or multiple counter currencies.",
+          "request": {
+            "name": "Convert from one base currency to one or multiple counter currencies.",
+            "description": {
+              "content": "In the example below, the Convert FROM API query endpoint is to convert from GBP to all available currencies (the asterisk * represents ALL currencies).\n<a href=\"https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1\">https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1</a>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "convert_from"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies ISO 4217 codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "inverse",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will include inverse rates. An inverse rate is a quote for which the base currency and counter currency are switched. An inverse is calculated by dividing one by the exchange rate. Example: If the exchange rate for $1 USD to EUR = 0.874852, then the inverse rate would be 1/0.874852 = 1.14305, meaning that US$1.14305 would buy 1 euro."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                },
+                {
+                  "disabled": false,
+                  "key": "margin",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7742ee58-3698-4192-9955-13809c2f193a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"from\": \"string\",\n  \"amount\": 6617.235296915464,\n  \"timestamp\": \"string\",\n  \"to\": [\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 80.3567106216796\n    },\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 8470.289179843898\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "499a2044-822d-4248-a8fe-87c9ebf4c68f",
+              "name": "Not Modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d5e8637-bb86-4e41-bc66-2a818bad72be",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae1e2d5f-163a-4111-8171-67fef9f8197a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2936e3a3-cfdc-4cf5-a51a-b0264a9ee83c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "abcaf275-d279-4255-80de-75931b7e21b9",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bd659fb-a665-4359-8ab7-82bfb855821b",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_from"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b6d439b2-2039-470d-b39f-cde889d43e96",
+          "name": "Convert to a currency amount from one or multiple other currencies.",
+          "request": {
+            "name": "Convert to a currency amount from one or multiple other currencies.",
+            "description": {
+              "content": "In the example below, the Convert TO API query endpoint is to convert to GBP from all available currencies (the asterisk * represents ALL currencies).\n<a href=\"https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1\">https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1</a>",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "convert_to"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies ISO codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "OPTIONAL - Currency you want to convert to ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "inverse",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                },
+                {
+                  "disabled": false,
+                  "key": "margin",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ec65e14-9bd6-4fcb-a7e7-725039690fbc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"to\": \"string\",\n  \"amount\": 5104.782773673997,\n  \"timestamp\": \"string\",\n  \"from\": [\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 9322.250923049787\n    },\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 5548.575277695241\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91300e72-ad4b-41c8-9785-eb177639ccef",
+              "name": "Not Modified",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Modified",
+              "code": 304,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "ETag",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "Last-Modified",
+                  "value": "string",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebe6013d-d31e-4174-8b5d-7e460a0ab2b1",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7debe5d-775b-45f1-91b2-e8ad1086a876",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbbde09f-8bab-4b4d-b1e2-4b816e28fd5d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ba9eaf83-1a7c-4baf-959a-d1cfc44720bd",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2cf9350f-023a-4c3e-b020-01a3e67e482c",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "convert_to"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "73860274-84dc-45d1-a7db-693a50ec1eab",
+      "name": "Historic Rates",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b1422898-0798-48a4-a712-b71b3159654f",
+          "name": "Get historic rates for one base currency against one or more counter currencies.",
+          "request": {
+            "name": "Get historic rates for one base currency against one or more counter currencies.",
+            "description": {
+              "content": "The Currency Data API provides you with access to daily historical rates back to 1998. When retrieving historical rates through our Currency Data API, you would specify your requested currencies along with the date and/or date range and time (hh:mm). If your account is registered for a Live package then you have access to minutely rates for the past 7 days and outside of 7 days you have access to rates on the hour. Historical rates are available with all API packages. The time parameter (hh:mm) only applies to Live packages.\n The endpoint returns the historic rate for a single base currency and one or more counter currencies.\n\n<a href=\"https://xecdapi.xe.com/v1/historic_rate.csv/?from=USD&date=2011-03-05&to=CAD,EUR\">https://xecdapi.xe.com/v1/historic_rate.csv/?from=USD&date=2011-03-05&to=CAD,EUR</a>\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "historic_rate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Currency you want to convert from ISO code.\nNote if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies ISO 4217 codes.\nThis will limit the data returned to only those currencies you are interested in. Use an asterisk * to specify all currencies.\n Note: Obsolete currencies are replaced by their precursor or successor currency. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1.00 is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<string>",
+                  "description": "(Required) UTC date should be in the form of YYYY-MM-DD, up to 1995-11-16.\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time.\nIf your account is registered for a Live package your endpoint will return XE mid-day rate unless you specify a time parameter in your call request.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<string>",
+                  "description": "OPTIONAL – *Time parameter is applicable to Live package only*.\nUTC time is in format of HH:MM Time option is only available for the last 24 hours, if time is not specified, only one table is returned using the XE mid-day rates (As returned in http://www.xe.com/currencytables/)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "inverse",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                },
+                {
+                  "disabled": false,
+                  "key": "margin",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ae96f82b-eb60-4871-87d7-6278dfdcad63",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"from\": \"string\",\n  \"amount\": 6617.235296915464,\n  \"timestamp\": \"string\",\n  \"to\": [\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 80.3567106216796\n    },\n    {\n      \"quotecurrency\": \"string\",\n      \"mid\": 8470.289179843898\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "809d2a27-5bcc-480a-b3f2-e1b0163a7a2b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fda6095-7280-4d28-a39a-a6a24604fadb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf8002a1-646e-4053-b250-8039e0ddf6fc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8573b3d-db56-448d-a54a-e2de0b6613ee",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9dc6141f-58f6-4d12-a78c-5e7d9ffbc555",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "455c9dbe-8916-46f5-a164-06b9dddb2d53",
+          "name": "Get historic rates for one base currency against one or more counter currencies over a period of time.",
+          "request": {
+            "name": "Get historic rates for one base currency against one or more counter currencies over a period of time.",
+            "description": {
+              "content": "This endpoint returns a daily historic rate for a single base currency and one or more counter currencies over a period of time.\n\n<a href=\"https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500\">https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500</a>\n\nOptional parameters available with Live accounts:\n\n&interval=minutely\n&interval=hourly \n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "historic_rate",
+                "period"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies based on ISO 4217 codes.\nThis will limit the data returned to only those currencies you are interested in.\n Note: Obsolete currencies are replaced by their precursor or successor currency. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1.00 is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_timestamp",
+                  "value": "<string>",
+                  "description": "OPTIONAL - ISO 8601 timestamp in the format yyyy-mm-ddThh:mm giving the UTC date and time of the start of the period for which you would like rates returned.\n\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time starting on the date specified in your request.  If your account does not have a preferred daily lock-in time then rates will return as of 00:00 UTC\nIf your account is registered for a Live package your endpoint will return rates starting at 00:00 UTC if no time portion is specified.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_timestamp",
+                  "value": "<string>",
+                  "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-ddThh:mm giving the UTC date and time of the end of the period for which you would like rates returned. If a time in the future is specified, the current time will be used. If no end_time is specified, the time specified in the  “start_timestamp” paramenter will also be used for the end_timestamp.”\nIf your account is registered for a Daily package your endpoint will return rates at your preferred daily lock-in time ending on the date specified in your request.  If your account does not have a preferred daily lock-in time then rates will return as of 00:00 UTC.\nIf your account is registered for a Live package your endpoint will return rates at 00:00 UTC unless you specify a time parameter in your rate request.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "interval",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Interval is applicable to Live packages only.  Using one of the interval values below in your call request will return rates for that specific interval within the time period specified.\n\nExample: adding the interval of \"hourly\" will return rates for every hour in the time period you specified.\n\n  \"daily\" - Returns one rate for the days specified in your time period, \n\"hourly\" - Returns rates for every hour in the time period you specify\n\nIf omitted, \"daily\" is used.  This parameter is only used if both the \"start_timestamp\" and \"end_timestamp\" parameters have been specified"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<number>",
+                  "description": "OPTIONAL – You can specify the page number you want to request.\nNote: that page numbering is 1-based (the first page being page 1).\nOmitting this parameter will return the first page.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "per_page",
+                  "value": "<number>",
+                  "description": "OPTIONAL – You can specify the number of results per page. The default is 30 results per page with a maximum of 500 results per page.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "inverse",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                },
+                {
+                  "disabled": false,
+                  "key": "margin",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to add a margin (-/+)  to XE's mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b4b7aac0-dfb8-433c-b6e1-73b09cd16429",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"from\": \"string\",\n  \"amount\": 1531.200702290091,\n  \"to\": {\n    \"key_0\": [\n      {\n        \"mid\": 5432.01179023934,\n        \"timestamp\": \"string\"\n      },\n      {\n        \"mid\": 981.2121933031981,\n        \"timestamp\": \"string\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97a9c1b7-7065-4367-aa34-ce1c3ab014ed",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "efb5c509-2ed8-4eaa-b266-a5a90c330ebb",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1ebcc4d-58e6-43e6-a557-af17367990fb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85b02313-fb86-48a7-8d00-4fdd96fdb3b0",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8c928a2-cbc1-4826-9d29-267804e48a93",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "historic_rate",
+                    "period"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "start_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_timestamp",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "per_page",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "margin",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e940fc15-efa1-4d8f-8e95-874fe40bf7b1",
+      "name": "Monthly Averages",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ed7c02bb-a4bd-4aca-8a98-ddc14fc89d2a",
+          "name": "Get monthly average rates for a single base currency and one or more counter currency for the month/year you specify in your API query. ",
+          "request": {
+            "name": "Get monthly average rates for a single base currency and one or more counter currency for the month/year you specify in your API query. ",
+            "description": {
+              "content": "The monthly average endpoint returns monthly average rates for a single base currency and one or more counter currency for the year you specify in your API query. The monthly average rate is calculated by taking the 00:00 UTC Daily rate for each day in the month/year you specify in your query. Months are returned as a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "monthly_average"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "amount",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "year",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter specifies the year to calculate average monthly rates.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "month",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter specifies the month in the given year to return average monthly rates. This is a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "inverse",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will include inverse rates."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea17d945-6988-449c-94ca-6f436d94083c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"terms\": \"string\",\n  \"privacy\": \"string\",\n  \"from\": \"string\",\n  \"amount\": 4546.874370838936,\n  \"year\": 1499.8675715142297,\n  \"to\": {\n    \"key_0\": [\n      {\n        \"monthlyAverage\": 6331.130793406546,\n        \"month\": 589.1092110772967,\n        \"daysInMonth\": 9816.00883554521\n      },\n      {\n        \"monthlyAverage\": 3117.498247916911,\n        \"month\": 2376.6173204566876,\n        \"daysInMonth\": 9566.255617738969\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fdfff55-1b9c-4a27-ba53-0e3c62160765",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e886eabd-1810-4b9e-8d8f-6a2f94d799a9",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8bec322-5be2-460e-bc51-ce50dd9be37f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "749f849a-3466-4e9b-9ae0-084d9445ebd8",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "533b749f-aacb-430d-a37d-3a5c91b4d82f",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "monthly_average"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "amount",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "year",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "month",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "inverse",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "fa52178d-0cd6-40fe-97ef-32509d300348",
+      "name": "Stats",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a6f7af6b-df08-49e2-87b4-440b0a1b5390",
+          "name": "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage.",
+          "request": {
+            "name": "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage.",
+            "description": {
+              "content": "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage. At XE, volatility is measured by applying the standard deviation of the logarithmic daily returns, expressed in a percentage score.\n\nDaily returns are the gain or loss of a currency pair in a particular period. We take the values of two consecutive days at 00:00 UTC. That is why we call it daily return. Then, we apply a logarithm to the ratio between those two values. It is a common way to measure change in the financial industry.\n\nEx: ln (valueDay2 / valueDay1) is the logarithmic return between day2 and day1. We have a value that tells us if the currency pair has moved a lot or not.\n\nIn statistics, the standard deviation is a measure that is used to quantify the amount of variation of a set of data values. A low standard deviation indicates that the data points tend to be close to the mean of the set, while a high standard deviation indicates that the data points are spread out over a wider range of value. \n\nWe apply this standard deviation to the daily logarithmic returns we calculated during a given time period (30 days, 90 days etc.).\n\nExpressing a value in a percentage score means we multiply it by 100 before showing it to you.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "stats"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "from",
+                  "value": "<string>",
+                  "description": "OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "to",
+                  "value": "<string>",
+                  "description": "(Required) Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+                },
+                {
+                  "disabled": false,
+                  "key": "start_date",
+                  "value": "<string>",
+                  "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the start of the period for which you would like to compute the volatility from. Note if this parameter is omitted, the start date will default to today.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "end_date",
+                  "value": "<string>",
+                  "description": "OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the end of the period for which you would like to compute the volatility to. Note if this parameter is omitted, the end date will default to today.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "obsolete",
+                  "value": "<boolean>",
+                  "description": "OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency."
+                },
+                {
+                  "disabled": false,
+                  "key": "decimal_places",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875"
+                },
+                {
+                  "disabled": false,
+                  "key": "daysInPeriod",
+                  "value": "<number>",
+                  "description": "OPTIONAL – This parameter can be used to specify the number of days in the period that we are considering."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2234ee4e-e1da-4e21-9d28-7419657495b3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9d472ebf-1555-4d4c-8423-2be136bd4c35",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateRequest-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Limit",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Remaining",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "disabled": false,
+                  "key": "X-RateLimit-Reset",
+                  "value": "5420.185115348617",
+                  "description": ""
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1330b877-7490-47a9-9306-76b10ba84a39",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d7365e95-8508-49a7-b0d6-4587e70a8706",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb30da34-fa6a-42f3-998e-e620856a3f5a",
+              "name": "Too Many Requests",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7b1863c0-0bc6-4f8b-8e60-8fd48f553e6a",
+              "name": "Internal Server Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "stats"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "from",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "to",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "end_date",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "obsolete",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "decimal_places",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "daysInPeriod",
+                      "value": "<number>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"code\": 6045.83213566066,\n  \"message\": \"string\",\n  \"documentationUrl\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://xecdapi.xe.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "938ca8f7-c7a7-41b8-b83d-5e8a78629dd6",
+    "name": "XE Currency Data API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>",
+      "type": "text/plain"
+    }
+  }
+}

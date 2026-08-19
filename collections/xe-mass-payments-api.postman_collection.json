@@ -1,0 +1,2749 @@
+{
+  "item": [
+    {
+      "id": "14f5791b-54ec-4c90-82fd-2d693ed9a37a",
+      "name": "Account",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d48d994c-2081-48a9-a087-d93cfb1ae939",
+          "name": "Get a list of accounts that the user has access to.",
+          "request": {
+            "name": "Get a list of accounts that the user has access to.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanGetAccounts\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /accounts",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "14f2db5c-c92e-4bd2-8621-dc32deddd1e3",
+              "name": "Returns the list of accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": 112186376,\n    \"parentId\": 0,\n    \"name\": \"Joe Smith\"\n  },\n  {\n    \"accountId\": 112186529,\n    \"parentId\": 112186376,\n    \"name\": \"John Smith\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cae5b960-b503-489c-81b8-2d0c844659e2",
+              "name": "Error getting accounts.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a2f9b807-eed5-4b8b-b37d-a0027bf6962c",
+      "name": "Invoice",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f5a96ab2-bd39-41f8-abaa-e1a5dc5e7f49",
+          "name": "Get the invoice for an authorised transaction.",
+          "request": {
+            "name": "Get the invoice for an authorised transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanViewInvoice\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /invoices/4251",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "invoices",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of transaction to get the invoice for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "34ca4637-7168-4f8b-91de-48232550af57",
+              "name": "Returns the invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to get the invoice for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"statusText\": \"Success\",\n  \"invoiceData\": {\n    \"accountNumber\": \"HIFX0221672388\",\n    \"accountNameAndAddress\": {\n      \"accountName\": \"Joe Smith\",\n      \"address\": [\n        \"4 Lime Street\",\n        \"United Kingdom\"\n      ]\n    },\n    \"transactionReference\": \"MPT126437\",\n    \"uploadedBy\": \"Joe Smith\",\n    \"approvedBy\": \"Joe Smith\",\n    \"numberOfPayments\": 2,\n    \"numberOfSettlementTypePayments\": 0,\n    \"quoteSummary\": {\n      \"accountId\": 112186376,\n      \"transactionId\": 35271,\n      \"transactionReference\": \"MPT126437\",\n      \"settlementSummary\": [\n        {\n          \"settlementCurrency\": \"USD\",\n          \"totalSettlementDue\": {\n            \"units\": 1921.48,\n            \"currency\": \"USD\"\n          },\n          \"totalFees\": {\n            \"units\": 8.6,\n            \"currency\": \"USD\"\n          },\n          \"totalNumberOfPayments\": 1,\n          \"paymentSummary\": [\n            {\n              \"settlementCurrency\": \"USD\",\n              \"paymentCurrency\": \"GBP\",\n              \"baseCurrency\": \"GBP\",\n              \"settlementAmount\": {\n                \"units\": 1921.48,\n                \"currency\": \"USD\"\n              },\n              \"paymentAmount\": {\n                \"units\": 1100,\n                \"currency\": \"GBP\"\n              },\n              \"numberOfPayments\": 1,\n              \"quotedRate\": 1.7468,\n              \"fee\": {\n                \"units\": 8.6,\n                \"currency\": \"USD\"\n              },\n              \"valueDate\": \"2018-12-04\"\n            }\n          ]\n        }\n      ]\n    },\n    \"settlementBankAccounts\": [\n      {\n        \"currency\": \"USD\",\n        \"countryCode\": \"US\",\n        \"accountName\": \"Leah McWilliams\",\n        \"accountNumber\": \"1231231234\",\n        \"branchAddressOne\": \"100 North Tryon Street\",\n        \"branchAddressTwo\": \"Charlotte\",\n        \"branchAddressThree\": \"\",\n        \"iban\": \"\",\n        \"nationalClearingCode\": \"26009593\",\n        \"swiftBic\": \"BOFAUS3N\",\n        \"bank\": {\n          \"name\": \"Bank Name\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7eee0777-dae0-4005-ae04-66aed2cf3be7",
+              "name": "Invoice is not ready.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to get the invoice for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1,\n  \"statusText\": \"InvoiceNotAvailable\",\n  \"invoiceData\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3f6e199b-cc50-4413-b68c-397d55c169d4",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to get the invoice for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "432c55f3-c8ea-4576-8f02-ecf7147bbe2d",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to get the invoice for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2,\n  \"statusText\": \"TransactionNotFound\",\n  \"invoiceData\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "38a115fc-c004-46aa-92b6-541f044139c3",
+              "name": "Error getting invoice.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "invoices",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to get the invoice for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "184e0c4a-aeaa-4831-a40b-6086a2fcee56",
+      "name": "Payments",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6088129-80ac-4f10-93d0-ddc39d1b5b12",
+          "name": "Update a payment in a transaction.",
+          "request": {
+            "name": "Update a payment in a transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanEditPayments\r\n            \r\n\\\r\nSample request:\r\n            \r\n    PATCH /transactions/35271/payments/107346",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionid",
+                "payments",
+                ":paymentId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of the transaction."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "paymentId",
+                  "description": "(Required) ID of the payment."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"include\": \"<boolean>\",\n  \"data\": {\n    \"recipientName\": \"<string>\",\n    \"recipientEmail\": \"<string>\",\n    \"recipientAddress1\": \"<string>\",\n    \"recipientAddress2\": \"<string>\",\n    \"recipientAddressCountryCode\": \"<string>\",\n    \"recipientAccountNumberIBAN\": \"<string>\",\n    \"recipientBIC\": \"<string>\",\n    \"recipientNationalClearingCode\": \"<string>\",\n    \"recipientBankName\": \"<string>\",\n    \"recipientBankAddress1\": \"<string>\",\n    \"recipientBankAddress2\": \"<string>\",\n    \"recipientBankAddress3\": \"<string>\",\n    \"clientPaymentReference\": \"<string>\",\n    \"intermediaryBankName\": \"<string>\",\n    \"intermediaryBankAddress1\": \"<string>\",\n    \"intermediaryBankAddress2\": \"<string>\",\n    \"intermediaryBankAddress3\": \"<string>\",\n    \"intermediaryBankCountryCode\": \"<string>\",\n    \"intermediaryAccountNumberIBAN\": \"<string>\",\n    \"intermediaryBIC\": \"<string>\",\n    \"intermediaryNationalClearingCode\": \"<string>\",\n    \"reasonForPayment\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d9c715db-19eb-4c6f-b44a-638af4216fed",
+              "name": "Payment was successfully updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"include\": false,\n  \"data\": {\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Contract Payment\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4984ef8-ab26-4eed-b8b1-f1ca7d3ee2ac",
+              "name": "Request data is invalid or transaction cannot be updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"include\": false,\n  \"data\": {\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Contract Payment\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 3,\n  \"statusText\": \"TransactionApproved\",\n  \"message\": \"Transaction must be in 'not approved' state to be modified\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71cd5149-d53b-421e-a466-175ae16622d4",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"include\": false,\n  \"data\": {\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Contract Payment\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "46355f09-6add-42e7-a5fd-1afa0105f36b",
+              "name": "Transaction or payment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"include\": false,\n  \"data\": {\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Contract Payment\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1,\n  \"statusText\": \"TransactionNotFound\",\n  \"message\": \"Transaction could not be found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "145f25cf-bab9-4585-bd15-276a1c54db73",
+              "name": "Error updating payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment."
+                    }
+                  ]
+                },
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"include\": false,\n  \"data\": {\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Contract Payment\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "556c762f-389c-466c-8e52-e0118e36a43c",
+          "name": "Get a paged list of payment(s) for a transaction.",
+          "request": {
+            "name": "Get a paged list of payment(s) for a transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanViewPayments\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions/35271/payments?pagesize=10",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionid",
+                "payments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "The page to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "6",
+                  "description": "The number of transactions per page."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of the transaction the requested payments belong to."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6d32381-b658-40e3-8b86-809bd034df96",
+              "name": "Returns a paged list of payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "6"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction the requested payments belong to."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"paymentId\": 111490,\n      \"transactionId\": 30477,\n      \"paymentAmount\": 1100,\n      \"settlementAmount\": 0,\n      \"paymentCurrency\": \"GBP\",\n      \"settlementCurrency\": \"USD\",\n      \"clientsUniquePaymentReference\": \"123634537\",\n      \"recipientAccountName\": \"TestRecipient\",\n      \"targetDate\": \"2019-06-15\",\n      \"paymentDate\": null,\n      \"rejected\": false,\n      \"forReview\": true,\n      \"isTargetDateAchievable\": true,\n      \"isReadOnly\": true,\n      \"isExcluded\": false,\n      \"issues\": [],\n      \"paymentStatus\": \"OK\",\n      \"hasBeenApproved\": false\n    },\n    {\n      \"paymentId\": 111553,\n      \"transactionId\": 546,\n      \"paymentAmount\": 1100,\n      \"settlementAmount\": 0,\n      \"paymentCurrency\": \"GBP\",\n      \"settlementCurrency\": \"USD\",\n      \"clientsUniquePaymentReference\": \"\",\n      \"recipientAccountName\": \"TestRecipient\",\n      \"targetDate\": \"2019-06-15\",\n      \"paymentDate\": null,\n      \"rejected\": false,\n      \"forReview\": true,\n      \"isTargetDateAchievable\": false,\n      \"isReadOnly\": false,\n      \"isExcluded\": false,\n      \"issues\": [\n        \"The IBAN's Country does not match the Destination Country\"\n      ],\n      \"paymentStatus\": \"For Review\",\n      \"hasBeenApproved\": true\n    }\n  ],\n  \"totalRecords\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "57517824-681b-4553-adb6-ac55f3f8ddd9",
+              "name": "Error getting payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "6"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction the requested payments belong to."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3bb05e80-dfb6-40a5-bbac-657842296577",
+          "name": "Get a single payment.",
+          "request": {
+            "name": "Get a single payment.",
+            "description": {
+              "content": "Permissions Required:\r\n\r\n    CanViewPayments\r\n    \r\n\\\r\nSample request:\r\n\r\n    GET /transactions/35271/payments/107346",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionid",
+                "payments",
+                ":paymentid"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of the transaction the request payment belongs to."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "paymentId",
+                  "description": "(Required) ID of the payment to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c82e2f5d-cc0d-40f2-a39d-d6a1bfc2eaf0",
+              "name": "Returns the requested payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction the request payment belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"paymentId\": 123456,\n  \"paymentReference\": \"P654321\",\n  \"paymentAmount\": 51234.56,\n  \"paymentCurrency\": \"USD\",\n  \"settlementAmount\": 40000,\n  \"settlementCurrency\": \"GBP\",\n  \"amountType\": 1,\n  \"recipientInformation\": {\n    \"clientUniqueReference\": \"1236345\",\n    \"recipientBankCountryCode\": \"US\",\n    \"recipientName\": \"Leah McWilliams\",\n    \"recipientEmail\": \"test@example.com\",\n    \"recipientAddress1\": \"4 Apple Street\",\n    \"recipientAddress2\": \"\",\n    \"recipientAddressCountryCode\": \"US\",\n    \"recipientAccountNumberIBAN\": \"1231231234\",\n    \"recipientBIC\": \"BOFAUS3N\",\n    \"recipientNationalClearingCode\": \"\",\n    \"recipientBankName\": \"Bank Name\",\n    \"recipientBankAddress1\": \"100 North Tryon Street\",\n    \"recipientBankAddress2\": \"Charlotte\",\n    \"recipientBankAddress3\": \"\",\n    \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n    \"intermediaryBankName\": \"\",\n    \"intermediaryBankAddress1\": \"\",\n    \"intermediaryBankAddress2\": \"\",\n    \"intermediaryBankAddress3\": \"\",\n    \"intermediaryBankCountryCode\": \"\",\n    \"intermediaryAccountNumberIBAN\": \"\",\n    \"intermediaryBIC\": \"\",\n    \"intermediaryNationalClearingCode\": \"\",\n    \"reasonForPayment\": \"Dividend\"\n  },\n  \"targetDate\": \"2020-05-02\",\n  \"isTargetDateAchievable\": false,\n  \"paymentDate\": \"2020-05-06\",\n  \"createdTimestamp\": \"2020-05-05T20:04:56.7929832Z\",\n  \"modifiedTimestamp\": \"2020-05-05T20:34:56.7929833Z\",\n  \"paymentStatus\": \"Not Sent\",\n  \"issues\": null,\n  \"canEdit\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "070b3823-514e-424c-86ba-fc2864097ec4",
+              "name": "Transaction or payment not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction the request payment belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5510e70-5f0d-480c-9dcb-546920a5a485",
+              "name": "Error getting payment.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionid",
+                    "payments",
+                    ":paymentid"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction the request payment belongs to."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "paymentId",
+                      "description": "(Required) ID of the payment to get."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "6418ce49-5523-40c0-92f1-26bd8b2772b4",
+      "name": "Permissions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7c9b5daa-b0f5-4043-8189-e43e24cc6d0d",
+          "name": "Get a list of permissions for the current user.",
+          "request": {
+            "name": "Get a list of permissions for the current user.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /permissions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "permissions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9bf26179-1b8d-4737-9559-21213e52f84c",
+              "name": "Returns list of permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"statusText\": \"Success\",\n  \"permissions\": [\n    {\n      \"name\": \"CanGetAccounts\"\n    },\n    {\n      \"name\": \"CanViewTransactions\"\n    },\n    {\n      \"name\": \"CanViewPayments\"\n    },\n    {\n      \"name\": \"CanLoadTransactions\"\n    },\n    {\n      \"name\": \"CanDeleteTransactions\"\n    },\n    {\n      \"name\": \"CanGetQuote\"\n    },\n    {\n      \"name\": \"CanApproveQuote\"\n    },\n    {\n      \"name\": \"CanViewInvoice\"\n    },\n    {\n      \"name\": \"CanEditPayments\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c3576a94-a188-46b8-9c89-953c2ff7e8d0",
+              "name": "Error getting permissions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "permissions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "7d0155f4-7af2-4a17-abbb-e6ed68695a69",
+      "name": "Quote",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c2e29cb2-4389-4e22-8b42-5b292c5b468a",
+          "name": "Get a quote for a transaction.",
+          "request": {
+            "name": "Get a quote for a transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanGetQuote\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /quotes/6724",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<integer>",
+                  "description": "ID of account the transaction is for. If not set, it defaults to the user's account."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of transaction to quote for."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c23882b7-a63e-4b9f-a61a-2ef0a6d65372",
+              "name": "Returns the generated quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to quote for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"statusText\": \"Success\",\n  \"quote\": {\n    \"quoteId\": \"cb22f338-7bb8-4ad1-88fd-a69bfaeade7d\",\n    \"quoteTime\": \"2018-12-02T10:15:00\",\n    \"transactionId\": 35271,\n    \"transactionReference\": \"MPT126437\",\n    \"settlementSummary\": [\n      {\n        \"settlementCurrency\": \"USD\",\n        \"totalSettlementDue\": 1921.48,\n        \"totalFees\": 8.6,\n        \"totalNumberOfPayments\": 1,\n        \"paymentSummary\": [\n          {\n            \"currency\": \"GBP\",\n            \"baseCurrency\": \"GBP\",\n            \"settlementAmount\": 1921.48,\n            \"paymentAmount\": 1100,\n            \"numberOfPayments\": 1,\n            \"quotedRate\": 1.7468,\n            \"fee\": 8.6,\n            \"valueDate\": \"2018-12-04\"\n          }\n        ]\n      }\n    ],\n    \"transactionName\": \"72648193-2a7d-ff39-c120-266dac5810e2\",\n    \"uploadedBy\": \"Joe Smith\",\n    \"dateUploaded\": \"2018-12-02\",\n    \"status\": 1,\n    \"quoteStatusText\": \"Valid\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "193b7823-bafa-46a0-97d8-7a0e53daa4e3",
+              "name": "Transaction is not in a valid state to be quoted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to quote for."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9,\n  \"statusText\": \"TransactionDeleted\",\n  \"quote\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da731313-aeda-4638-bbb0-e0a8826d0d1d",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to quote for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "11829552-f545-4c6e-9703-5810d648cf08",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to quote for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8f6227af-0238-45d5-887c-8d087daf556d",
+              "name": "Error generating quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to quote for."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "76aec1d4-f0dd-4104-9962-de1656d5d140",
+          "name": "Approve a quote.",
+          "request": {
+            "name": "Approve a quote.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanApproveQuote\r\n            \r\n\\\r\nSample request:\r\n            \r\n    POST /quotes",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "quotes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"transactionId\": \"<integer>\",\n  \"quoteId\": \"<string>\",\n  \"accountId\": \"<integer>\",\n  \"agreeToTerms\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fce7d3ae-d034-43b6-b938-b2f91d777961",
+              "name": "Quote approved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": 4387,\n  \"quoteId\": \"e42630ea-4214-d7f9-eb94-2f4bb50f6fcf\",\n  \"accountId\": 3124,\n  \"agreeToTerms\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"statusText\": \"Success\",\n  \"quote\": {\n    \"quoteId\": \"cb22f338-7bb8-4ad1-88fd-a69bfaeade7d\",\n    \"quoteTime\": \"2018-12-02T10:15:00\",\n    \"transactionId\": 35271,\n    \"transactionReference\": \"MPT126437\",\n    \"settlementSummary\": [\n      {\n        \"settlementCurrency\": \"USD\",\n        \"totalSettlementDue\": 1921.48,\n        \"totalFees\": 8.6,\n        \"totalNumberOfPayments\": 1,\n        \"paymentSummary\": [\n          {\n            \"currency\": \"GBP\",\n            \"baseCurrency\": \"GBP\",\n            \"settlementAmount\": 1921.48,\n            \"paymentAmount\": 1100,\n            \"numberOfPayments\": 1,\n            \"quotedRate\": 1.7468,\n            \"fee\": 8.6,\n            \"valueDate\": \"2018-12-04\"\n          }\n        ]\n      }\n    ],\n    \"transactionName\": \"72648193-2a7d-ff39-c120-266dac5810e2\",\n    \"uploadedBy\": \"Joe Smith\",\n    \"dateUploaded\": \"2018-12-02\",\n    \"status\": 1,\n    \"quoteStatusText\": \"Valid\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "947834ed-bf07-46ea-abce-0321361be1a2",
+              "name": "Quote is not in a valid state to be approved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": 4387,\n  \"quoteId\": \"e42630ea-4214-d7f9-eb94-2f4bb50f6fcf\",\n  \"accountId\": 3124,\n  \"agreeToTerms\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 9,\n  \"statusText\": \"TransactionDeleted\",\n  \"quote\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "917bff91-ddd3-4462-bdfa-036f3521ece9",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": 4387,\n  \"quoteId\": \"e42630ea-4214-d7f9-eb94-2f4bb50f6fcf\",\n  \"accountId\": 3124,\n  \"agreeToTerms\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1bf1777f-6ee1-4462-979e-d611b4e872b8",
+              "name": "Quote not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": 4387,\n  \"quoteId\": \"e42630ea-4214-d7f9-eb94-2f4bb50f6fcf\",\n  \"accountId\": 3124,\n  \"agreeToTerms\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "48a389cc-a879-4df3-8009-1b1608ef47b6",
+              "name": "Error approving quote.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "quotes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"transactionId\": 4387,\n  \"quoteId\": \"e42630ea-4214-d7f9-eb94-2f4bb50f6fcf\",\n  \"accountId\": 3124,\n  \"agreeToTerms\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "714020e6-4428-4997-a2e9-dc855b602ded",
+      "name": "Terms",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d65f175f-bfa0-4634-83e9-14067010d139",
+          "name": "Gets the important information relating to making a transaction. This will have to be read, understood and agreed to, in order to approve a quote for a transaction.",
+          "request": {
+            "name": "Gets the important information relating to making a transaction. This will have to be read, understood and agreed to, in order to approve a quote for a transaction.",
+            "description": {
+              "content": "Sample request:\r\n            \r\n    GET /terms",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "terms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e7dc6e7e-35e6-4c33-8fef-a2c144166ba9",
+              "name": "Returns the important information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7c59d74c-9c24-43fe-946b-5853756e4539",
+              "name": "Error getting the important information.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "terms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "d4a926c2-1fb3-4705-ab68-e6b0905f3fac",
+      "name": "Transaction",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "c72f2ffd-f9d2-4be8-92d2-642d432eae8a",
+          "name": "Get a paged list of transactions.",
+          "request": {
+            "name": "Get a paged list of transactions.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanViewTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions?pagesize=10\r\n            \r\n\\\r\nSort columns:\r\n            \r\n    DateUploaded\r\n    TransactionName\r\n    TransactionReference\r\n    TransactionStatus\r\n    NumberOfPayments\r\n    ApprovedBy\r\n            \r\n\\\r\nSort directions:\r\n            \r\n    desc\r\n    asc",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "accountId",
+                  "value": "<integer>",
+                  "description": "ID of account the transactions are for. If not set, it defaults to the user's account."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageNumber",
+                  "value": "1",
+                  "description": "The page to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "pageSize",
+                  "value": "6",
+                  "description": "The number of transactions per page."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortCol",
+                  "value": "DateUploaded",
+                  "description": "Column to sort on."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortDir",
+                  "value": "desc",
+                  "description": "Sort direction."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8fa0efb5-75b6-4126-883e-5e256409f5e0",
+              "name": "Returns a paged list of transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "6"
+                    },
+                    {
+                      "key": "sortCol",
+                      "value": "DateUploaded"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"content\": [\n    {\n      \"dateUploaded\": \"2018-12-02\",\n      \"transactionName\": \"72648193-2a7d-ff39-c120-266dac5810e2\",\n      \"transactionReference\": null,\n      \"transactionStatus\": 3,\n      \"transactionStatusText\": \"NotApproved\",\n      \"uploadedBy\": \"Joe Smith\",\n      \"approvedBy\": null,\n      \"numberOfPayments\": 2,\n      \"settlementStatus\": \"Sent\",\n      \"paymentStatus\": \"NotSent\",\n      \"queriedPayments\": 2,\n      \"failureStatusType\": \"ValidationOK\",\n      \"reasonsForFailure\": [\n        \"\"\n      ],\n      \"transactionId\": 35271\n    },\n    {\n      \"dateUploaded\": \"2018-12-01\",\n      \"transactionName\": \"66619964-8ea2-d28b-0a2f-440bd17ac782\",\n      \"transactionReference\": null,\n      \"transactionStatus\": 2,\n      \"transactionStatusText\": \"Failed\",\n      \"uploadedBy\": \"Joe Smith\",\n      \"approvedBy\": null,\n      \"numberOfPayments\": 0,\n      \"settlementStatus\": \"Sent\",\n      \"paymentStatus\": \"NotSent\",\n      \"queriedPayments\": 0,\n      \"failureStatusType\": \"BasicValidationFailed\",\n      \"reasonsForFailure\": [\n        \"Payment validation failed:\",\n        \"Line 1: Your Unique Payment ID \\\"123\\\" already exists in a previous Payment File\"\n      ],\n      \"transactionId\": 35270\n    }\n  ],\n  \"totalRecords\": 2\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a55bd690-6a6c-4383-96db-7454d707eac8",
+              "name": "Bad sort column.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "6"
+                    },
+                    {
+                      "key": "sortCol",
+                      "value": "DateUploaded"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "7e116b2b-a343-4889-9d6a-2d78a57eba28",
+              "name": "Error getting transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "accountId",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "pageNumber",
+                      "value": "1"
+                    },
+                    {
+                      "key": "pageSize",
+                      "value": "6"
+                    },
+                    {
+                      "key": "sortCol",
+                      "value": "DateUploaded"
+                    },
+                    {
+                      "key": "sortDir",
+                      "value": "desc"
+                    }
+                  ],
+                  "variable": []
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b83108d0-b595-4dfb-8f07-59f256f13bbf",
+          "name": "Load a list of payments.",
+          "request": {
+            "name": "Load a list of payments.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanLoadTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    POST /transactions",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"accountId\": \"<integer>\",\n  \"payments\": [\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    },\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cb5c9ddb-fee8-49e7-b813-f82f757921b0",
+              "name": "Returns the transaction ID and status of the load.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"payments\": [\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    },\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 112186376,\n  \"payments\": null,\n  \"status\": 1,\n  \"statusText\": \"Processing\",\n  \"transactionId\": 35271\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2c5b61b-8e21-4ed0-947e-5e704416c780",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"payments\": [\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    },\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "799a9a57-82ae-4493-96bc-780939c66393",
+              "name": "At least one payment failed validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"payments\": [\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    },\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": 112186376,\n  \"payments\": [\n    {\n      \"validationResponse\": [\n        \"Settlement Currency : Settlement currency only allows letters\"\n      ],\n      \"settlementCurrency\": \"&%!\",\n      \"targetPaymentDate\": \"2018-12-04\",\n      \"paymentCurrency\": \"GBP\",\n      \"amount\": \"1100\",\n      \"amountType\": 1,\n      \"clientUniqueReference\": \"1236345\",\n      \"recipientBankCountryCode\": \"US\",\n      \"recipientName\": \"Leah McWilliams\",\n      \"recipientEmail\": \"test@example.com\",\n      \"recipientAddress1\": \"4 Apple Street\",\n      \"recipientAddress2\": \"\",\n      \"recipientAddressCountryCode\": \"US\",\n      \"recipientAccountNumberIBAN\": \"1231231234\",\n      \"recipientBIC\": \"BOFAUS3N\",\n      \"recipientNationalClearingCode\": \"\",\n      \"recipientBankName\": \"Bank Name\",\n      \"recipientBankAddress1\": \"100 North Tryon Street\",\n      \"recipientBankAddress2\": \"Charlotte\",\n      \"recipientBankAddress3\": \"\",\n      \"clientPaymentReference\": \"Monthly Contract Pay 743001\",\n      \"intermediaryBankName\": \"\",\n      \"intermediaryBankAddress1\": \"\",\n      \"intermediaryBankAddress2\": \"\",\n      \"intermediaryBankAddress3\": \"\",\n      \"intermediaryBankCountryCode\": \"\",\n      \"intermediaryAccountNumberIBAN\": \"\",\n      \"intermediaryBIC\": \"\",\n      \"intermediaryNationalClearingCode\": \"\",\n      \"reasonForPayment\": \"Contract Payment\"\n    }\n  ],\n  \"status\": 5,\n  \"statusText\": \"ValidationFailed\",\n  \"transactionId\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ecf2ebb4-f0aa-4405-816d-00f2c46b0a20",
+              "name": "Error loading payments.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"accountId\": \"<integer>\",\n  \"payments\": [\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    },\n    {\n      \"settlementCurrency\": \"<string>\",\n      \"targetPaymentDate\": \"<string>\",\n      \"paymentCurrency\": \"<string>\",\n      \"amount\": \"<string>\",\n      \"amountType\": \"<integer>\",\n      \"clientUniqueReference\": \"<string>\",\n      \"recipientBankCountryCode\": \"<string>\",\n      \"recipientName\": \"<string>\",\n      \"recipientEmail\": \"<string>\",\n      \"recipientAddress1\": \"<string>\",\n      \"recipientAddress2\": \"<string>\",\n      \"recipientAddressCountryCode\": \"<string>\",\n      \"recipientAccountNumberIBAN\": \"<string>\",\n      \"recipientBIC\": \"<string>\",\n      \"recipientNationalClearingCode\": \"<string>\",\n      \"recipientBankName\": \"<string>\",\n      \"recipientBankAddress1\": \"<string>\",\n      \"recipientBankAddress2\": \"<string>\",\n      \"recipientBankAddress3\": \"<string>\",\n      \"clientPaymentReference\": \"<string>\",\n      \"intermediaryBankName\": \"<string>\",\n      \"intermediaryBankAddress1\": \"<string>\",\n      \"intermediaryBankAddress2\": \"<string>\",\n      \"intermediaryBankAddress3\": \"<string>\",\n      \"intermediaryBankCountryCode\": \"<string>\",\n      \"intermediaryAccountNumberIBAN\": \"<string>\",\n      \"intermediaryBIC\": \"<string>\",\n      \"intermediaryNationalClearingCode\": \"<string>\",\n      \"reasonForPayment\": \"<string>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d28b3a4f-b995-47e5-8ff9-35cc40bd8cf1",
+          "name": "Get the details for a single transaction.",
+          "request": {
+            "name": "Get the details for a single transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanViewTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    GET /transactions/35271",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of the transaction."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67639c74-7d72-4088-8b75-1b387fecbc7c",
+              "name": "Returns a single transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 0,\n  \"statusText\": \"Success\",\n  \"transaction\": {\n    \"transactionName\": \"72648193-2a7d-ff39-c120-266dac5810e2\",\n    \"accountId\": 112186376,\n    \"transactionId\": 35271,\n    \"transactionReference\": null,\n    \"transactionStatus\": 3,\n    \"transactionStatusText\": \"NotApproved\",\n    \"dateUploaded\": \"2018-12-02\",\n    \"uploadedBy\": \"Joe Smith\",\n    \"approved\": false,\n    \"dateApproved\": null,\n    \"approvedBy\": null,\n    \"settlementStatus\": \"Sent\",\n    \"paymentStatus\": \"NotSent\",\n    \"numberOfPayments\": 2,\n    \"queriedPayments\": 2,\n    \"includedQueriedPayments\": 2,\n    \"rejectedPayments\": 0,\n    \"excludedPayments\": 0,\n    \"approvedPayments\": 0,\n    \"sentPayments\": 0,\n    \"reasonsForFailure\": [\n      \"\"\n    ],\n    \"failureStatusType\": \"ValidationOK\",\n    \"canQuote\": true,\n    \"canDelete\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "555f201c-b109-411b-9844-5441b674f0cd",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a4bd2816-76c3-401c-b562-814c2dac7c5f",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e2f2ee99-6737-4de1-86af-ab8a3c454718",
+              "name": "Error getting transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of the transaction."
+                    }
+                  ]
+                },
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7498bd7-f181-4b2a-8434-776377ff9afe",
+          "name": "Delete an unapproved transaction.",
+          "request": {
+            "name": "Delete an unapproved transaction.",
+            "description": {
+              "content": "Permissions Required:\r\n            \r\n    CanDeleteTransactions\r\n            \r\n\\\r\nSample request:\r\n            \r\n    DELETE /transactions/4682",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "transactions",
+                ":transactionId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "transactionId",
+                  "description": "(Required) ID of transaction to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ec240bb-6a75-4dd2-9561-e6cbde6f2312",
+              "name": "Transaction was not deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 2,\n  \"statusText\": \"TransactionApproved\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b12577b2-c99c-4a0f-a525-ce6acd3348dd",
+              "name": "Successfully deleted transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8cebb6f2-920d-498b-97f5-1eabe1b746a8",
+              "name": "No access to account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "4fc124fc-7e88-4f98-a87d-dc26895fa697",
+              "name": "Transaction not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 1,\n  \"statusText\": \"TransactionNotFound\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01de3038-2e20-4990-9d2c-b38eb1c67a4e",
+              "name": "Error deleting transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "transactions",
+                    ":transactionId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "transactionId",
+                      "description": "(Required) ID of transaction to delete."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "38f5368f-78d9-4ae4-822d-949386001b45",
+    "name": "Xe.Api.MassPayments",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

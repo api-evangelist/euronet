@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "XE Currency Data Tradable Rates API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tradable-rates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "get tradable rates",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/tradeable_rate",
+            "params": [
+              {
+                "name": "sell",
+                "value": "",
+                "type": "query",
+                "description": "currency symbol (e.g. CAD) to be sold"
+              },
+              {
+                "name": "buy",
+                "value": "",
+                "type": "query",
+                "description": "currency symbol (e.g. USD) to be bought"
+              },
+              {
+                "name": "amount",
+                "value": "",
+                "type": "query",
+                "description": "amount of currencies to sell"
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "country code (e.g. CA) where the client resides"
+              },
+              {
+                "name": "account_type",
+                "value": "",
+                "type": "query",
+                "description": "type of client account, either PRIVATE or CORPORATE"
+              },
+              {
+                "name": "fixed_currency",
+                "value": "",
+                "type": "query",
+                "description": "which currency for the amount parameter, either \"sell\" or \"buy\""
+              }
+            ]
+          },
+          "docs": "Get tradable rates\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
