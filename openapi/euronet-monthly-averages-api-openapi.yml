@@ -1,0 +1,192 @@
+openapi: 3.2.0
+info:
+  version: 1.0.2
+  title: XE Currency Data Monthly Averages API
+  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+servers:
+- url: https://xecdapi.xe.com/v1
+security:
+- basicAuth: []
+tags:
+- name: Monthly Averages
+paths:
+  /monthly_average:
+    get:
+      tags:
+      - Monthly Averages
+      summary: 'Get monthly average rates for a single base currency and one or more counter currency for the month/year you specify in your API query. '
+      description: 'The monthly average endpoint returns monthly average rates for a single base currency and one or more counter currency for the year you specify in your API query. The monthly average rate is calculated by taking the 00:00 UTC Daily rate for each day in the month/year you specify in your query. Months are returned as a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.
+
+        '
+      parameters:
+      - name: from
+        in: query
+        description: 'OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: "Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+        required: true
+        schema:
+          type: string
+      - name: amount
+        in: query
+        description: 'OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.
+
+          '
+        required: false
+        schema:
+          type: number
+      - name: year
+        in: query
+        description: 'OPTIONAL – This parameter specifies the year to calculate average monthly rates.
+
+          '
+        required: false
+        schema:
+          type: number
+      - name: month
+        in: query
+        description: 'OPTIONAL – This parameter specifies the month in the given year to return average monthly rates. This is a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.
+
+          '
+        required: false
+        schema:
+          type: number
+      - name: obsolete
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency.
+        required: false
+        schema:
+          type: boolean
+      - name: inverse
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will include inverse rates.
+        required: false
+        schema:
+          type: boolean
+      - name: decimal_places
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875
+        required: false
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MonthlyAverageResponse'
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    MonthlyAverageResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+        year:
+          type: number
+        to:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/TOCurrencyISO'
+    TOCurrencyISO:
+      properties:
+        monthlyAverage:
+          type: number
+        month:
+          type: number
+        daysInMonth:
+          type: number
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

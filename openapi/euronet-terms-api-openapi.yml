@@ -1,0 +1,19 @@
+openapi: 3.2.0
+info:
+  version: 0.4.1
+  title: Xe.Api.MassPayments Terms API
+tags:
+- name: Terms
+paths:
+  /terms:
+    get:
+      tags:
+      - Terms
+      summary: Gets the important information relating to making a transaction. This will have to be read, understood and agreed to, in order to approve a quote for a transaction.
+      description: "Sample request:\n            \n    GET /terms"
+      operationId: Get
+      responses:
+        '200':
+          description: Returns the important information.
+        '500':
+          description: Error getting the important information.

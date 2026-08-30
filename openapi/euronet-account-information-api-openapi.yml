@@ -1,0 +1,104 @@
+openapi: 3.2.0
+info:
+  version: 1.0.2
+  title: XE Currency Data Account Information API
+  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+servers:
+- url: https://xecdapi.xe.com/v1
+security:
+- basicAuth: []
+tags:
+- name: Account Information
+paths:
+  /account_info:
+    get:
+      tags:
+      - Account Information
+      summary: 'This endpoint will return basic information for a specific account.
+
+        '
+      description: 'Requires Headers "username" and "password"
+
+        '
+      responses:
+        '200':
+          description: Success
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccountInfoResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+    AccountInfoResponse:
+      properties:
+        id:
+          type: string
+        organization:
+          type: string
+        package:
+          type: string
+        service_start_timestamp:
+          type: string
+        package_limit_duration:
+          type: string
+        package_limit:
+          type: number
+        package_limit_remaining:
+          type: number
+        package_limit_reset:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

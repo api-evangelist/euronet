@@ -1,0 +1,674 @@
+openapi: 3.2.0
+info:
+  version: 0.4.1
+  title: Xe.Api.MassPayments Payments API
+tags:
+- name: Payments
+paths:
+  /transactions/{transactionid}/payments/{paymentId}:
+    patch:
+      tags:
+      - Payments
+      summary: Update a payment in a transaction.
+      description: "Permissions Required:\n            \n    CanEditPayments\n            \n\\\nSample request:\n            \n    PATCH /transactions/35271/payments/107346"
+      operationId: Update
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of the transaction.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: paymentId
+        in: path
+        description: ID of the payment.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '204':
+          description: Payment was successfully updated.
+        '400':
+          description: Request data is invalid or transaction cannot be updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePaymentResponse'
+              example:
+                status: 3
+                statusText: TransactionApproved
+                message: Transaction must be in 'not approved' state to be modified
+        '401':
+          description: No access to account.
+        '404':
+          description: Transaction or payment not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdatePaymentResponse'
+              example:
+                status: 1
+                statusText: TransactionNotFound
+                message: Transaction could not be found
+        '500':
+          description: Error updating payment.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdatePaymentRequest'
+        description: Body containing details to update.
+  /transactions/{transactionid}/payments:
+    get:
+      tags:
+      - Payments
+      summary: Get a paged list of payment(s) for a transaction.
+      description: "Permissions Required:\n            \n    CanViewPayments\n            \n\\\nSample request:\n            \n    GET /transactions/35271/payments?pagesize=10"
+      operationId: Get
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of the transaction the requested payments belong to.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: pageNumber
+        in: query
+        description: The page to return.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of transactions per page.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 6
+      responses:
+        '200':
+          description: Returns a paged list of payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentItemPagedData'
+              example:
+                content:
+                - paymentId: 111490
+                  transactionId: 30477
+                  paymentAmount: 1100
+                  settlementAmount: 0
+                  paymentCurrency: GBP
+                  settlementCurrency: USD
+                  clientsUniquePaymentReference: '123634537'
+                  recipientAccountName: TestRecipient
+                  targetDate: '2019-06-15'
+                  paymentDate: null
+                  rejected: false
+                  forReview: true
+                  isTargetDateAchievable: true
+                  isReadOnly: true
+                  isExcluded: false
+                  issues: []
+                  paymentStatus: OK
+                  hasBeenApproved: false
+                - paymentId: 111553
+                  transactionId: 546
+                  paymentAmount: 1100
+                  settlementAmount: 0
+                  paymentCurrency: GBP
+                  settlementCurrency: USD
+                  clientsUniquePaymentReference: ''
+                  recipientAccountName: TestRecipient
+                  targetDate: '2019-06-15'
+                  paymentDate: null
+                  rejected: false
+                  forReview: true
+                  isTargetDateAchievable: false
+                  isReadOnly: false
+                  isExcluded: false
+                  issues:
+                  - The IBAN's Country does not match the Destination Country
+                  paymentStatus: For Review
+                  hasBeenApproved: true
+                totalRecords: 2
+        '500':
+          description: Error getting payments.
+  /transactions/{transactionid}/payments/{paymentid}:
+    get:
+      tags:
+      - Payments
+      summary: Get a single payment.
+      description: "Permissions Required:\n\n    CanViewPayments\n    \n\\\nSample request:\n\n    GET /transactions/35271/payments/107346"
+      operationId: GetSingle
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of the transaction the request payment belongs to.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: paymentId
+        in: path
+        description: ID of the payment to get.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the requested payment.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DetailedPaymentItem'
+              example:
+                paymentId: 123456
+                paymentReference: P654321
+                paymentAmount: 51234.56
+                paymentCurrency: USD
+                settlementAmount: 40000
+                settlementCurrency: GBP
+                amountType: 1
+                recipientInformation:
+                  clientUniqueReference: '1236345'
+                  recipientBankCountryCode: US
+                  recipientName: Leah McWilliams
+                  recipientEmail: test@example.com
+                  recipientAddress1: 4 Apple Street
+                  recipientAddress2: ''
+                  recipientAddressCountryCode: US
+                  recipientAccountNumberIBAN: '1231231234'
+                  recipientBIC: BOFAUS3N
+                  recipientNationalClearingCode: ''
+                  recipientBankName: Bank Name
+                  recipientBankAddress1: 100 North Tryon Street
+                  recipientBankAddress2: Charlotte
+                  recipientBankAddress3: ''
+                  clientPaymentReference: Monthly Contract Pay 743001
+                  intermediaryBankName: ''
+                  intermediaryBankAddress1: ''
+                  intermediaryBankAddress2: ''
+                  intermediaryBankAddress3: ''
+                  intermediaryBankCountryCode: ''
+                  intermediaryAccountNumberIBAN: ''
+                  intermediaryBIC: ''
+                  intermediaryNationalClearingCode: ''
+                  reasonForPayment: Dividend
+                targetDate: '2020-05-02'
+                isTargetDateAchievable: false
+                paymentDate: '2020-05-06'
+                createdTimestamp: '2020-05-05T20:04:56.7929832Z'
+                modifiedTimestamp: '2020-05-05T20:34:56.7929833Z'
+                paymentStatus: Not Sent
+                issues: null
+                canEdit: true
+        '404':
+          description: Transaction or payment not found.
+        '500':
+          description: Error getting payment.
+components:
+  schemas:
+    RecipientInformation:
+      description: '"clientUniqueReference" - Client''s reference for a transaction.
+
+        "recipientBankCountryCode" - ISO code for the country of the recipient''s bank.
+
+        "recipientName" - Name of the recipient as it is on the bank account.
+
+        "recipientEmail" - Email address of the recipient, if they require an individual payment confirmation.
+
+        "recipientAddress1" - First line of the recipient''s address.
+
+        "recipientAddress2" - Second line of the recipient''s address.
+
+        "recipientAddressCountryCode" - ISO code for the country of the recipient''s address.
+
+        "recipientAccountNumberIban" - Account number or IBAN for the recipient''s bank account.
+
+        "recipientBic" - BIC of the recipient''s bank.
+
+        "recipientNationalClearingCode" - National clearing code of the recipient''s bank.
+
+        "recipientBankName" - Name of the recipient''s bank.
+
+        "recipientBankAddress1" - First line of the address for the recipient’s bank account.
+
+        "recipientBankAddress2" - Second line of the address for the recipient’s bank account.
+
+        "recipientBankAddress3" - Third line of the address for the recipient’s bank account.
+
+        "clientPaymentReference" -Additional reference that is included in the payment details sent to the bank.
+
+        "intermediaryBankName" - Name of any intermediary bank.
+
+        "intermediaryBankAddress1" - First line of the address for any intermediary bank account.
+
+        "intermediaryBankAddress2" - First line of the address for any intermediary bank account.
+
+        "intermediaryBankAddress3" - First line of the address for any intermediary bank account.
+
+        "intermediaryBankCountryCode" - ISO code for the country of any intermediary bank account.
+
+        "intermediaryAccountNumberIban" - Account number or IBAN for any intermediary bank account.
+
+        "intermediaryBic" - BIC of any intermediary bank account.
+
+        "intermediaryNationalClearingCode" - National clearing code of any intermediary bank account.
+
+        "reasonForPayment" - Reason for making the payment.'
+      type: object
+      properties:
+        clientUniqueReference:
+          type: string
+        recipientBankCountryCode:
+          type: string
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientAddress1:
+          type: string
+        recipientAddress2:
+          type: string
+        recipientAddressCountryCode:
+          type: string
+        recipientAccountNumberIBAN:
+          type: string
+        recipientBIC:
+          type: string
+        recipientNationalClearingCode:
+          type: string
+        recipientBankName:
+          type: string
+        recipientBankAddress1:
+          type: string
+        recipientBankAddress2:
+          type: string
+        recipientBankAddress3:
+          type: string
+        clientPaymentReference:
+          type: string
+        intermediaryBankName:
+          type: string
+        intermediaryBankAddress1:
+          type: string
+        intermediaryBankAddress2:
+          type: string
+        intermediaryBankAddress3:
+          type: string
+        intermediaryBankCountryCode:
+          type: string
+        intermediaryAccountNumberIBAN:
+          type: string
+        intermediaryBIC:
+          type: string
+        intermediaryNationalClearingCode:
+          type: string
+        reasonForPayment:
+          type: string
+    UpdatePaymentResponse:
+      description: '"status" - Enum value of the status returned when updating a payment.
+
+        "statusText" - Text that corresponds to the status given.
+
+        "message" - If unsuccessful, the reason why will be given.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = TransactionNotFound
+
+            2 = PaymentNotFound
+
+            3 = TransactionApproved
+
+            4 = Unsuccessful
+
+            5 = ValidationFailed
+
+            6 = PaymentNoIssues'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        message:
+          type: string
+    UpdatePaymentData:
+      description: 'SWIFT character only fields must match the regular expression: ^[\r\n\sa-zA-Z0-9\/\-:,''\?\(\)\.\+]*$
+
+
+        "recipientName" - Name of the recipient as it is on the bank account. SWIFT characters only.
+
+        "recipientEmail" - Email address of the recipient, if they require an individual payment confirmation.
+
+        "recipientAddress1" - First line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddress2" - Second line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddressCountryCode" - ISO code for the country of the recipient''s address.
+
+        "recipientAccountNumberIban" - Account number or IBAN for the recipient''s bank account. SWIFT characters only.
+
+        "recipientBic" - BIC of the recipient''s bank. SWIFT characters only.
+
+        "recipientNationalClearingCode" - National clearing code of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankName" - Name of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankAddress1" - First line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress2" - Second line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress3" - Third line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "clientPaymentReference" - Additional reference that is included in the payment details sent to the bank. SWIFT characters only.
+
+        "intermediaryBankName" - Name of any intermediary bank. SWIFT characters only.
+
+        "intermediaryBankAddress1" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress2" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress3" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankCountryCode" - ISO code for the country of any intermediary bank account.
+
+        "intermediaryAccountNumberIban" - Account number or IBAN for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBic" - BIC of any intermediary bank account. SWIFT characters only.
+
+        "intermediaryNationalClearingCode" - National clearing code of any intermediary bank account.
+
+        "reasonForPayment" - Reason for making the payment. SWIFT characters only.'
+      type: object
+      properties:
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientAddress1:
+          type: string
+        recipientAddress2:
+          type: string
+        recipientAddressCountryCode:
+          type: string
+        recipientAccountNumberIBAN:
+          type: string
+        recipientBIC:
+          type: string
+        recipientNationalClearingCode:
+          type: string
+        recipientBankName:
+          type: string
+        recipientBankAddress1:
+          type: string
+        recipientBankAddress2:
+          type: string
+        recipientBankAddress3:
+          type: string
+        clientPaymentReference:
+          type: string
+        intermediaryBankName:
+          type: string
+        intermediaryBankAddress1:
+          type: string
+        intermediaryBankAddress2:
+          type: string
+        intermediaryBankAddress3:
+          type: string
+        intermediaryBankCountryCode:
+          type: string
+        intermediaryAccountNumberIBAN:
+          type: string
+        intermediaryBIC:
+          type: string
+        intermediaryNationalClearingCode:
+          type: string
+        reasonForPayment:
+          type: string
+    DetailedPaymentItem:
+      description: '"paymentId" - ID of the payment.
+
+        "paymentReference" - Xe.Api.MassPayments generated Payment Reference (only set once a transaction is approved).
+
+        "paymentAmount" - Amount of money for the payment currency.
+
+        "paymentCurrency" - ISO code of the required payment currency.
+
+        "settlementAmount" - Amount of money for the settlement currency.
+
+        "settlementCurrency" - ISO code for the required settlement currency.
+
+        "amountType" - Indication on whether this is a payment or settlement.
+
+        "recipientInformation" - The payment recipient''s details.
+
+        "targetDate" - Date that the payment should credit the recipient, expressed as yyyy-MM-dd.
+
+        "IsTargetDateAchievable" - Boolean value for whether the target date is achievable or not.
+
+        "paymentDate" - Date that the payment will be credit the recipient. This will usually be the same as target date unless it is not achievable in which case it is calculated after approving the transaction, expressed as yyyy-MM-dd.
+
+        "createdTimestamp" - UTC Timestamp that the payment was created. Once a transaction is approved, this timestamp will be updated to the point it was approved.
+
+        "modifiedTimestamp" - UTC Timestamp that any changes were made to the payment. If changes were made and then the transaction was approved, this value is reset.
+
+        "paymentStatus" - Status of the progress of sending the payments for the transaction.
+
+        "issues" - Listed issues for the payment.
+
+        "canEdit" - Flag to indicate whether or not the payment can be edited.'
+      type: object
+      properties:
+        paymentId:
+          format: int32
+          type: integer
+        paymentReference:
+          type: string
+        paymentAmount:
+          format: double
+          type: number
+        paymentCurrency:
+          type: string
+        settlementAmount:
+          format: double
+          type: number
+        settlementCurrency:
+          type: string
+        amountType:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Payment
+
+            2 = Settlement'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        recipientInformation:
+          $ref: '#/components/schemas/RecipientInformation'
+        targetDate:
+          type: string
+        isTargetDateAchievable:
+          type: boolean
+        paymentDate:
+          type: string
+        createdTimestamp:
+          format: date-time
+          type: string
+        modifiedTimestamp:
+          format: date-time
+          type: string
+        paymentStatus:
+          type: string
+          readOnly: true
+        issues:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        canEdit:
+          type: boolean
+          readOnly: true
+    PaymentItem:
+      description: '"paymentId" - ID of the payment.
+
+        "transactionId" - ID of the transaction.
+
+        "paymentAmount" - Amount of money for the payment currency.
+
+        "settlementAmount" - Amount of money for the settlement currency.
+
+        "paymentCurrency" - ISO code of the required payment currency.
+
+        "settlementCurrency" - ISO code for the required settlement currency.
+
+        "clientsUniquePaymentReference" -  Client’s reference for a transaction.
+
+        "recipientAccountName" - Name of the recipient as it is on the bank account.
+
+        "targetDate" - Date that the payment should credit the recipient, expressed as yyyy-MM-dd.
+
+        "paymentDate" - Date that the payment will be credit the recipient. This will usually be the same as target date unless it is not achievable in which case it is calculated after approving the transaction, expressed as yyyy-MM-dd.
+
+        "paymentStatus" - Status of the progress of sending the payments for the transaction.
+
+        "rejected" - Boolean value for if the payment is rejected or not.
+
+        "forReview" - Boolean value for if the payment is in review.
+
+        "IsTargetDateAchievable" - Boolean value for whether the target date is achievable or not.
+
+        "isReadOnly" - Boolean value for whether the payment is ReadOnly or not.
+
+        "IsExcluded" - Boolean value for whether the payment is excluded or not.
+
+        "issues" - Listed issues for the payment.
+
+        "HasBeenApproved" - Boolean value for whether the payment has been approved or not.'
+      type: object
+      properties:
+        paymentId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        paymentAmount:
+          format: double
+          type: number
+        settlementAmount:
+          format: double
+          type: number
+        paymentCurrency:
+          type: string
+        settlementCurrency:
+          type: string
+        clientsUniquePaymentReference:
+          type: string
+        recipientAccountName:
+          type: string
+        targetDate:
+          type: string
+        paymentDate:
+          type: string
+        rejected:
+          type: boolean
+        forReview:
+          type: boolean
+        isTargetDateAchievable:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        isExcluded:
+          type: boolean
+        issues:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        paymentStatus:
+          type: string
+          readOnly: true
+        hasBeenApproved:
+          type: boolean
+    UpdatePaymentRequest:
+      description: '"include" - Set to false to exclude a payment, true to include a payment.
+
+        "data" - Data to update the payment with.'
+      type: object
+      properties:
+        include:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/UpdatePaymentData'
+      example:
+        include: false
+        data:
+          recipientName: Leah McWilliams
+          recipientEmail: test@example.com
+          recipientAddress1: 4 Apple Street
+          recipientAddress2: ''
+          recipientAddressCountryCode: US
+          recipientAccountNumberIBAN: '1231231234'
+          recipientBIC: BOFAUS3N
+          recipientNationalClearingCode: ''
+          recipientBankName: Bank Name
+          recipientBankAddress1: 100 North Tryon Street
+          recipientBankAddress2: Charlotte
+          recipientBankAddress3: ''
+          clientPaymentReference: Monthly Contract Pay 743001
+          intermediaryBankName: ''
+          intermediaryBankAddress1: ''
+          intermediaryBankAddress2: ''
+          intermediaryBankAddress3: ''
+          intermediaryBankCountryCode: ''
+          intermediaryAccountNumberIBAN: ''
+          intermediaryBIC: ''
+          intermediaryNationalClearingCode: ''
+          reasonForPayment: Contract Payment
+    PaymentItemPagedData:
+      description: "Generic Paged data returned for List Items.\n            \n\"content\" - List of Data returned in the response.\n\"totalRecords\" - Result from the request.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentItem'
+        totalRecords:
+          format: int32
+          type: integer

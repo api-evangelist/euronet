@@ -1,0 +1,347 @@
+openapi: 3.2.0
+info:
+  version: 0.4.1
+  title: Xe.Api.MassPayments Invoice API
+tags:
+- name: Invoice
+paths:
+  /invoices/{transactionId}:
+    get:
+      tags:
+      - Invoice
+      summary: Get the invoice for an authorised transaction.
+      description: "Permissions Required:\n            \n    CanViewInvoice\n            \n\\\nSample request:\n            \n    GET /invoices/4251"
+      operationId: Get
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of transaction to get the invoice for.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the invoice.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+              example:
+                status: 0
+                statusText: Success
+                invoiceData:
+                  accountNumber: HIFX0221672388
+                  accountNameAndAddress:
+                    accountName: Joe Smith
+                    address:
+                    - 4 Lime Street
+                    - United Kingdom
+                  transactionReference: MPT126437
+                  uploadedBy: Joe Smith
+                  approvedBy: Joe Smith
+                  numberOfPayments: 2
+                  numberOfSettlementTypePayments: 0
+                  quoteSummary:
+                    accountId: 112186376
+                    transactionId: 35271
+                    transactionReference: MPT126437
+                    settlementSummary:
+                    - settlementCurrency: USD
+                      totalSettlementDue:
+                        units: 1921.48
+                        currency: USD
+                      totalFees:
+                        units: 8.6
+                        currency: USD
+                      totalNumberOfPayments: 1
+                      paymentSummary:
+                      - settlementCurrency: USD
+                        paymentCurrency: GBP
+                        baseCurrency: GBP
+                        settlementAmount:
+                          units: 1921.48
+                          currency: USD
+                        paymentAmount:
+                          units: 1100
+                          currency: GBP
+                        numberOfPayments: 1
+                        quotedRate: 1.7468
+                        fee:
+                          units: 8.6
+                          currency: USD
+                        valueDate: '2018-12-04'
+                  settlementBankAccounts:
+                  - currency: USD
+                    countryCode: US
+                    accountName: Leah McWilliams
+                    accountNumber: '1231231234'
+                    branchAddressOne: 100 North Tryon Street
+                    branchAddressTwo: Charlotte
+                    branchAddressThree: ''
+                    iban: ''
+                    nationalClearingCode: '26009593'
+                    swiftBic: BOFAUS3N
+                    bank:
+                      name: Bank Name
+        '202':
+          description: Invoice is not ready.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+              example:
+                status: 1
+                statusText: InvoiceNotAvailable
+                invoiceData: null
+        '401':
+          description: No access to account.
+        '404':
+          description: Transaction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InvoiceResponse'
+              example:
+                status: 2
+                statusText: TransactionNotFound
+                invoiceData: null
+        '500':
+          description: Error getting invoice.
+components:
+  schemas:
+    QuoteSummaryAdapter:
+      description: '"accountId" - ID of the account for the quote.
+
+        "transactionId" - ID of the transaction that received a quote.
+
+        "transactionReference" - Reference for the transaction that received a quote.
+
+        "settlementSummary" - Details for the settlement of the quote.'
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        transactionReference:
+          type: string
+        settlementSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteSettlementSummaryAdapter'
+    QuoteSettlementSummaryAdapter:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
+
+        "totalFees" - Currency and amount for the total fees of the transfer process.
+
+        "totalNumberOfPayments" - Total number of payments for the transaction.
+
+        "paymentSummary" - Details for the payment of the quote.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        totalSettlementDue:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        totalFees:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        totalNumberOfPayments:
+          format: int32
+          type: integer
+        paymentSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuotePaymentSummaryAdapter'
+    QuotePaymentSummaryAdapter:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "paymentCurrency" - Currency used for the payment of the transaction.
+
+        "baseCurrency" - Base currency for the currency pair.
+
+        "settlementAmount" - Amount for the settlement of the transaction.
+
+        "paymentAmount" - Amount for the payment of the transaction.
+
+        "numberOfPayments" - Number of payments in the transaction.
+
+        "quotedRate" - Agreed rate for the currency conversion when it was quoted.
+
+        "fee" - Amount agreed for the transfer process.
+
+        "valueDate" - yyyy-MM-dd: Effective date of the transfer.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        paymentCurrency:
+          type: string
+        baseCurrency:
+          type: string
+        settlementAmount:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        paymentAmount:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        numberOfPayments:
+          format: int32
+          type: integer
+        quotedRate:
+          format: double
+          type: number
+        fee:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        valueDate:
+          type: string
+    InvoiceResponse:
+      description: '"status" - Enum value of the status returned from getting the invoice.
+
+        "statusText" - Text value of the status returned from getting the invoice.
+
+        "invoiceData" - If successful, the invoice is returned.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = InvoiceNotAvailable
+
+            2 = TransactionNotFound'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        invoiceData:
+          $ref: '#/components/schemas/Invoice'
+    Invoice:
+      description: '"accountNumber" - Account number the invoice is for.
+
+        "accountNameAndAddress" - Name of the account and the address for the account.
+
+        "transactionReference" - Reference for the transaction the invoice is for.
+
+        "uploadedBy" - Name of the person who uploaded the transaction and when it was uploaded in UTC format (yyyy-MM-ddThh:mm:ssZ).
+
+        "approvedBy" - Name of the person who approved the quote for the transcation and when it was approved in UTC format (yyyy-MM-ddThh:mm:ssZ).
+
+        "numberOfPayments" - Number of payments within the transaction.
+
+        "numberOfSettlementTypePayments" - Number of payments that are settlements.
+
+        "quoteSummary" - Details for the quote that was approved.
+
+        "settlementBankAccounts" - Bank accounts that are being used to settle the transaction payments.'
+      type: object
+      properties:
+        accountNumber:
+          type: string
+        accountNameAndAddress:
+          $ref: '#/components/schemas/NameAddressAdapter'
+        transactionReference:
+          type: string
+        uploadedBy:
+          type: string
+        approvedBy:
+          type: string
+        numberOfPayments:
+          format: int32
+          type: integer
+        numberOfSettlementTypePayments:
+          format: int32
+          type: integer
+        quoteSummary:
+          $ref: '#/components/schemas/QuoteSummaryAdapter'
+        settlementBankAccounts:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/BankAccountAdapter'
+    CurrencyAmountAdapter:
+      description: '"units" - Amount of the currency.
+
+        "currency" - Type of the currency.'
+      type: object
+      properties:
+        units:
+          format: double
+          type: number
+        currency:
+          type: string
+    BankAdapter:
+      description: '"name" - Name of the bank.'
+      type: object
+      properties:
+        name:
+          type: string
+    BankAccountAdapter:
+      description: '"currency" - Currency of the bank account.
+
+        "countryCode" - Code of the country for the bank account.
+
+        "accountName" - Name of the bank account.
+
+        "accountNumber" - Number of the bank account.
+
+        "branchAddressOne" - First line of the branch address.
+
+        "branchAddressTwo" - Second line of the branch address.
+
+        "branchAddressThree" - Third line of the branch address.
+
+        "iban" - IBAN of the bank account.
+
+        "nationalClearingCode" - NCC of the bank account.
+
+        "swiftBic" - Swift/BIC of the bank account.
+
+        "bank" - Details of the bank for the bank account.'
+      type: object
+      properties:
+        currency:
+          type: string
+        countryCode:
+          type: string
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        branchAddressOne:
+          type: string
+        branchAddressTwo:
+          type: string
+        branchAddressThree:
+          type: string
+        iban:
+          type: string
+        nationalClearingCode:
+          type: string
+        swiftBic:
+          type: string
+        bank:
+          $ref: '#/components/schemas/BankAdapter'
+    NameAddressAdapter:
+      description: '"accountName" - Name of the account.
+
+        "address" - List of lines for the address of the account.'
+      type: object
+      properties:
+        accountName:
+          type: string
+        address:
+          uniqueItems: false
+          type: array
+          items:
+            type: string

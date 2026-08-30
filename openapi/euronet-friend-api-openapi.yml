@@ -1,0 +1,313 @@
+openapi: 3.2.0
+info:
+  version: v1.0.0
+  title: XETA Friend API
+  description: XE Travel API - Manage your trips and associated expenses.
+servers:
+- url: https://xeta-api.xe.com/v1
+tags:
+- name: Friend
+paths:
+  /friend:
+    get:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FriendList'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      tags:
+      - Friend
+    post:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friend'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Friend'
+        required: true
+      tags:
+      - Friend
+  /friend/{friendId}:
+    get:
+      parameters:
+      - name: friendId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friend'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      tags:
+      - Friend
+    put:
+      parameters:
+      - name: friendId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Friend'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Friend'
+        required: true
+      tags:
+      - Friend
+    delete:
+      parameters:
+      - name: friendId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: 200 response
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      tags:
+      - Friend
+components:
+  schemas:
+    Friend:
+      type: object
+      required:
+      - email
+      - id
+      - lastModifiedDate
+      - name
+      - userId
+      properties:
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        id:
+          type: integer
+          description: Unique identifier.
+        userId:
+          type: integer
+          description: Id of the user who owns this friend relationship.
+        name:
+          type: string
+          description: Friend name.
+          minLength: 1
+          maxLength: 191
+          pattern: ^.*\S+.*$
+        email:
+          type: string
+          description: Friend's email address.
+        expenseInvitations:
+          type: array
+          description: List of invitations sent to share an expense with this friend.
+          items:
+            $ref: '#/components/schemas/FriendExpenseInvitationsItem'
+      title: Friend
+      description: An entity used to represent friendship with other users.
+    FriendExpenseInvitationsItem:
+      type: object
+      required:
+      - amount
+      - expenseId
+      - friendId
+      - id
+      - lastModifiedDate
+      - userId
+      properties:
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        id:
+          type: integer
+          description: Unique identifier.
+        invitationStatusName:
+          type: string
+          description: Status of the invitation.
+          enum:
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+          - DELETED
+        userId:
+          type: integer
+          description: Id of the user who sent this invitation.
+        friendId:
+          type: integer
+          description: Id of the user the expense was shared with.
+        expenseId:
+          type: integer
+          description: Id of the expense that was shared.
+        amount:
+          type: number
+          description: The amount of the expense that was split with the friend.
+      description: An entity used to share expenses with other users.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
+    FriendList:
+      title: FriendList
+      type: array
+      description: Friend List object
+      items:
+        $ref: '#/components/schemas/Friend'
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
+  securitySchemes:
+    xeta-drupal-authorizer:
+      type: apiKey
+      name: Cookie
+      in: header
+      x-amazon-apigateway-authtype: custom

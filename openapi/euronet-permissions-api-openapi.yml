@@ -1,0 +1,83 @@
+openapi: 3.2.0
+info:
+  version: 0.4.1
+  title: Xe.Api.MassPayments Permissions API
+tags:
+- name: Permissions
+paths:
+  /permissions:
+    get:
+      tags:
+      - Permissions
+      summary: Get a list of permissions for the current user.
+      description: "Sample request:\n            \n    GET /permissions"
+      operationId: List
+      responses:
+        '200':
+          description: Returns list of permissions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PermissionResponse'
+              example:
+                status: 0
+                statusText: Success
+                permissions:
+                - name: CanGetAccounts
+                - name: CanViewTransactions
+                - name: CanViewPayments
+                - name: CanLoadTransactions
+                - name: CanDeleteTransactions
+                - name: CanGetQuote
+                - name: CanApproveQuote
+                - name: CanViewInvoice
+                - name: CanEditPayments
+        '500':
+          description: Error getting permissions.
+components:
+  schemas:
+    Permission:
+      description: '"name" - Permission name.'
+      type: object
+      properties:
+        name:
+          type: string
+    PermissionResponse:
+      description: '"status" - Enum value of the status returned from getting the account''s permissions.
+
+        "statusText" - Text value of the status returned from getting the account''s permissions.
+
+        "permissions" - List of permissions the current account has.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = AccountNotKycApproved
+
+            2 = UserNotFound
+
+            3 = UserInactive
+
+            4 = UserNotKycApproved
+
+            5 = AccountNotFound'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        permissions:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Permission'

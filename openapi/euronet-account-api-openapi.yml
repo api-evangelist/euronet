@@ -1,0 +1,51 @@
+openapi: 3.2.0
+info:
+  version: 0.4.1
+  title: Xe.Api.MassPayments Account API
+tags:
+- name: Account
+paths:
+  /accounts:
+    get:
+      tags:
+      - Account
+      summary: Get a list of accounts that the user has access to.
+      description: "Permissions Required:\n            \n    CanGetAccounts\n            \n\\\nSample request:\n            \n    GET /accounts"
+      operationId: Get
+      responses:
+        '200':
+          description: Returns the list of accounts.
+          content:
+            application/json:
+              schema:
+                uniqueItems: false
+                type: array
+                items:
+                  $ref: '#/components/schemas/EnterpriseAccount'
+              example:
+              - accountId: 112186376
+                parentId: 0
+                name: Joe Smith
+              - accountId: 112186529
+                parentId: 112186376
+                name: John Smith
+        '500':
+          description: Error getting accounts.
+components:
+  schemas:
+    EnterpriseAccount:
+      description: '"accountId" - ID of the requested account.
+
+        "parentId" - ID of the parent account for the requested account.
+
+        "name" - Name of the requested account.'
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        parentId:
+          format: int32
+          type: integer
+        name:
+          type: string

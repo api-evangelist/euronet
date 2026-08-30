@@ -1,0 +1,726 @@
+openapi: 3.2.0
+info:
+  title: Euronet Quote API
+  version: '1.0'
+  description: 'Operations tagged Quote across 2 of this provider''s published API definitions: xe-mass-payments-api-openapi.json, xe-payments-api-openapi.json. Each path carries the servers of the definition it was published in.'
+tags:
+- name: Quote
+paths:
+  /quotes/{transactionId}:
+    get:
+      tags:
+      - Quote
+      summary: Get a quote for a transaction.
+      description: "Permissions Required:\n            \n    CanGetQuote\n            \n\\\nSample request:\n            \n    GET /quotes/6724"
+      operationId: Get
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of transaction to quote for.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      - name: accountId
+        in: query
+        description: ID of account the transaction is for. If not set, it defaults to the user's account.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns the generated quote.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              example:
+                status: 0
+                statusText: Success
+                quote:
+                  quoteId: cb22f338-7bb8-4ad1-88fd-a69bfaeade7d
+                  quoteTime: '2018-12-02T10:15:00'
+                  transactionId: 35271
+                  transactionReference: MPT126437
+                  settlementSummary:
+                  - settlementCurrency: USD
+                    totalSettlementDue: 1921.48
+                    totalFees: 8.6
+                    totalNumberOfPayments: 1
+                    paymentSummary:
+                    - currency: GBP
+                      baseCurrency: GBP
+                      settlementAmount: 1921.48
+                      paymentAmount: 1100
+                      numberOfPayments: 1
+                      quotedRate: 1.7468
+                      fee: 8.6
+                      valueDate: '2018-12-04'
+                  transactionName: 72648193-2a7d-ff39-c120-266dac5810e2
+                  uploadedBy: Joe Smith
+                  dateUploaded: '2018-12-02'
+                  status: 1
+                  quoteStatusText: Valid
+        '400':
+          description: Transaction is not in a valid state to be quoted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              example:
+                status: 9
+                statusText: TransactionDeleted
+                quote: null
+        '401':
+          description: No access to account.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Error generating quote.
+  /quotes:
+    post:
+      tags:
+      - Quote
+      summary: Approve a quote.
+      description: "Permissions Required:\n            \n    CanApproveQuote\n            \n\\\nSample request:\n            \n    POST /quotes"
+      operationId: Approve
+      responses:
+        '200':
+          description: Quote approved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              example:
+                status: 0
+                statusText: Success
+                quote:
+                  quoteId: cb22f338-7bb8-4ad1-88fd-a69bfaeade7d
+                  quoteTime: '2018-12-02T10:15:00'
+                  transactionId: 35271
+                  transactionReference: MPT126437
+                  settlementSummary:
+                  - settlementCurrency: USD
+                    totalSettlementDue: 1921.48
+                    totalFees: 8.6
+                    totalNumberOfPayments: 1
+                    paymentSummary:
+                    - currency: GBP
+                      baseCurrency: GBP
+                      settlementAmount: 1921.48
+                      paymentAmount: 1100
+                      numberOfPayments: 1
+                      quotedRate: 1.7468
+                      fee: 8.6
+                      valueDate: '2018-12-04'
+                  transactionName: 72648193-2a7d-ff39-c120-266dac5810e2
+                  uploadedBy: Joe Smith
+                  dateUploaded: '2018-12-02'
+                  status: 1
+                  quoteStatusText: Valid
+        '400':
+          description: Quote is not in a valid state to be approved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse'
+              example:
+                status: 9
+                statusText: TransactionDeleted
+                quote: null
+        '401':
+          description: No access to account.
+        '404':
+          description: Quote not found.
+        '500':
+          description: Error approving quote.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/QuoteApprove'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuoteApprove'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/QuoteApprove'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/QuoteApprove'
+        description: IDs needed to approve the quote.
+  /quotes/{quoteId}:
+    get:
+      tags:
+      - Quote
+      summary: Refreshes a quote to gain an up-to-date quote.
+      description: "Sample request:\n            \n    GET /quotes/Quote_123456-1234\n    GET /quotes/Quote_123456-1234?refresh=false\n\\\nRequired user rights:\n            \n    CanQuote"
+      operationId: Refresh
+      parameters:
+      - name: quoteId
+        in: path
+        description: ID of the quote to be refreshed.
+        required: true
+        schema:
+          type: string
+      - name: refresh
+        in: query
+        description: Set to false to return a cached quote if available, or 404 if no cached quote is found.
+        required: false
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: Returns the refreshed quote.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+              example:
+                content:
+                  quoteId: Quote_12016fea-5310-32b2-eca3-917c1ad62f87
+                  quoteStatus: 2
+                  quoteStatusText: Quoted
+                  expiryTimeMilliseconds: 14127
+                  buyCurrency: GBP
+                  sellCurrency: USD
+                  baseCurrency: GBP
+                  rate: '1.7471'
+                  inverseRate: '0.5724'
+                  rateMovement: ''
+                  buyOrSell: Sell
+                  buyAmount: '57.24'
+                  sellAmount: '100.00'
+                  fees: '6.90'
+                  settlementAmount: '117.50'
+                  balanceAmount: '106.90'
+                  balanceDueDate: '2019-01-25'
+                  securityDeposit: '10.60'
+                  securityDepositDueDate: '2019-01-11'
+                  valueDate: '2019-01-25'
+                  availableDate: ''
+                warnings:
+                - code: WARN001
+                information:
+                - code: INFO001
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+        '404':
+          description: Quote not found.
+        '500':
+          description: Error refreshing quote.
+    patch:
+      tags:
+      - Quote
+      summary: Updates a quote to change or add more details.
+      description: "Sample request:\n            \n    PATCH /quotes/Quote_123456-1234\n            \n\\\nRequired user rights:\n            \n    CanQuote"
+      operationId: Update
+      parameters:
+      - name: quoteId
+        in: path
+        description: ID of the quote to be updated.
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Returns the updated quote.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+              example:
+                content:
+                  quoteId: Quote_12016fea-5310-32b2-eca3-917c1ad62f87
+                  quoteStatus: 2
+                  quoteStatusText: Quoted
+                  expiryTimeMilliseconds: 14127
+                  buyCurrency: GBP
+                  sellCurrency: USD
+                  baseCurrency: GBP
+                  rate: '1.7471'
+                  inverseRate: '0.5724'
+                  rateMovement: ''
+                  buyOrSell: Sell
+                  buyAmount: '57.24'
+                  sellAmount: '100.00'
+                  fees: '6.90'
+                  settlementAmount: '117.50'
+                  balanceAmount: '106.90'
+                  balanceDueDate: '2019-01-25'
+                  securityDeposit: '10.60'
+                  securityDepositDueDate: '2019-01-11'
+                  valueDate: '2019-01-25'
+                  availableDate: ''
+                warnings:
+                - code: WARN001
+                information:
+                - code: INFO001
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+        '400':
+          description: Request was invalid.
+          content:
+            text/plain:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+              example:
+                message: Request failed validation.
+                errors:
+                - code: UPDATE_QUOTE_REQUEST_VALIDATION
+                  data:
+                  - key: Amount
+                    value: Must be greater than 0.
+            text/json:
+              schema:
+                $ref: '#/components/schemas/QuoteResponse_2'
+        '404':
+          description: Quote not found.
+        '500':
+          description: Error updating quote.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequest'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequest'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequest'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/UpdateQuoteRequest'
+        description: Details to update the quote with. If a value is null then the attribute will not be updated.
+components:
+  schemas:
+    QuotePaymentSummary:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "baseCurrency" - Base currency for the currency pair.
+
+        "settlementAmount" - Amount for the settlement of the transaction.
+
+        "paymentAmount" - Amount for the payment of the transaction.
+
+        "numberOfPayments" - Number of payments in the transaction.
+
+        "quotedRate" - Agreed rate for the currency conversion when it was quoted.
+
+        "fee" - Amount agreed for the transfer process.
+
+        "valueDate" - yyyy-MM-dd: Effective date of the transfer.'
+      type: object
+      properties:
+        currency:
+          type: string
+        baseCurrency:
+          type: string
+        settlementAmount:
+          format: double
+          type: number
+        paymentAmount:
+          format: double
+          type: number
+        numberOfPayments:
+          format: int32
+          type: integer
+        quotedRate:
+          format: double
+          type: number
+        fee:
+          format: double
+          type: number
+        valueDate:
+          type: string
+    QuoteResponse:
+      description: '"status" - Enum value for the status of getting/approving the quote.
+
+        "quote" - Details of the quote.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = FailedToQuote
+
+            2 = TransactionInvalidStatus
+
+            3 = QuoteLimitExceeded
+
+            4 = QuoteNotFoundOrExpired
+
+            5 = TransactionLoadInProgress
+
+            6 = TransactionQuoteApproved
+
+            7 = TransactionLoadError
+
+            8 = TransactionNotFound
+
+            9 = TransactionDeleted
+
+            10 = SameCurrencyFeeBandNotConfigured
+
+            11 = TermsNotAgreedTo'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        quote:
+          $ref: '#/components/schemas/Quote'
+    QuoteSettlementSummary:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
+
+        "totalFees" - Currency and amount for the total fees of the transfer process.
+
+        "totalNumberOfPayments" - Total number of payments for the transaction.
+
+        "paymentSummary" - Details for the payment of the quote.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        totalSettlementDue:
+          format: double
+          type: number
+        totalFees:
+          format: double
+          type: number
+        totalNumberOfPayments:
+          format: int32
+          type: integer
+        paymentSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuotePaymentSummary'
+    Quote:
+      description: '"quoteId" - ID of the quote.
+
+        "quoteTime" - Date and time that the quote was made.
+
+        "transactionId" - ID of the transaction for the quote.
+
+        "transactionReference" - Reference for the transaction.
+
+        "settlementSummary" - Details for the settlement of the quote.
+
+        "transactionName" - Name of the transaction.
+
+        "uploadedBy" - Name of the person who uploaded the transaction.
+
+        "dateUploaded" - yyyy-MM-dd: Date that the transaction was uploaded.
+
+        "status" - Enum value of the status returned from getting the quote.
+
+        "quoteStatusText" - Text value of the status returned from getting the quote.'
+      type: object
+      properties:
+        quoteId:
+          format: uuid
+          type: string
+        quoteTime:
+          format: date-time
+          type: string
+        transactionId:
+          format: int32
+          type: integer
+        transactionReference:
+          type: string
+        settlementSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteSettlementSummary'
+        transactionName:
+          type: string
+        uploadedBy:
+          type: string
+        dateUploaded:
+          type: string
+        status:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Valid
+
+            2 = RequiresManual
+
+            3 = Timeout
+
+            4 = Rejected
+
+            5 = Missing
+
+            6 = UnableToQuote
+
+            7 = Error'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          type: integer
+        quoteStatusText:
+          type: string
+          readOnly: true
+    QuoteApprove:
+      description: '"transactionId" - ID of the transaction the quote is for.
+
+        "quoteId" - ID of the quote to approve.
+
+        "accountId" - ID of the account the quote is for.
+
+        "agreeToTerms" - Whether the important information given by the /terms endpoint is agreed to. This must be true to approve a quote.'
+      type: object
+      properties:
+        transactionId:
+          format: int32
+          type: integer
+        quoteId:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        agreeToTerms:
+          type: boolean
+      example:
+        transactionId: 4387
+        quoteId: e42630ea-4214-d7f9-eb94-2f4bb50f6fcf
+        accountId: 3124
+        agreeToTerms: true
+    QuoteResponse_2:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/Quote_2'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    UpdateQuoteRequest:
+      description: "Request body for updating a quote.\n\nSWIFT characters match the following regular expression: ^[\\r\\n\\sa-zA-Z0-9\\/\\-:,'\\?\\(\\)\\.\\+]*$\n            \n\"amount\" - Optional: Amount of the currency being bought or sold.\n\"recipientId\" - Optional: ID of the recipient to make the payment to.\n\"reference\" - Optional: Reference for the recipient to identify a transaction. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it. SWIFT characters only.\n\"purposeOfPaymentCode\" - Optional: Code for the reason why the client is making the transfer. Cannot be an empty string, if provided. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"purposeOfPaymentFreeText\" - Optional: If allowed for the code, the client can enter their reason for the transfer in text form. SWIFT characters only.\n\"recipientEmailAddress\" - Optional: Email address that will be notified when the payment is made.\n\"privateReference\" - Optional: Private reference for the client to identify a transfer. SWIFT characters only.\n\"valueDate\" - Optional: yyyy-MM-dd - Effective date of the transfer."
+      type: object
+      properties:
+        amount:
+          format: double
+          type: number
+        recipientId:
+          format: int32
+          type: integer
+        reference:
+          type: string
+        purposeOfPaymentCode:
+          type: string
+        purposeOfPaymentFreeText:
+          type: string
+        recipientEmailAddress:
+          type: string
+        privateReference:
+          type: string
+        valueDate:
+          type: string
+      example:
+        amount: 150
+        recipientId: 1234567
+        reference: Reference
+        purposeOfPaymentCode: PRIV_OTHER
+        purposeOfPaymentFreeText: Free text
+        recipientEmailAddress: recip@email.co.uk
+        privateReference: Private reference
+        valueDate: '2019-01-26'
+    CreateQuoteRequest:
+      description: "Request body for creating a new quote. Quotes expire in around 15 seconds.\n\nSWIFT characters match the following regular expression: ^[\\r\\n\\sa-zA-Z0-9\\/\\-:,'\\?\\(\\)\\.\\+]*$\n            \n\"buyCurrency\" - Code of the currency being converted to.\n\"sellCurrency\" - Code of the currency provided by the client.\n\"buyOrSell\" - 'Buy' or 'Sell': Whether the client is buying or selling the amount of currency.\n\"amount\" - Amount of the currency being bought or sold.\n\"recipientId\" - Optional: ID of the recipient to make the payment to. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"reference\" - Optional: Reference for the recipient to identify a transfer. SWIFT characters only.\n\"purposeOfPaymentCode\" - Optional: Code for the reason why the client is making the transfer. Cannot be an empty string, if provided. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"purposeOfPaymentFreeText\" - Optional: If allowed for the code, the client can enter their reason for the transfer in text form. SWIFT characters only.\n\"recipientEmailAddress\" - Optional: Email address that will be notified when the payment is made.\n\"privateReference\" - Optional: Private reference for the client to identify a transfer. SWIFT characters only.\n\"valueDate\" - Optional: yyyy-MM-dd - Effective date of the transfer."
+      required:
+      - amount
+      - buyOrSell
+      - buyCurrency
+      - sellCurrency
+      type: object
+      properties:
+        amount:
+          format: double
+          type: number
+        buyOrSell:
+          type: string
+        buyCurrency:
+          type: string
+        sellCurrency:
+          type: string
+        recipientId:
+          format: int32
+          type: integer
+        reference:
+          type: string
+        purposeOfPaymentCode:
+          type: string
+        purposeOfPaymentFreeText:
+          type: string
+        recipientEmailAddress:
+          type: string
+        privateReference:
+          type: string
+        valueDate:
+          type: string
+      example:
+        amount: 100
+        buyOrSell: Sell
+        buyCurrency: GBP
+        sellCurrency: USD
+        recipientId: 1234567
+        reference: Reference
+        purposeOfPaymentCode: CORP_OTHER
+        purposeOfPaymentFreeText: Free text
+        recipientEmailAddress: recip@email.co.uk
+        privateReference: Private reference
+        valueDate: '2019-01-25'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Quote_2:
+      description: "Details for a quote.\n            \n\"quoteId\" - ID of the quote.\n\"quoteStatus\" - Enum value for the status of the quote.\n\"quoteStatusText\" - Text value for the status of the quote.\n\"expiryTimeMilliseconds\" - Amount of time until the quote expires.\n\"buyCurrency\" - Code of the currency being converted to.\n\"sellCurrency\" - Code of the currency provided by the client.\n\"baseCurrency\" - Code of the base currency for the currency pair.\n\"rate\" - Quoted exchange rate of base currency to the other currency.\n\"inverseRate\" - Inverse quoted exchange rate of the currency pair.\n\"rateMovement\" - Whether the rate is better or worse than the previous rate for this quote.\n\"buyOrSell\" - Whether the client is buying or selling the amount of currency.\n\"buyAmount\" - Amount of money for the buy currency.\n\"sellAmount\" - Amount of money for the sell currency.\n\"fees\" - Total fees for the transfer of the specified currencies.\n\"settlementAmount\" - Total cost to the client, including fees.\n\"balanceAmount\" - Amount of money the client has left to pay for the contract.\n\"balanceDueDate\" - yyyy-MM-dd: Date by which the contract balance is to be paid by the client.\n\"securityDeposit\" - Amount of money the client has to pay for the security deposit.\n\"securityDepositDueDate\" - Date by which the security deposit is to be paid by the client. This will be confirmed when the contract is created.\n\"valueDate\" - yyyy-MM-dd: Effective date of the transfer.\n\"availableDate\" - yyyy-MM-dd: Date the contract proceeds should be available (received) by the recipient."
+      type: object
+      properties:
+        quoteId:
+          type: string
+        quoteStatus:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Error
+
+            2 = Quoted
+
+            3 = PollRequired
+
+            4 = FailedValidation
+
+            5 = InvalidQuoteId
+
+            6 = Timeout
+
+            7 = Validated'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          type: integer
+        quoteStatusText:
+          type: string
+          readOnly: true
+        expiryTimeMilliseconds:
+          format: int32
+          type: integer
+        buyCurrency:
+          type: string
+        sellCurrency:
+          type: string
+        baseCurrency:
+          type: string
+        rate:
+          type: string
+        inverseRate:
+          type: string
+        rateMovement:
+          type: string
+        buyOrSell:
+          type: string
+        buyAmount:
+          type: string
+        sellAmount:
+          type: string
+        fees:
+          type: string
+        settlementAmount:
+          type: string
+        balanceAmount:
+          type: string
+        balanceDueDate:
+          type: string
+        securityDeposit:
+          type: string
+        securityDepositDueDate:
+          type: string
+        valueDate:
+          type: string
+        availableDate:
+          type: string
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+x-refined-from:
+- xe-mass-payments-api-openapi.json
+- xe-payments-api-openapi.json

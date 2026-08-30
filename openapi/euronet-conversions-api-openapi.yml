@@ -1,0 +1,396 @@
+openapi: 3.2.0
+info:
+  version: 1.0.2
+  title: XE Currency Data Conversions API
+  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+servers:
+- url: https://xecdapi.xe.com/v1
+security:
+- basicAuth: []
+tags:
+- name: Conversions
+paths:
+  /convert_from:
+    get:
+      tags:
+      - Conversions
+      summary: Convert from one base currency to one or multiple counter currencies.
+      description: 'In the example below, the Convert FROM API query endpoint is to convert from GBP to all available currencies (the asterisk * represents ALL currencies).
+
+        <a href="https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1">https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1</a>'
+      parameters:
+      - name: from
+        in: query
+        description: 'OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: "Comma separated list of to currencies ISO 4217 codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+        required: true
+        schema:
+          type: string
+      - name: amount
+        in: query
+        description: 'OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.
+
+          '
+        required: false
+        schema:
+          type: number
+      - name: obsolete
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency.
+        required: false
+        schema:
+          type: boolean
+      - name: inverse
+        in: query
+        description: 'OPTIONAL – If ‘true’ then endpoint will include inverse rates. An inverse rate is a quote for which the base currency and counter currency are switched. An inverse is calculated by dividing one by the exchange rate. Example: If the exchange rate for $1 USD to EUR = 0.874852, then the inverse rate would be 1/0.874852 = 1.14305, meaning that US$1.14305 would buy 1 euro.'
+        required: false
+        schema:
+          type: boolean
+      - name: decimal_places
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875
+        required: false
+        schema:
+          type: number
+      - name: margin
+        in: query
+        description: 'OPTIONAL – This parameter can be used to add a margin (-/+)  to XE''s mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent'
+        required: false
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertFromResponse'
+        '304':
+          description: Not Modified
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /convert_to:
+    get:
+      tags:
+      - Conversions
+      summary: Convert to a currency amount from one or multiple other currencies.
+      description: 'In the example below, the Convert TO API query endpoint is to convert to GBP from all available currencies (the asterisk * represents ALL currencies).
+
+        <a href="https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1">https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1</a>'
+      parameters:
+      - name: from
+        in: query
+        description: "Comma separated list of to currencies ISO codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.\n Note: Obsolete currencies are replaced by their successor currency. \n"
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: 'OPTIONAL - Currency you want to convert to ISO code.  Note if this parameter is omitted, USD is assumed.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: amount
+        in: query
+        description: 'OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.
+
+          '
+        required: false
+        schema:
+          type: number
+      - name: obsolete
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency.
+        required: false
+        schema:
+          type: boolean
+      - name: inverse
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will display the inverse of the converted value. If ‘false‘ then it will not be displayed.
+        required: false
+        schema:
+          type: boolean
+      - name: decimal_places
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875
+        required: false
+        schema:
+          type: number
+      - name: margin
+        in: query
+        description: 'OPTIONAL – This parameter can be used to add a margin (-/+)  to XE''s mid-market rate. Example: add margin=2.05 parameter to the endpoint and the API will return our mid-market rates plus the margin of 2.05 percent'
+        required: false
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConvertToResponse'
+        '304':
+          description: Not Modified
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema: {}
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ConvertToResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        to:
+          type: string
+        amount:
+          type: number
+        timestamp:
+          type: string
+        from:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+    ConvertFromResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+        timestamp:
+          type: string
+        to:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+    Rate:
+      properties:
+        quotecurrency:
+          type: string
+        mid:
+          type: number
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

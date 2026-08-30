@@ -1,0 +1,1136 @@
+openapi: 3.2.0
+info:
+  title: Euronet Transaction API
+  version: '1.0'
+  description: 'Operations tagged Transaction across 2 of this provider''s published API definitions: xe-mass-payments-api-openapi.json, xe-payments-api-openapi.json. Each path carries the servers of the definition it was published in.'
+tags:
+- name: Transaction
+paths:
+  /transactions:
+    get:
+      tags:
+      - Transaction
+      summary: Get a paged list of transactions.
+      description: "Permissions Required:\n            \n    CanViewTransactions\n            \n\\\nSample request:\n            \n    GET /transactions?pagesize=10\n            \n\\\nSort columns:\n            \n    DateUploaded\n    TransactionName\n    TransactionReference\n    TransactionStatus\n    NumberOfPayments\n    ApprovedBy\n            \n\\\nSort directions:\n            \n    desc\n    asc"
+      operationId: Get
+      parameters:
+      - name: accountId
+        in: query
+        description: ID of account the transactions are for. If not set, it defaults to the user's account.
+        required: false
+        schema:
+          type: integer
+          format: int32
+      - name: pageNumber
+        in: query
+        description: The page to return.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 1
+      - name: pageSize
+        in: query
+        description: The number of transactions per page.
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 6
+      - name: sortCol
+        in: query
+        description: Column to sort on.
+        required: false
+        schema:
+          type: string
+          default: DateUploaded
+      - name: sortDir
+        in: query
+        description: Sort direction.
+        required: false
+        schema:
+          type: string
+          default: desc
+      responses:
+        '200':
+          description: Returns a paged list of transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TransactionListItemPagedData'
+              example:
+                content:
+                - dateUploaded: '2018-12-02'
+                  transactionName: 72648193-2a7d-ff39-c120-266dac5810e2
+                  transactionReference: null
+                  transactionStatus: 3
+                  transactionStatusText: NotApproved
+                  uploadedBy: Joe Smith
+                  approvedBy: null
+                  numberOfPayments: 2
+                  settlementStatus: Sent
+                  paymentStatus: NotSent
+                  queriedPayments: 2
+                  failureStatusType: ValidationOK
+                  reasonsForFailure:
+                  - ''
+                  transactionId: 35271
+                - dateUploaded: '2018-12-01'
+                  transactionName: 66619964-8ea2-d28b-0a2f-440bd17ac782
+                  transactionReference: null
+                  transactionStatus: 2
+                  transactionStatusText: Failed
+                  uploadedBy: Joe Smith
+                  approvedBy: null
+                  numberOfPayments: 0
+                  settlementStatus: Sent
+                  paymentStatus: NotSent
+                  queriedPayments: 0
+                  failureStatusType: BasicValidationFailed
+                  reasonsForFailure:
+                  - 'Payment validation failed:'
+                  - 'Line 1: Your Unique Payment ID "123" already exists in a previous Payment File'
+                  transactionId: 35270
+                totalRecords: 2
+        '400':
+          description: Bad sort column.
+        '500':
+          description: Error getting transactions.
+    post:
+      tags:
+      - Transaction
+      summary: Load a list of payments.
+      description: "Permissions Required:\n            \n    CanLoadTransactions\n            \n\\\nSample request:\n            \n    POST /transactions"
+      operationId: Post
+      responses:
+        '202':
+          description: Returns the transaction ID and status of the load.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentListResponse'
+              example:
+                accountId: 112186376
+                payments: null
+                status: 1
+                statusText: Processing
+                transactionId: 35271
+        '401':
+          description: No access to account.
+        '422':
+          description: At least one payment failed validation.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaymentListResponse'
+              example:
+                accountId: 112186376
+                payments:
+                - validationResponse:
+                  - 'Settlement Currency : Settlement currency only allows letters'
+                  settlementCurrency: '&%!'
+                  targetPaymentDate: '2018-12-04'
+                  paymentCurrency: GBP
+                  amount: '1100'
+                  amountType: 1
+                  clientUniqueReference: '1236345'
+                  recipientBankCountryCode: US
+                  recipientName: Leah McWilliams
+                  recipientEmail: test@example.com
+                  recipientAddress1: 4 Apple Street
+                  recipientAddress2: ''
+                  recipientAddressCountryCode: US
+                  recipientAccountNumberIBAN: '1231231234'
+                  recipientBIC: BOFAUS3N
+                  recipientNationalClearingCode: ''
+                  recipientBankName: Bank Name
+                  recipientBankAddress1: 100 North Tryon Street
+                  recipientBankAddress2: Charlotte
+                  recipientBankAddress3: ''
+                  clientPaymentReference: Monthly Contract Pay 743001
+                  intermediaryBankName: ''
+                  intermediaryBankAddress1: ''
+                  intermediaryBankAddress2: ''
+                  intermediaryBankAddress3: ''
+                  intermediaryBankCountryCode: ''
+                  intermediaryAccountNumberIBAN: ''
+                  intermediaryBIC: ''
+                  intermediaryNationalClearingCode: ''
+                  reasonForPayment: Contract Payment
+                status: 5
+                statusText: ValidationFailed
+                transactionId: 0
+        '500':
+          description: Error loading payments.
+      requestBody:
+        content:
+          application/json-patch+json:
+            schema:
+              $ref: '#/components/schemas/PaymentList'
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PaymentList'
+          text/json:
+            schema:
+              $ref: '#/components/schemas/PaymentList'
+          application/*+json:
+            schema:
+              $ref: '#/components/schemas/PaymentList'
+        description: List of payments to load.
+  /transactions/{transactionId}:
+    get:
+      tags:
+      - Transaction
+      summary: Get the details for a single transaction.
+      description: "Permissions Required:\n            \n    CanViewTransactions\n            \n\\\nSample request:\n            \n    GET /transactions/35271"
+      operationId: GetTransaction
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of the transaction.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '200':
+          description: Returns a single transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetTransactionResponse'
+              example:
+                status: 0
+                statusText: Success
+                transaction:
+                  transactionName: 72648193-2a7d-ff39-c120-266dac5810e2
+                  accountId: 112186376
+                  transactionId: 35271
+                  transactionReference: null
+                  transactionStatus: 3
+                  transactionStatusText: NotApproved
+                  dateUploaded: '2018-12-02'
+                  uploadedBy: Joe Smith
+                  approved: false
+                  dateApproved: null
+                  approvedBy: null
+                  settlementStatus: Sent
+                  paymentStatus: NotSent
+                  numberOfPayments: 2
+                  queriedPayments: 2
+                  includedQueriedPayments: 2
+                  rejectedPayments: 0
+                  excludedPayments: 0
+                  approvedPayments: 0
+                  sentPayments: 0
+                  reasonsForFailure:
+                  - ''
+                  failureStatusType: ValidationOK
+                  canQuote: true
+                  canDelete: true
+        '401':
+          description: No access to account.
+        '404':
+          description: Transaction not found.
+        '500':
+          description: Error getting transaction.
+    delete:
+      tags:
+      - Transaction
+      summary: Delete an unapproved transaction.
+      description: "Permissions Required:\n            \n    CanDeleteTransactions\n            \n\\\nSample request:\n            \n    DELETE /transactions/4682"
+      operationId: Delete
+      parameters:
+      - name: transactionId
+        in: path
+        description: ID of transaction to delete.
+        required: true
+        schema:
+          type: integer
+          format: int32
+      responses:
+        '202':
+          description: Transaction was not deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTransactionResponse'
+              example:
+                status: 2
+                statusText: TransactionApproved
+        '204':
+          description: Successfully deleted transaction.
+        '401':
+          description: No access to account.
+        '404':
+          description: Transaction not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/DeleteTransactionResponse'
+              example:
+                status: 1
+                statusText: TransactionNotFound
+        '500':
+          description: Error deleting transaction.
+components:
+  schemas:
+    PaymentList:
+      description: '"accountId" - ID of the account.
+
+        "payments" - List of payments to load.'
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        payments:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment'
+      example:
+        accountId: 112186376
+        payments:
+        - settlementCurrency: USD
+          targetPaymentDate: '2018-12-04'
+          paymentCurrency: GBP
+          amount: '1100'
+          amountType: 1
+          clientUniqueReference: '1236345'
+          recipientBankCountryCode: US
+          recipientName: Leah McWilliams
+          recipientEmail: test@example.com
+          recipientAddress1: 4 Apple Street
+          recipientAddress2: ''
+          recipientAddressCountryCode: US
+          recipientAccountNumberIBAN: '1231231234'
+          recipientBIC: BOFAUS3N
+          recipientNationalClearingCode: ''
+          recipientBankName: Bank Name
+          recipientBankAddress1: 100 North Tryon Street
+          recipientBankAddress2: Charlotte
+          recipientBankAddress3: ''
+          clientPaymentReference: Monthly Contract Pay 743001
+          intermediaryBankName: ''
+          intermediaryBankAddress1: ''
+          intermediaryBankAddress2: ''
+          intermediaryBankAddress3: ''
+          intermediaryBankCountryCode: ''
+          intermediaryAccountNumberIBAN: ''
+          intermediaryBIC: ''
+          intermediaryNationalClearingCode: ''
+          reasonForPayment: Contract Payment
+    TransactionListItemPagedData:
+      description: "Generic Paged data returned for List Items.\n            \n\"content\" - List of Data returned in the response.\n\"totalRecords\" - Result from the request.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/TransactionListItem'
+        totalRecords:
+          format: int32
+          type: integer
+    TransactionListItem:
+      description: '"dateUploaded" - yyyy-MM-dd: Date that the transaction was uploaded.
+
+        "transactionName" - Name of the transaction.
+
+        "transactionReference" - Reference of the transaction.
+
+        "transactionStatus" - Enum value of the status returned from getting the transaction.
+
+        "transactionStatusText" - Text value of the status returned from getting the transaction.
+
+        "uploadedBy" - Name of the person who uploaded the transaction.
+
+        "approvedBy" - Name of the person who approved the quote for the transaction.
+
+        "numberOfPayments" - Number of payments for the transaction.
+
+        "settlementStatus" - Status of the progress of sending the settlements for the transaction.
+
+        "paymentStatus" - Status of the progress of sending the payments for the transaction.
+
+        "queriedPayments" - Number of payments within the transaction that have been queried.
+
+        "failureStatusType" - Status of the result for the payment load and validation of the transaction.
+
+        "reasonsForFailure" - List of reasons the payment load wasn''t successful.
+
+        "transactionId" - ID of the transaction.'
+      type: object
+      properties:
+        dateUploaded:
+          type: string
+        transactionName:
+          type: string
+        transactionReference:
+          type: string
+        transactionStatus:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Validating
+
+            2 = Failed
+
+            3 = NotApproved
+
+            4 = Approved
+
+            5 = Completed
+
+            6 = Uploading
+
+            7 = Deleted
+
+            8 = PleaseWait'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          type: integer
+        transactionStatusText:
+          type: string
+          readOnly: true
+        uploadedBy:
+          type: string
+        approvedBy:
+          type: string
+        numberOfPayments:
+          format: int32
+          type: integer
+        settlementStatus:
+          type: string
+        paymentStatus:
+          type: string
+        queriedPayments:
+          format: int32
+          type: integer
+        failureStatusType:
+          type: string
+        reasonsForFailure:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        transactionId:
+          format: int32
+          type: integer
+    Payment:
+      description: 'SWIFT character only fields must match the regular expression: ^[\r\n\sa-zA-Z0-9\/\-:,''\?\(\)\.\+]*$
+
+
+        "settlementCurrency" - 3 characters. ISO code for the required settlement currency.
+
+        "clientUniqueReference" - Optional: up to 35 characters. Client''s reference for a transaction. SWIFT characters only.
+
+        "targetPaymentDate" - Date that the payment should credit the recipient, expressed as yyyy-MM-dd.
+
+        "paymentCurrency" - 3 characters. ISO code of the required payment currency.
+
+        "amount" - Required (payment/settlement) amount.
+
+        "recipientBankCountryCode" - 2 characters. ISO code for the country of the recipient''s bank.
+
+        "recipientName" - Up to 70 characters. Name of the recipient as it is on the bank account. SWIFT characters only.
+
+        "recipientEmail" - Optional: up to 70 characters. Email address of the recipient, if they require an individual payment confirmation.
+
+        "recipientAddress1" - Optional: up to 35 characters. First line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddress2" - Optional: up to 35 characters. Second line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddressCountryCode" - Optional: 2 characters. ISO code for the country of the recipient''s address.
+
+        "recipientAccountNumberIban" - Up to 34 characters. Account number or IBAN for the recipient''s bank account. SWIFT characters only.
+
+        "recipientBic" - 8 or 11 characters. BIC of the recipient''s bank. SWIFT characters only.
+
+        "recipientNationalClearingCode" - Up to 13 characters. National clearing code of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankName" - Up to 35 characters. Name of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankAddress1" - Up to 35 characters. First line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress2" - Up to 35 characters. Second line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress3" - Up to 35 characters. Third line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "clientPaymentReference" - Up to 70 characters. Additional reference that is included in the payment details sent to the bank. SWIFT characters only.
+
+        "intermediaryBankName" - Optional: up to 35 characters. Name of any intermediary bank. SWIFT characters only.
+
+        "intermediaryBankAddress1" - Optional: up to 35 characters. First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress2" - Optional: up to 35 characters. First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress3" - Optional: up to 35 characters. First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankCountryCode" - Optional: 2 characters. ISO code for the country of any intermediary bank account.
+
+        "intermediaryAccountNumberIban" - Optional: up to 34 characters. Account number or IBAN for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBic" - Optional: 8 or 11 characters. BIC of any intermediary bank account. SWIFT characters only.
+
+        "intermediaryNationalClearingCode" - Optional: up to 13 characters. National clearing code of any intermediary bank account. SWIFT characters only.
+
+        "reasonForPayment" - Up to 35 characters. Reason for making the payment. SWIFT characters only.
+
+        "amountType" - Fixed payment amount or fixed settlement amount.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        targetPaymentDate:
+          type: string
+        paymentCurrency:
+          type: string
+        amount:
+          type: string
+        amountType:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = FixedPayment
+
+            2 = FixedSettlement'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        clientUniqueReference:
+          type: string
+        recipientBankCountryCode:
+          type: string
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientAddress1:
+          type: string
+        recipientAddress2:
+          type: string
+        recipientAddressCountryCode:
+          type: string
+        recipientAccountNumberIBAN:
+          type: string
+        recipientBIC:
+          type: string
+        recipientNationalClearingCode:
+          type: string
+        recipientBankName:
+          type: string
+        recipientBankAddress1:
+          type: string
+        recipientBankAddress2:
+          type: string
+        recipientBankAddress3:
+          type: string
+        clientPaymentReference:
+          type: string
+        intermediaryBankName:
+          type: string
+        intermediaryBankAddress1:
+          type: string
+        intermediaryBankAddress2:
+          type: string
+        intermediaryBankAddress3:
+          type: string
+        intermediaryBankCountryCode:
+          type: string
+        intermediaryAccountNumberIBAN:
+          type: string
+        intermediaryBIC:
+          type: string
+        intermediaryNationalClearingCode:
+          type: string
+        reasonForPayment:
+          type: string
+    TransactionItem:
+      description: '"transactionName" - Name of the transaction.
+
+        "accountId" - ID of the account for the transaction.
+
+        "transactionId" - ID of the transaction.
+
+        "transactionReference" - Reference of the transaction.
+
+        "transactionStatus" - Enum value of the status returned from getting the transaction.
+
+        "transactionStatusText" - Text value of the status returned from getting the transaction.
+
+        "dateUploaded" - yyyy-MM-dd: Date that the transaction was uploaded.
+
+        "uploadedBy" - Name of the person who uploaded the transaction.
+
+        "approved" - Whether a quote has been approved for the transaction.
+
+        "dateApproved" - yyyy-MM-dd: Date that the quote for the transaction was approved.
+
+        "approvedBy" - Name of the person who approved the quote for the transaction.
+
+        "settlementStatus" - Status of the progress of sending the settlements for the transaction.
+
+        "paymentStatus" - Status of the progress of sending the payments for the transaction.
+
+        "numberOfPayments" - Number of payments for the transaction.
+
+        "queriedPayments" - Number of payments within the transaction that have been queried.
+
+        "includedQueriedPayments" - Number of payments within the transaction that are included in the query.
+
+        "rejectedPayments" - Number of payments within the transaction that have been rejected.
+
+        "excludedPayments" - Number of payments within the transaction that have been excluded.
+
+        "approvedPayments" - Number of payments within the transaction that have a quote approved for them.
+
+        "sentPayments" - Number of payments within the transaction that have been sent.
+
+        "reasonsForFailure" - List of reasons the payment load wasn''t successful.
+
+        "failureStatusType" - Status of the result for the payment load and validation of the transaction.
+
+        "canQuote" - Whether the transaction is able to be quoted.
+
+        "canDelete" - Whether the transaction is able to be deleted.'
+      type: object
+      properties:
+        transactionName:
+          type: string
+        accountId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        transactionReference:
+          type: string
+        transactionStatus:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Validating
+
+            2 = Failed
+
+            3 = NotApproved
+
+            4 = Approved
+
+            5 = Completed
+
+            6 = Uploading
+
+            7 = Deleted
+
+            8 = PleaseWait'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          type: integer
+        transactionStatusText:
+          type: string
+          readOnly: true
+        dateUploaded:
+          type: string
+        uploadedBy:
+          type: string
+        approved:
+          type: boolean
+        dateApproved:
+          type: string
+        approvedBy:
+          type: string
+        settlementStatus:
+          type: string
+        paymentStatus:
+          type: string
+        numberOfPayments:
+          format: int32
+          type: integer
+        queriedPayments:
+          format: int32
+          type: integer
+        includedQueriedPayments:
+          format: int32
+          type: integer
+        rejectedPayments:
+          format: int32
+          type: integer
+        excludedPayments:
+          format: int32
+          type: integer
+        approvedPayments:
+          format: int32
+          type: integer
+        sentPayments:
+          format: int32
+          type: integer
+        reasonsForFailure:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        failureStatusType:
+          type: string
+        canQuote:
+          type: boolean
+        canDelete:
+          type: boolean
+    DeleteTransactionResponse:
+      description: '"status" - Enum value of the status returned from deleting the transaction.
+
+        "statusText" - Text value of the status returned from deleting the transaction.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = TransactionNotFound
+
+            2 = TransactionApproved'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+    GetTransactionResponse:
+      description: '"status" - Enum value of the status returned from getting the transaction.
+
+        "statusText" - Text value of the status returned from getting the transaction.
+
+        "transaction" - Details of the transaction.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = TransactionNotFound
+
+            2 = UnableToGetCurrentSettlementInfo'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        transaction:
+          $ref: '#/components/schemas/TransactionItem'
+    PaymentListResponse:
+      description: '"accountId" - ID of the account.
+
+        "payments" - List of payments that failed validation and reasons why.
+
+        "status" - Enum value of the status returned from loading the payments.
+
+        "statusText" - Text value of the status returned from loading the payments.
+
+        "transactionId" - ID of the new transaction if loading the payments was successful.'
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        payments:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentValidationResponse'
+        status:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = Processing
+
+            2 = InvalidType
+
+            3 = ExceededMaxUploadCount
+
+            4 = InvalidFileSize
+
+            5 = ValidationFailed'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        transactionId:
+          format: int32
+          type: integer
+    PaymentValidationResponse:
+      description: '"validationResponse" - List of validation errors for an individual payment.'
+      type: object
+      properties:
+        validationResponse:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        settlementCurrency:
+          type: string
+        targetPaymentDate:
+          type: string
+        paymentCurrency:
+          type: string
+        amount:
+          type: string
+        amountType:
+          format: int32
+          description: '
+
+            0 = NotSet
+
+            1 = FixedPayment
+
+            2 = FixedSettlement'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        clientUniqueReference:
+          type: string
+        recipientBankCountryCode:
+          type: string
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientAddress1:
+          type: string
+        recipientAddress2:
+          type: string
+        recipientAddressCountryCode:
+          type: string
+        recipientAccountNumberIBAN:
+          type: string
+        recipientBIC:
+          type: string
+        recipientNationalClearingCode:
+          type: string
+        recipientBankName:
+          type: string
+        recipientBankAddress1:
+          type: string
+        recipientBankAddress2:
+          type: string
+        recipientBankAddress3:
+          type: string
+        clientPaymentReference:
+          type: string
+        intermediaryBankName:
+          type: string
+        intermediaryBankAddress1:
+          type: string
+        intermediaryBankAddress2:
+          type: string
+        intermediaryBankAddress3:
+          type: string
+        intermediaryBankCountryCode:
+          type: string
+        intermediaryAccountNumberIBAN:
+          type: string
+        intermediaryBIC:
+          type: string
+        intermediaryNationalClearingCode:
+          type: string
+        reasonForPayment:
+          type: string
+    TransactionPagedDataResponse:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/TransactionPagedData'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    TransactionPagedData:
+      type: object
+      properties:
+        content:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+        totalRecords:
+          format: int32
+          type: integer
+        pageSize:
+          format: int32
+          type: integer
+        pageNumber:
+          format: int32
+          type: integer
+    CreateTransactionRequest:
+      required:
+      - quoteId
+      type: object
+      properties:
+        quoteId:
+          type: string
+      example:
+        quoteId: Quote_123456-1234
+    Payment_2:
+      description: "Details for the payment including recipient details and purpose of payment.\n \n\"amount\" - Amount to pay the recipient.\n\"recipientID\" - ID of the recipient to make the payment to.\n\"reference\" - Reference for the payment to the recipient.\n\"emailAddress\" - Email address that will be notified when the payment is made.\n\"purposeOfPaymentCode\" - Code for the reason why the client is making the transfer.\n\"purposeOfPaymentFreeText\" - If allowed for the code, the client can enter their reason for the transfer in text form."
+      type: object
+      properties:
+        amount:
+          format: double
+          type: number
+        recipientId:
+          format: int32
+          type: integer
+        reference:
+          type: string
+        recipientEmailAddress:
+          type: string
+        purposeOfPaymentCode:
+          type: string
+        purposeOfPaymentFreeText:
+          type: string
+    TransactionResponse:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/Transaction'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    Transaction:
+      description: '"transactionId" - ID of the transaction.
+
+        "isValidTransaction" - Whether there are any issues with the current transaction.
+
+        "buyOrSell" - Whether the client is buying or selling the amount of currency.
+
+        "transactionReference" - Reference for the transaction.
+
+        "transactionDate" - Date the transaction was created.
+
+        "transactionStatus" - Status of the transaction.
+
+        "workflowState" - State of the workflow for the transaction.
+
+        "buyCurrency" - Code of the currency being converted to.
+
+        "buyAmount" - Amount of money for the buy currency.
+
+        "sellCurrency" - Code of the currency provided by the client.
+
+        "sellAmount" - Amount of money for the sell currency.
+
+        "baseCurrency" - Code of the base currency for the currency pair.
+
+        "rate" - Quoted exchange rate of base currency to the other currency.
+
+        "fees" - Total fees for the transfer of the specified currencies.
+
+        "feeCurrency" - Code of the currency the client will pay the fees in.
+
+        "valueDate" - yyyy-MM-dd: Effective date of the transfer.
+
+        "payments" - Details for the payments, including recipient details and purpose of payments.
+
+        "settlementAccountDetails" - Bank account details the client can use to provide the settlement.
+
+        "bPayCustomerReferenceNumber" - Reference number for the customer if it is a BPay payment.
+
+        "settlementAmount" - Total cost to the client, including fees.
+
+        "balanceAmount" - Amount of money the client has left to pay for the transaction.
+
+        "balanceDueDate" - yyyy-MM-dd: Date by which the transaction balance is to be paid by the client.
+
+        "securityDeposit" - Amount of money the client has to pay for the security deposit.
+
+        "securityDepositDueDate" - yyyy-MM-dd: Date by which the security deposit is to be paid by the client.'
+      type: object
+      properties:
+        transactionId:
+          format: int32
+          type: integer
+        isValidTransaction:
+          type: boolean
+        buyOrSell:
+          type: string
+        transactionReference:
+          type: string
+        transactionDate:
+          type: string
+        transactionStatus:
+          type: string
+        workflowState:
+          type: string
+        buyCurrency:
+          type: string
+        buyAmount:
+          format: double
+          type: number
+        sellCurrency:
+          type: string
+        sellAmount:
+          format: double
+          type: number
+        baseCurrency:
+          type: string
+        rate:
+          format: double
+          type: number
+        fees:
+          format: double
+          type: number
+        feeCurrency:
+          type: string
+        valueDate:
+          type: string
+        payments:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Payment_2'
+        settlementAccountDetails:
+          $ref: '#/components/schemas/SettlementBankAccount'
+        bPayCustomerReferenceNumber:
+          format: int64
+          type: integer
+        settlementAmount:
+          format: double
+          type: number
+        balanceAmount:
+          format: double
+          type: number
+        balanceDueDate:
+          type: string
+        securityDeposit:
+          format: double
+          type: number
+        securityDepositDueDate:
+          type: string
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    SettlementBankAccount:
+      description: "Bank details for the client.\n            \n\"accountName\" - Name of the account holder.\n\"accountNumber\" - Account number of the bank account.\n\"iban\" - IBAN for the bank account.\n\"bankName\" - Name of the bank for the account.\n\"branch\" - Branch for the bank account.\n\"addressLine1\" - Address of the branch.\n\"addressLine2\" - Address of the branch.\n\"addressLine3\" - Address of the branch.\n\"swiftCode\" - Swift code for the bank account.\n\"nationalClearingCode\" - NCC for the bank account.\n\"supportsBPayPayment\" - Whether BPAY payments are supported for the bank account.\n\"bPayPaymentName\" - Name used for a BPAY payment.\n\"bPayBillerCode\" - Biller code used for a BPAY payment."
+      type: object
+      properties:
+        accountName:
+          type: string
+        accountNumber:
+          type: string
+        iban:
+          type: string
+        bankName:
+          type: string
+        branch:
+          type: string
+        addressLine1:
+          type: string
+        addressLine2:
+          type: string
+        addressLine3:
+          type: string
+        swiftCode:
+          type: string
+        nationalClearingCode:
+          type: string
+        supportsBPayPayment:
+          type: boolean
+        bPayPaymentName:
+          type: string
+        bPayBillerCode:
+          format: int64
+          type: integer
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+x-refined-from:
+- xe-mass-payments-api-openapi.json
+- xe-payments-api-openapi.json

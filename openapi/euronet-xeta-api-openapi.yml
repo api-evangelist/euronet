@@ -1,0 +1,24 @@
+openapi: 3.2.0
+info:
+  version: v1.0.0
+  title: XETA API
+  description: XE Travel API - Manage your trips and associated expenses.
+servers:
+- url: https://xeta-api.xe.com/v1
+tags:
+- name: XETA
+paths:
+  /:
+    get:
+      responses:
+        '200':
+          description: 200 response
+      tags:
+      - XETA
+components:
+  securitySchemes:
+    xeta-drupal-authorizer:
+      type: apiKey
+      name: Cookie
+      in: header
+      x-amazon-apigateway-authtype: custom

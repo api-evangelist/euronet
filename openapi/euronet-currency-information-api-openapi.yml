@@ -1,0 +1,173 @@
+openapi: 3.2.0
+info:
+  version: 1.0.2
+  title: XE Currency Data Currency Information API
+  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+servers:
+- url: https://xecdapi.xe.com/v1
+security:
+- basicAuth: []
+tags:
+- name: Currency Information
+paths:
+  /currencies:
+    get:
+      tags:
+      - Currency Information
+      summary: Access a list of all available currencies.
+      description: 'This endpoint will return a list of all currencies, active and obsolete, available via the XE Currency Data Feed API.
+
+
+        If the obsolete optional parameter is included, then the list will contain both active and obsolete currencies.'
+      parameters:
+      - name: iso
+        in: query
+        description: "OPTIONAL – Comma separated list of ISO 4217 codes. This will limit the data returned to only those currencies that are specified. If this parameter is omitted, this endpoint will return results for all currencies. \n\n It is a prefix match; you can provide it with one, two, or three characters and it will return a list of all the currencies with ISO 4217 codes that match. \n\n A list of acceptable ISO 4217 currency codes can be found here:http://www.xe.com/iso4217.php"
+        required: false
+        schema:
+          type: string
+      - name: obsolete
+        in: query
+        description: OPTIONAL – If 'true' then endpoint will display currencies that are obsolete but for which historical data is available
+        required: false
+        schema:
+          type: boolean
+      - name: language
+        in: query
+        description: 'OPTIONAL – Default is en. Specified as an RFC-1766-compliant language tag.
+
+
+          Languages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK.'
+        required: false
+        schema:
+          type: string
+      - name: additionalInfo
+        in: query
+        description: OPTIONAL - If 'symbol' then returns 'currency_symbol' and 'currency_symbol_on_right' in response
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyInfoResponse'
+        '304':
+          description: Not Modified
+          headers:
+            ETag:
+              schema:
+                type: string
+            Last-Modified:
+              schema:
+                type: string
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema: {}
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    CurrencyInfo:
+      properties:
+        iso:
+          type: string
+        currency_name:
+          type: string
+        is_obsolete:
+          type: boolean
+        superseded_by:
+          type: string
+        currency_symbol:
+          type: string
+        currency_symbol_on_right:
+          type: boolean
+    CurrencyInfoResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrencyInfo'
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,0 +1,156 @@
+openapi: 3.2.0
+info:
+  version: 1.0.2
+  title: XE Currency Data Stats API
+  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+servers:
+- url: https://xecdapi.xe.com/v1
+security:
+- basicAuth: []
+tags:
+- name: Stats
+paths:
+  /stats:
+    get:
+      tags:
+      - Stats
+      summary: Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage.
+      description: "Volatility measures the fluctuation in the exchange rate of a currency pair over a specific period, represented in a percentage. At XE, volatility is measured by applying the standard deviation of the logarithmic daily returns, expressed in a percentage score.\n\nDaily returns are the gain or loss of a currency pair in a particular period. We take the values of two consecutive days at 00:00 UTC. That is why we call it daily return. Then, we apply a logarithm to the ratio between those two values. It is a common way to measure change in the financial industry.\n\nEx: ln (valueDay2 / valueDay1) is the logarithmic return between day2 and day1. We have a value that tells us if the currency pair has moved a lot or not.\n\nIn statistics, the standard deviation is a measure that is used to quantify the amount of variation of a set of data values. A low standard deviation indicates that the data points tend to be close to the mean of the set, while a high standard deviation indicates that the data points are spread out over a wider range of value. \n\nWe apply this standard deviation to the daily logarithmic returns we calculated during a given time period (30 days, 90 days etc.).\n\nExpressing a value in a percentage score means we multiply it by 100 before showing it to you.\n"
+      parameters:
+      - name: from
+        in: query
+        description: 'OPTIONAL – Currency you want to convert from ISO code.  Note if this parameter is omitted, USD is assumed.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: "Comma separated list of to currencies based on ISO 4217 codes. This will limit the data returned to only those currencies that are specified. \n"
+        required: true
+        schema:
+          type: string
+      - name: start_date
+        in: query
+        description: 'OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the start of the period for which you would like to compute the volatility from. Note if this parameter is omitted, the start date will default to today.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: end_date
+        in: query
+        description: 'OPTIONAL – ISO 8601 timestamp in the format yyyy-mm-dd giving the UTC date of the end of the period for which you would like to compute the volatility to. Note if this parameter is omitted, the end date will default to today.
+
+          '
+        required: false
+        schema:
+          type: string
+      - name: obsolete
+        in: query
+        description: OPTIONAL – If ‘true’ then endpoint will display rates for currencies that are obsolete. If ‘false’ then obsolete currencies are replaced by their successor currency.
+        required: false
+        schema:
+          type: boolean
+      - name: decimal_places
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875
+        required: false
+        schema:
+          type: number
+      - name: daysInPeriod
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of days in the period that we are considering.
+        required: false
+        schema:
+          type: number
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/StatsResponse'
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Limit:
+              schema:
+                type: number
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic

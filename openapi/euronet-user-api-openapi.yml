@@ -1,0 +1,386 @@
+openapi: 3.2.0
+info:
+  version: v1.0.0
+  title: XETA User API
+  description: XE Travel API - Manage your trips and associated expenses.
+servers:
+- url: https://xeta-api.xe.com/v1
+tags:
+- name: User
+paths:
+  /user:
+    get:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaUser'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      tags:
+      - User
+    post:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaUser'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/XetaUser'
+        required: true
+      tags:
+      - User
+  /user/login:
+    post:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      tags:
+      - User
+  /user/logout:
+    get:
+      responses:
+        '200':
+          description: 200 response
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      security:
+      - xeta-drupal-authorizer: []
+      tags:
+      - User
+  /user/register:
+    post:
+      responses:
+        '200':
+          description: 200 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: 400 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+        '500':
+          description: 500 response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/XetaError'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      tags:
+      - User
+components:
+  schemas:
+    UserAddress:
+      type: object
+      required:
+      - countryCode
+      properties:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        administrativeArea:
+          type: string
+          description: Province.
+        subAdministrativeArea:
+          type: string
+          description: County / Region.
+        locality:
+          type: string
+          description: City.
+        dependentLocality:
+          type: string
+          description: Unused.
+        postalCode:
+          type: string
+          description: Postal Code / ZIP.
+        thoroughfare:
+          type: string
+          description: Street / Canal / River.
+        premise:
+          type: string
+          description: Unit / Suite / Apartment.
+        subPremise:
+          type: string
+          description: Unused.
+      description: An entity used to represent an address.
+    XetaUserPhone:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Number.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        extension:
+          type: string
+          description: Extension.
+      description: An entity used to represent a phone number.
+    XetaUser:
+      type: object
+      required:
+      - address
+      - communicationsConsented
+      - email
+      - firstName
+      - id
+      - lastModifiedDate
+      - lastName
+      - password
+      properties:
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        address:
+          $ref: '#/components/schemas/XetaUserAddress'
+        id:
+          type: integer
+          description: Unique identifier.
+        lastName:
+          type: string
+          description: Last name.
+        password:
+          type: string
+          description: Password.
+        email:
+          type: string
+          description: E-mail address.
+        firstName:
+          type: string
+          description: First name.
+        communicationsConsented:
+          type: boolean
+          description: Communications consent.
+        phone:
+          $ref: '#/components/schemas/XetaUserPhone'
+        middleName:
+          type: string
+          description: Middle name.
+        company:
+          type: string
+          description: Company.
+        jobTitle:
+          type: string
+        dateOfBirth:
+          type: integer
+        xeid:
+          type: string
+      title: Xeta User
+      description: An entity used to represent a user.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        jobTitle:
+          type: string
+        dateOfBirth:
+          type: integer
+        email:
+          type: string
+        address:
+          $ref: '#/components/schemas/UserAddress'
+        password:
+          type: string
+        communicationsConsented:
+          type: boolean
+        phone:
+          $ref: '#/components/schemas/UserPhone'
+        xeid:
+          type: string
+      title: User
+    UserPhone:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Number.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        extension:
+          type: string
+          description: Extension.
+      description: An entity used to represent a phone number.
+    XetaUserAddress:
+      type: object
+      required:
+      - countryCode
+      properties:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        administrativeArea:
+          type: string
+          description: Province.
+        subAdministrativeArea:
+          type: string
+          description: County / Region.
+        locality:
+          type: string
+          description: City.
+        dependentLocality:
+          type: string
+          description: Unused.
+        postalCode:
+          type: string
+          description: Postal Code / ZIP.
+        thoroughfare:
+          type: string
+          description: Street / Canal / River.
+        premise:
+          type: string
+          description: Unit / Suite / Apartment.
+        subPremise:
+          type: string
+          description: Unused.
+      description: An entity used to represent an address.
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
+  securitySchemes:
+    xeta-drupal-authorizer:
+      type: apiKey
+      name: Cookie
+      in: header
+      x-amazon-apigateway-authtype: custom
