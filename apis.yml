@@ -465,6 +465,8 @@ apis:
   humanURL: https://xecdapi.xe.com/docs/v1/
   baseURL: https://xecdapi.xe.com/v1
   tags:
+  - Quotes
+  tags_raw:
   - Quote
   properties:
   - type: OpenAPI
