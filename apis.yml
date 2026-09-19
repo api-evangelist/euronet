@@ -166,6 +166,8 @@ apis:
   humanURL: https://xecdapi.xe.com/docs/v1/
   baseURL: https://xecdapi.xe.com/v1
   tags:
+  - Conversion
+  tags_raw:
   - Conversions
   properties:
   - type: OpenAPI
@@ -219,6 +221,8 @@ apis:
   humanURL: https://xecdapi.xe.com/docs/v1/
   baseURL: https://xecdapi.xe.com/v1
   tags:
+  - Expenses
+  tags_raw:
   - Expense
   properties:
   - type: OpenAPI
@@ -323,6 +327,8 @@ apis:
   humanURL: https://xecdapi.xe.com/docs/v1/
   baseURL: https://xecdapi.xe.com/v1
   tags:
+  - Invoices
+  tags_raw:
   - Invoice
   properties:
   - type: OpenAPI
