@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   version: 1.0.2
   title: XE Currency Data Currency Information API
-  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
 servers:
 - url: https://xecdapi.xe.com/v1
 security:
@@ -14,7 +17,7 @@ paths:
     get:
       tags:
       - Currency Information
-      summary: Access a list of all available currencies.
+      summary: Access a list of all available currencies
       description: 'This endpoint will return a list of all currencies, active and obsolete, available via the XE Currency Data Feed API.
 
 
@@ -133,8 +136,18 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getCurrencies
+      x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     CurrencyInfo:
       properties:
         iso:
@@ -159,14 +172,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CurrencyInfo'
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

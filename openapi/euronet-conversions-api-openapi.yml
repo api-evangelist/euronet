@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   version: 1.0.2
   title: XE Currency Data Conversions API
-  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
 servers:
 - url: https://xecdapi.xe.com/v1
 security:
@@ -14,10 +17,10 @@ paths:
     get:
       tags:
       - Conversions
-      summary: Convert from one base currency to one or multiple counter currencies.
+      summary: Convert from one base currency to one or multiple counter currencies
       description: 'In the example below, the Convert FROM API query endpoint is to convert from GBP to all available currencies (the asterisk * represents ALL currencies).
 
-        <a href="https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1">https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1</a>'
+        https://xecdapi.xe.com/v1/convert_from.csv/?from=GBP&to=*&amount=1'
       parameters:
       - name: from
         in: query
@@ -176,14 +179,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getConvertFrom
+      x-operation-id-source: derived
   /convert_to:
     get:
       tags:
       - Conversions
-      summary: Convert to a currency amount from one or multiple other currencies.
+      summary: Convert to a currency amount from one or multiple other currencies
       description: 'In the example below, the Convert TO API query endpoint is to convert to GBP from all available currencies (the asterisk * represents ALL currencies).
 
-        <a href="https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1">https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1</a>'
+        https://xecdapi.xe.com/v1/convert_to.csv/?to=GBP&from=*&amount=1'
       parameters:
       - name: from
         in: query
@@ -342,8 +347,16 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getConvertTo
+      x-operation-id-source: derived
 components:
   schemas:
+    Rate:
+      properties:
+        quotecurrency:
+          type: string
+        mid:
+          type: number
     ConvertToResponse:
       properties:
         terms:
@@ -384,12 +397,6 @@ components:
           type: string
         documentationUrl:
           type: string
-    Rate:
-      properties:
-        quotecurrency:
-          type: string
-        mid:
-          type: number
   securitySchemes:
     basicAuth:
       type: http

@@ -15,9 +15,7 @@ paths:
       - tradable-rates
       summary: get tradable rates
       operationId: getTradableRate
-      description: 'Get tradable rates
-
-        '
+      description: Get tradable rates
       parameters:
       - in: query
         name: sell

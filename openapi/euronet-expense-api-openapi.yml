@@ -33,6 +33,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Expense
+      summary: Get expense
+      x-summary-source: derived
+      operationId: getExpense
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -63,6 +67,10 @@ paths:
         required: true
       tags:
       - Expense
+      summary: Create expense
+      x-summary-source: derived
+      operationId: postExpense
+      x-operation-id-source: derived
   /expense/{expenseId}:
     get:
       parameters:
@@ -94,6 +102,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Expense
+      summary: Get expense by expense id
+      x-summary-source: derived
+      operationId: getExpenseByExpenseId
+      x-operation-id-source: derived
     put:
       parameters:
       - name: expenseId
@@ -130,6 +142,10 @@ paths:
         required: true
       tags:
       - Expense
+      summary: Replace expense by expense id
+      x-summary-source: derived
+      operationId: putExpenseByExpenseId
+      x-operation-id-source: derived
     delete:
       parameters:
       - name: expenseId
@@ -156,8 +172,39 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Expense
+      summary: Delete expense by expense id
+      x-summary-source: derived
+      operationId: deleteExpenseByExpenseId
+      x-operation-id-source: derived
 components:
   schemas:
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
     ExpenseExpenseInvitationsItem:
       type: object
       required:
@@ -204,37 +251,6 @@ components:
           type: number
           description: The amount of the expense that was split with the friend.
       description: An entity used to share expenses with other users.
-    ExpenseList:
-      title: ExpenseList
-      type: array
-      description: Expense List object
-      items:
-        $ref: '#/components/schemas/Expense'
-    XetaErrorValidationErrorsItem:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
-          type: string
-          description: Verbose error description.
-        field:
-          type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
     ExpenseUserExpense:
       type: object
       required:
@@ -265,6 +281,37 @@ components:
           type: integer
           description: Id of the budget category the associated expense is categorized under.
       description: An entity used to associate an expense and a user.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
+    ExpenseList:
+      title: ExpenseList
+      type: array
+      description: Expense List object
+      items:
+        $ref: '#/components/schemas/Expense'
     Expense:
       type: object
       required:
@@ -397,33 +444,6 @@ components:
           type: integer
           description: Id of the expense in this relationship.
       description: An entity used to associate an expense and a trip.
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

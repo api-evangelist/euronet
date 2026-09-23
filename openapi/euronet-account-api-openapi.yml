@@ -9,8 +9,19 @@ paths:
     get:
       tags:
       - Account
-      summary: Get a list of accounts that the user has access to.
-      description: "Permissions Required:\n            \n    CanGetAccounts\n            \n\\\nSample request:\n            \n    GET /accounts"
+      summary: Get a list of accounts that the user has access to
+      description: 'Permissions Required:
+
+
+        CanGetAccounts
+
+
+        \
+
+        Sample request:
+
+
+        GET /accounts'
       operationId: Get
       responses:
         '200':

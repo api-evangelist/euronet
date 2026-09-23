@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   version: 1.0.2
   title: XE Currency Data Monthly Averages API
-  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
 servers:
 - url: https://xecdapi.xe.com/v1
 security:
@@ -14,10 +17,8 @@ paths:
     get:
       tags:
       - Monthly Averages
-      summary: 'Get monthly average rates for a single base currency and one or more counter currency for the month/year you specify in your API query. '
-      description: 'The monthly average endpoint returns monthly average rates for a single base currency and one or more counter currency for the year you specify in your API query. The monthly average rate is calculated by taking the 00:00 UTC Daily rate for each day in the month/year you specify in your query. Months are returned as a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.
-
-        '
+      summary: Get monthly average rates for a single base currency and one or more counter…
+      description: The monthly average endpoint returns monthly average rates for a single base currency and one or more counter currency for the year you specify in your API query. The monthly average rate is calculated by taking the 00:00 UTC Daily rate for each day in the month/year you specify in your query. Months are returned as a numeric value from 1 to 12 where 1 is for January and 12 is for December. If no month is provided, then all months for the given year are returned.
       parameters:
       - name: from
         in: query
@@ -150,6 +151,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getMonthlyAverage
+      x-operation-id-source: derived
 components:
   schemas:
     MonthlyAverageResponse:

@@ -15,6 +15,10 @@ paths:
           description: 200 response
       tags:
       - XETA
+      summary: Get
+      x-summary-source: derived
+      operationId: getRoot
+      x-operation-id-source: derived
 components:
   securitySchemes:
     xeta-drupal-authorizer:

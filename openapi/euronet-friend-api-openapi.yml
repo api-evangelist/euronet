@@ -33,6 +33,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Friend
+      summary: Get friend
+      x-summary-source: derived
+      operationId: getFriend
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -63,6 +67,10 @@ paths:
         required: true
       tags:
       - Friend
+      summary: Create friend
+      x-summary-source: derived
+      operationId: postFriend
+      x-operation-id-source: derived
   /friend/{friendId}:
     get:
       parameters:
@@ -94,6 +102,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Friend
+      summary: Get friend by friend id
+      x-summary-source: derived
+      operationId: getFriendByFriendId
+      x-operation-id-source: derived
     put:
       parameters:
       - name: friendId
@@ -130,6 +142,10 @@ paths:
         required: true
       tags:
       - Friend
+      summary: Replace friend by friend id
+      x-summary-source: derived
+      operationId: putFriendByFriendId
+      x-operation-id-source: derived
     delete:
       parameters:
       - name: friendId
@@ -156,8 +172,37 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Friend
+      summary: Delete friend by friend id
+      x-summary-source: derived
+      operationId: deleteFriendByFriendId
+      x-operation-id-source: derived
 components:
   schemas:
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
     Friend:
       type: object
       required:
@@ -201,6 +246,33 @@ components:
             $ref: '#/components/schemas/FriendExpenseInvitationsItem'
       title: Friend
       description: An entity used to represent friendship with other users.
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
     FriendExpenseInvitationsItem:
       type: object
       required:
@@ -247,64 +319,12 @@ components:
           type: number
           description: The amount of the expense that was split with the friend.
       description: An entity used to share expenses with other users.
-    XetaErrorValidationErrorsItem:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
-          type: string
-          description: Verbose error description.
-        field:
-          type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
     FriendList:
       title: FriendList
       type: array
       description: Friend List object
       items:
         $ref: '#/components/schemas/Friend'
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

@@ -33,6 +33,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Budget Category
+      summary: Get budget category
+      x-summary-source: derived
+      operationId: getBudgetCategory
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -63,6 +67,10 @@ paths:
         required: true
       tags:
       - Budget Category
+      summary: Create budget category
+      x-summary-source: derived
+      operationId: postBudgetCategory
+      x-operation-id-source: derived
   /budget-category/{budgetCategoryId}:
     get:
       parameters:
@@ -94,6 +102,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Budget Category
+      summary: Get budget category by budget category id
+      x-summary-source: derived
+      operationId: getBudgetCategoryByBudgetCategoryId
+      x-operation-id-source: derived
     put:
       parameters:
       - name: budgetCategoryId
@@ -130,6 +142,10 @@ paths:
         required: true
       tags:
       - Budget Category
+      summary: Replace budget category by budget category id
+      x-summary-source: derived
+      operationId: putBudgetCategoryByBudgetCategoryId
+      x-operation-id-source: derived
     delete:
       parameters:
       - name: budgetCategoryId
@@ -156,8 +172,39 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Budget Category
+      summary: Delete budget category by budget category id
+      x-summary-source: derived
+      operationId: deleteBudgetCategoryByBudgetCategoryId
+      x-operation-id-source: derived
 components:
   schemas:
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
     BudgetCategory:
       type: object
       required:
@@ -192,6 +239,12 @@ components:
           pattern: ^.*\S+.*$
       title: Budget Category
       description: An entity used to categorize expenses.
+    BudgetCategoryList:
+      title: BudgetCategoryList
+      type: array
+      description: BudgetCategory List object
+      items:
+        $ref: '#/components/schemas/BudgetCategory'
     XetaErrorValidationErrorsItem:
       type: object
       required:
@@ -217,39 +270,6 @@ components:
           type: string
           description: Field that triggered the validation error.
       description: An entity used to represent validation errors.
-    BudgetCategoryList:
-      title: BudgetCategoryList
-      type: array
-      description: BudgetCategory List object
-      items:
-        $ref: '#/components/schemas/BudgetCategory'
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

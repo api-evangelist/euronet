@@ -9,8 +9,182 @@ paths:
     get:
       tags:
       - PurposesOfPayment
-      summary: Get purposes of payment for given user.
-      description: "Sample request:\n\n    Get /purposesofpayment/INR\n\n\\\n<details><summary>**The complete set of purposes of payment for all currencies are**</summary>\n* BONUS_SALARY\n* CORP_BONUS\n* CORP_CHARITY\n* CORP_CUSTOMER_PAYMENT\n* CORP_DIVIDEND\n* CORP_EMPLOYEE_EXPENSES\n* CORP_FREIGHT\n* CORP_IMPORT_EXPORT\n* CORP_INR_BANKERS\n* CORP_INR_COOP\n* CORP_INR_CREDIT\n* CORP_INR_EDUCATIONAL\n* CORP_INR_EMI\n* CORP_INR_FAMILIES\n* CORP_INR_POSTMASTER\n* CORP_INR_TAX\n* CORP_INR_TRADE\n* CORP_INR_TRAVEL\n* CORP_INR_UTILTY\n* CORP_INSURANCE\n* CORP_INVESTMENT\n* CORP_INVOICE\n* CORP_OPERATING_COST\n* CORP_OTHER\n* CORP_OUTSOURCING\n* CORP_PENSION\n* CORP_PROPERTY_BUY_SELL\n* CORP_PROPERTY_MANAGEMENT\n* CORP_REPATRIATION\n* CORP_SALARY\n* CORP_SUPPLIER_PAYMENT\n* CORP_TAX\n* CORP_TRAVEL_SERVICES\n* DIVIDEND_PAYMENT\n* EXPENSES\n* INSURANCE_CLAIMS\n* INVOICES\n* OTHER\n* PENSION\n* PRIV_BILL_PAYMENT\n* PRIV_BUSINESS_PAYMENT\n* PRIV_CHARITY\n* PRIV_FAMILY_SUPPORT\n* PRIV_GIFT\n* PRIV_GOODS_SERVICES\n* PRIV_HOLIDAY\n* PRIV_INHERITANCE\n* PRIV_INR_BANKERS\n* PRIV_INR_COOP\n* PRIV_INR_CREDIT\n* PRIV_INR_EDUCATIONAL\n* PRIV_INR_EMI\n* PRIV_INR_FAMILIES\n* PRIV_INR_HOTELS\n* PRIV_INR_MEDICAL\n* PRIV_INR_POSTMASTER\n* PRIV_INR_TAX\n* PRIV_INR_TRADE\n* PRIV_INR_TRAVEL\n* PRIV_INR_UTILTY\n* PRIV_INVESTMENT\n* PRIV_LIVING\n* PRIV_LOAN_REPAYMENT\n* PRIV_MEDICAL\n* PRIV_MORTGAGE\n* PRIV_OTHER\n* PRIV_PENSION\n* PRIV_PROPERTY_BUY_SELL\n* PRIV_RELOCATION\n* PRIV_SALARY\n* PRIV_TAX\n* PRIV_TEST_TRANSFER\n* PRIV_TRAVEL_EXPENSES\n* PRIV_TRAVEL_MONEY\n* PRIV_TUITION\n* PRIV_WEDDING\n* PROPERTY_MANAGEMENT\n* SALARY\n* SUPPLIERS\n* TAX\n* TEMPORARY_CODE_102\n* TEMPORARY_CODE_103\n* TRAVEL_SERVICES\n</details>"
+      summary: Get purposes of payment for given user
+      description: 'Sample request:
+
+
+        Get /purposesofpayment/INR
+
+
+        \
+
+        **The complete set of purposes of payment for all currencies are**
+
+        * BONUS_SALARY
+
+        * CORP_BONUS
+
+        * CORP_CHARITY
+
+        * CORP_CUSTOMER_PAYMENT
+
+        * CORP_DIVIDEND
+
+        * CORP_EMPLOYEE_EXPENSES
+
+        * CORP_FREIGHT
+
+        * CORP_IMPORT_EXPORT
+
+        * CORP_INR_BANKERS
+
+        * CORP_INR_COOP
+
+        * CORP_INR_CREDIT
+
+        * CORP_INR_EDUCATIONAL
+
+        * CORP_INR_EMI
+
+        * CORP_INR_FAMILIES
+
+        * CORP_INR_POSTMASTER
+
+        * CORP_INR_TAX
+
+        * CORP_INR_TRADE
+
+        * CORP_INR_TRAVEL
+
+        * CORP_INR_UTILTY
+
+        * CORP_INSURANCE
+
+        * CORP_INVESTMENT
+
+        * CORP_INVOICE
+
+        * CORP_OPERATING_COST
+
+        * CORP_OTHER
+
+        * CORP_OUTSOURCING
+
+        * CORP_PENSION
+
+        * CORP_PROPERTY_BUY_SELL
+
+        * CORP_PROPERTY_MANAGEMENT
+
+        * CORP_REPATRIATION
+
+        * CORP_SALARY
+
+        * CORP_SUPPLIER_PAYMENT
+
+        * CORP_TAX
+
+        * CORP_TRAVEL_SERVICES
+
+        * DIVIDEND_PAYMENT
+
+        * EXPENSES
+
+        * INSURANCE_CLAIMS
+
+        * INVOICES
+
+        * OTHER
+
+        * PENSION
+
+        * PRIV_BILL_PAYMENT
+
+        * PRIV_BUSINESS_PAYMENT
+
+        * PRIV_CHARITY
+
+        * PRIV_FAMILY_SUPPORT
+
+        * PRIV_GIFT
+
+        * PRIV_GOODS_SERVICES
+
+        * PRIV_HOLIDAY
+
+        * PRIV_INHERITANCE
+
+        * PRIV_INR_BANKERS
+
+        * PRIV_INR_COOP
+
+        * PRIV_INR_CREDIT
+
+        * PRIV_INR_EDUCATIONAL
+
+        * PRIV_INR_EMI
+
+        * PRIV_INR_FAMILIES
+
+        * PRIV_INR_HOTELS
+
+        * PRIV_INR_MEDICAL
+
+        * PRIV_INR_POSTMASTER
+
+        * PRIV_INR_TAX
+
+        * PRIV_INR_TRADE
+
+        * PRIV_INR_TRAVEL
+
+        * PRIV_INR_UTILTY
+
+        * PRIV_INVESTMENT
+
+        * PRIV_LIVING
+
+        * PRIV_LOAN_REPAYMENT
+
+        * PRIV_MEDICAL
+
+        * PRIV_MORTGAGE
+
+        * PRIV_OTHER
+
+        * PRIV_PENSION
+
+        * PRIV_PROPERTY_BUY_SELL
+
+        * PRIV_RELOCATION
+
+        * PRIV_SALARY
+
+        * PRIV_TAX
+
+        * PRIV_TEST_TRANSFER
+
+        * PRIV_TRAVEL_EXPENSES
+
+        * PRIV_TRAVEL_MONEY
+
+        * PRIV_TUITION
+
+        * PRIV_WEDDING
+
+        * PROPERTY_MANAGEMENT
+
+        * SALARY
+
+        * SUPPLIERS
+
+        * TAX
+
+        * TEMPORARY_CODE_102
+
+        * TEMPORARY_CODE_103
+
+        * TRAVEL_SERVICES'
       operationId: Get
       parameters:
       - name: currency
@@ -47,6 +221,26 @@ paths:
           description: Error getting purposes of payment for this user.
 components:
   schemas:
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
     PurposeOfPaymentListResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -73,17 +267,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
-    Message:
-      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
-      type: object
-      properties:
-        code:
-          type: string
-        data:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
     PurposeOfPayment:
       type: object
       properties:
@@ -91,12 +274,3 @@ components:
           type: string
         allowFreeText:
           type: boolean
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true

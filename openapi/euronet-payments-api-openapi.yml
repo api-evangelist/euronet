@@ -9,8 +9,19 @@ paths:
     patch:
       tags:
       - Payments
-      summary: Update a payment in a transaction.
-      description: "Permissions Required:\n            \n    CanEditPayments\n            \n\\\nSample request:\n            \n    PATCH /transactions/35271/payments/107346"
+      summary: Update a payment in a transaction
+      description: 'Permissions Required:
+
+
+        CanEditPayments
+
+
+        \
+
+        Sample request:
+
+
+        PATCH /transactions/35271/payments/107346'
       operationId: Update
       parameters:
       - name: transactionId
@@ -73,8 +84,19 @@ paths:
     get:
       tags:
       - Payments
-      summary: Get a paged list of payment(s) for a transaction.
-      description: "Permissions Required:\n            \n    CanViewPayments\n            \n\\\nSample request:\n            \n    GET /transactions/35271/payments?pagesize=10"
+      summary: Get a paged list of payment(s) for a transaction
+      description: 'Permissions Required:
+
+
+        CanViewPayments
+
+
+        \
+
+        Sample request:
+
+
+        GET /transactions/35271/payments?pagesize=10'
       operationId: Get
       parameters:
       - name: transactionId
@@ -153,8 +175,19 @@ paths:
     get:
       tags:
       - Payments
-      summary: Get a single payment.
-      description: "Permissions Required:\n\n    CanViewPayments\n    \n\\\nSample request:\n\n    GET /transactions/35271/payments/107346"
+      summary: Get a single payment
+      description: 'Permissions Required:
+
+
+        CanViewPayments
+
+
+        \
+
+        Sample request:
+
+
+        GET /transactions/35271/payments/107346'
       operationId: GetSingle
       parameters:
       - name: transactionId
@@ -225,6 +258,88 @@ paths:
           description: Error getting payment.
 components:
   schemas:
+    PaymentItem:
+      description: '"paymentId" - ID of the payment.
+
+        "transactionId" - ID of the transaction.
+
+        "paymentAmount" - Amount of money for the payment currency.
+
+        "settlementAmount" - Amount of money for the settlement currency.
+
+        "paymentCurrency" - ISO code of the required payment currency.
+
+        "settlementCurrency" - ISO code for the required settlement currency.
+
+        "clientsUniquePaymentReference" -  Client’s reference for a transaction.
+
+        "recipientAccountName" - Name of the recipient as it is on the bank account.
+
+        "targetDate" - Date that the payment should credit the recipient, expressed as yyyy-MM-dd.
+
+        "paymentDate" - Date that the payment will be credit the recipient. This will usually be the same as target date unless it is not achievable in which case it is calculated after approving the transaction, expressed as yyyy-MM-dd.
+
+        "paymentStatus" - Status of the progress of sending the payments for the transaction.
+
+        "rejected" - Boolean value for if the payment is rejected or not.
+
+        "forReview" - Boolean value for if the payment is in review.
+
+        "IsTargetDateAchievable" - Boolean value for whether the target date is achievable or not.
+
+        "isReadOnly" - Boolean value for whether the payment is ReadOnly or not.
+
+        "IsExcluded" - Boolean value for whether the payment is excluded or not.
+
+        "issues" - Listed issues for the payment.
+
+        "HasBeenApproved" - Boolean value for whether the payment has been approved or not.'
+      type: object
+      properties:
+        paymentId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        paymentAmount:
+          format: double
+          type: number
+        settlementAmount:
+          format: double
+          type: number
+        paymentCurrency:
+          type: string
+        settlementCurrency:
+          type: string
+        clientsUniquePaymentReference:
+          type: string
+        recipientAccountName:
+          type: string
+        targetDate:
+          type: string
+        paymentDate:
+          type: string
+        rejected:
+          type: boolean
+        forReview:
+          type: boolean
+        isTargetDateAchievable:
+          type: boolean
+        isReadOnly:
+          type: boolean
+        isExcluded:
+          type: boolean
+        issues:
+          uniqueItems: false
+          type: array
+          items:
+            type: string
+        paymentStatus:
+          type: string
+          readOnly: true
+        hasBeenApproved:
+          type: boolean
     RecipientInformation:
       description: '"clientUniqueReference" - Client''s reference for a transaction.
 
@@ -322,45 +437,6 @@ components:
         intermediaryNationalClearingCode:
           type: string
         reasonForPayment:
-          type: string
-    UpdatePaymentResponse:
-      description: '"status" - Enum value of the status returned when updating a payment.
-
-        "statusText" - Text that corresponds to the status given.
-
-        "message" - If unsuccessful, the reason why will be given.'
-      type: object
-      properties:
-        status:
-          format: int32
-          description: '
-
-            0 = Success
-
-            1 = TransactionNotFound
-
-            2 = PaymentNotFound
-
-            3 = TransactionApproved
-
-            4 = Unsuccessful
-
-            5 = ValidationFailed
-
-            6 = PaymentNoIssues'
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          type: integer
-        statusText:
-          type: string
-          readOnly: true
-        message:
           type: string
     UpdatePaymentData:
       description: 'SWIFT character only fields must match the regular expression: ^[\r\n\sa-zA-Z0-9\/\-:,''\?\(\)\.\+]*$
@@ -543,88 +619,6 @@ components:
         canEdit:
           type: boolean
           readOnly: true
-    PaymentItem:
-      description: '"paymentId" - ID of the payment.
-
-        "transactionId" - ID of the transaction.
-
-        "paymentAmount" - Amount of money for the payment currency.
-
-        "settlementAmount" - Amount of money for the settlement currency.
-
-        "paymentCurrency" - ISO code of the required payment currency.
-
-        "settlementCurrency" - ISO code for the required settlement currency.
-
-        "clientsUniquePaymentReference" -  Client’s reference for a transaction.
-
-        "recipientAccountName" - Name of the recipient as it is on the bank account.
-
-        "targetDate" - Date that the payment should credit the recipient, expressed as yyyy-MM-dd.
-
-        "paymentDate" - Date that the payment will be credit the recipient. This will usually be the same as target date unless it is not achievable in which case it is calculated after approving the transaction, expressed as yyyy-MM-dd.
-
-        "paymentStatus" - Status of the progress of sending the payments for the transaction.
-
-        "rejected" - Boolean value for if the payment is rejected or not.
-
-        "forReview" - Boolean value for if the payment is in review.
-
-        "IsTargetDateAchievable" - Boolean value for whether the target date is achievable or not.
-
-        "isReadOnly" - Boolean value for whether the payment is ReadOnly or not.
-
-        "IsExcluded" - Boolean value for whether the payment is excluded or not.
-
-        "issues" - Listed issues for the payment.
-
-        "HasBeenApproved" - Boolean value for whether the payment has been approved or not.'
-      type: object
-      properties:
-        paymentId:
-          format: int32
-          type: integer
-        transactionId:
-          format: int32
-          type: integer
-        paymentAmount:
-          format: double
-          type: number
-        settlementAmount:
-          format: double
-          type: number
-        paymentCurrency:
-          type: string
-        settlementCurrency:
-          type: string
-        clientsUniquePaymentReference:
-          type: string
-        recipientAccountName:
-          type: string
-        targetDate:
-          type: string
-        paymentDate:
-          type: string
-        rejected:
-          type: boolean
-        forReview:
-          type: boolean
-        isTargetDateAchievable:
-          type: boolean
-        isReadOnly:
-          type: boolean
-        isExcluded:
-          type: boolean
-        issues:
-          uniqueItems: false
-          type: array
-          items:
-            type: string
-        paymentStatus:
-          type: string
-          readOnly: true
-        hasBeenApproved:
-          type: boolean
     UpdatePaymentRequest:
       description: '"include" - Set to false to exclude a payment, true to include a payment.
 
@@ -672,3 +666,42 @@ components:
         totalRecords:
           format: int32
           type: integer
+    UpdatePaymentResponse:
+      description: '"status" - Enum value of the status returned when updating a payment.
+
+        "statusText" - Text that corresponds to the status given.
+
+        "message" - If unsuccessful, the reason why will be given.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = TransactionNotFound
+
+            2 = PaymentNotFound
+
+            3 = TransactionApproved
+
+            4 = Unsuccessful
+
+            5 = ValidationFailed
+
+            6 = PaymentNoIssues'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        message:
+          type: string

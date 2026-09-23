@@ -33,6 +33,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Trip
+      summary: Get trip
+      x-summary-source: derived
+      operationId: getTrip
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -63,6 +67,10 @@ paths:
         required: true
       tags:
       - Trip
+      summary: Create trip
+      x-summary-source: derived
+      operationId: postTrip
+      x-operation-id-source: derived
   /trip/{tripId}:
     get:
       parameters:
@@ -94,6 +102,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Trip
+      summary: Get trip by trip id
+      x-summary-source: derived
+      operationId: getTripByTripId
+      x-operation-id-source: derived
     put:
       parameters:
       - name: tripId
@@ -130,6 +142,10 @@ paths:
         required: true
       tags:
       - Trip
+      summary: Replace trip by trip id
+      x-summary-source: derived
+      operationId: putTripByTripId
+      x-operation-id-source: derived
     delete:
       parameters:
       - name: tripId
@@ -156,6 +172,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Trip
+      summary: Delete trip by trip id
+      x-summary-source: derived
+      operationId: deleteTripByTripId
+      x-operation-id-source: derived
   /trip/{tripId}/expense:
     get:
       parameters:
@@ -187,8 +207,18 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Trip
+      summary: Get trip by trip id expense
+      x-summary-source: derived
+      operationId: getTripByTripIdExpense
+      x-operation-id-source: derived
 components:
   schemas:
+    TripList:
+      title: TripList
+      type: array
+      description: Trip List object
+      items:
+        $ref: '#/components/schemas/Trip'
     ExpenseExpenseInvitationsItem:
       type: object
       required:
@@ -235,13 +265,40 @@ components:
           type: number
           description: The amount of the expense that was split with the friend.
       description: An entity used to share expenses with other users.
-    TripTripDestinationsItem:
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
+    ExpenseUserExpense:
       type: object
       required:
-      - countryCode
-      - id
+      - budgetCategoryId
+      - expenseId
       - lastModifiedDate
-      - tripId
+      - userId
       properties:
         createdBy:
           type: integer
@@ -255,19 +312,41 @@ components:
         lastModifiedDate:
           type: integer
           description: Timestamp of when this entity was last modified.
-        id:
+        userId:
           type: integer
-          description: Unique identifier.
-        tripId:
+          description: Id of the user in this relationship.
+        expenseId:
           type: integer
-          description: Id of the trip this destination belongs to.
-        countryCode:
+          description: Id of the expense in this relationship.
+        budgetCategoryId:
+          type: integer
+          description: Id of the budget category the associated expense is categorized under.
+      description: An entity used to associate an expense and a user.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
           type: string
-          description: ISO 3166-1 alpha-2 country code.
-          minLength: 2
-          maxLength: 2
-          pattern: ^.*\S+.*$
-      description: An entity used to attach destinations to trips.
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
     Trip:
       type: object
       required:
@@ -331,77 +410,11 @@ components:
           description: Budget amount allocated for this trip in USD.
       title: Trip
       description: An entity used to group expenses on a trip.
-    ExpenseList:
-      title: ExpenseList
-      type: array
-      description: Expense List object
-      items:
-        $ref: '#/components/schemas/Expense'
-    XetaErrorValidationErrorsItem:
+    TripTripDestinationsItem:
       type: object
       required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
-          type: string
-          description: Verbose error description.
-        field:
-          type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
-    TripList:
-      title: TripList
-      type: array
-      description: Trip List object
-      items:
-        $ref: '#/components/schemas/Trip'
-    ExpenseUserExpense:
-      type: object
-      required:
-      - budgetCategoryId
-      - expenseId
-      - lastModifiedDate
-      - userId
-      properties:
-        createdBy:
-          type: integer
-          description: Id of the user who created this entity.
-        createdDate:
-          type: integer
-          description: Timestamp of when this entity was created.
-        lastModifiedBy:
-          type: integer
-          description: Id of the user who last modified this entity.
-        lastModifiedDate:
-          type: integer
-          description: Timestamp of when this entity was last modified.
-        userId:
-          type: integer
-          description: Id of the user in this relationship.
-        expenseId:
-          type: integer
-          description: Id of the expense in this relationship.
-        budgetCategoryId:
-          type: integer
-          description: Id of the budget category the associated expense is categorized under.
-      description: An entity used to associate an expense and a user.
-    ExpenseTripExpense:
-      type: object
-      required:
-      - expenseId
+      - countryCode
+      - id
       - lastModifiedDate
       - tripId
       properties:
@@ -417,13 +430,25 @@ components:
         lastModifiedDate:
           type: integer
           description: Timestamp of when this entity was last modified.
+        id:
+          type: integer
+          description: Unique identifier.
         tripId:
           type: integer
-          description: Id of the trip in this relationship.
-        expenseId:
-          type: integer
-          description: Id of the expense in this relationship.
-      description: An entity used to associate an expense and a trip.
+          description: Id of the trip this destination belongs to.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+          minLength: 2
+          maxLength: 2
+          pattern: ^.*\S+.*$
+      description: An entity used to attach destinations to trips.
+    ExpenseList:
+      title: ExpenseList
+      type: array
+      description: Expense List object
+      items:
+        $ref: '#/components/schemas/Expense'
     Expense:
       type: object
       required:
@@ -530,33 +555,32 @@ components:
             $ref: '#/components/schemas/ExpenseExpenseInvitationsItem'
       title: Expense
       description: An entity used to record expenses.
-    XetaError:
+    ExpenseTripExpense:
       type: object
+      required:
+      - expenseId
+      - lastModifiedDate
+      - tripId
       properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        tripId:
+          type: integer
+          description: Id of the trip in this relationship.
+        expenseId:
+          type: integer
+          description: Id of the expense in this relationship.
+      description: An entity used to associate an expense and a trip.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

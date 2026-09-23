@@ -45,6 +45,10 @@ paths:
         required: true
       tags:
       - Invitation
+      summary: Create invitation
+      x-summary-source: derived
+      operationId: postInvitation
+      x-operation-id-source: derived
   /invitation/{invitationId}:
     put:
       parameters:
@@ -87,6 +91,10 @@ paths:
         required: true
       tags:
       - Invitation
+      summary: Replace invitation by invitation id
+      x-summary-source: derived
+      operationId: putInvitationByInvitationId
+      x-operation-id-source: derived
     delete:
       parameters:
       - name: type
@@ -118,8 +126,39 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - Invitation
+      summary: Delete invitation by invitation id
+      x-summary-source: derived
+      operationId: deleteInvitationByInvitationId
+      x-operation-id-source: derived
 components:
   schemas:
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
     ExpenseInvitation:
       type: object
       required:
@@ -192,33 +231,6 @@ components:
           type: string
           description: Field that triggered the validation error.
       description: An entity used to represent validation errors.
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

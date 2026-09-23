@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   version: 1.0.2
   title: XE Currency Data Historic Rates API
-  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
 servers:
 - url: https://xecdapi.xe.com/v1
 security:
@@ -14,8 +17,13 @@ paths:
     get:
       tags:
       - Historic Rates
-      summary: Get historic rates for one base currency against one or more counter currencies.
-      description: "The Currency Data API provides you with access to daily historical rates back to 1998. When retrieving historical rates through our Currency Data API, you would specify your requested currencies along with the date and/or date range and time (hh:mm). If your account is registered for a Live package then you have access to minutely rates for the past 7 days and outside of 7 days you have access to rates on the hour. Historical rates are available with all API packages. The time parameter (hh:mm) only applies to Live packages.\n The endpoint returns the historic rate for a single base currency and one or more counter currencies.\n\n<a href=\"https://xecdapi.xe.com/v1/historic_rate.csv/?from=USD&date=2011-03-05&to=CAD,EUR\">https://xecdapi.xe.com/v1/historic_rate.csv/?from=USD&date=2011-03-05&to=CAD,EUR</a>\n"
+      summary: Get historic rates for one base currency against one or more counter currencies
+      description: 'The Currency Data API provides you with access to daily historical rates back to 1998. When retrieving historical rates through our Currency Data API, you would specify your requested currencies along with the date and/or date range and time (hh:mm). If your account is registered for a Live package then you have access to minutely rates for the past 7 days and outside of 7 days you have access to rates on the hour. Historical rates are available with all API packages. The time parameter (hh:mm) only applies to Live packages.
+
+        The endpoint returns the historic rate for a single base currency and one or more counter currencies.
+
+
+        https://xecdapi.xe.com/v1/historic_rate.csv/?from=USD&date=2011-03-05&to=CAD,EUR'
       parameters:
       - name: from
         in: query
@@ -162,12 +170,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getHistoricRate
+      x-operation-id-source: derived
   /historic_rate/period:
     get:
       tags:
       - Historic Rates
-      summary: Get historic rates for one base currency against one or more counter currencies over a period of time.
-      description: "This endpoint returns a daily historic rate for a single base currency and one or more counter currencies over a period of time.\n\n<a href=\"https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500\">https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500</a>\n\nOptional parameters available with Live accounts:\n\n&interval=minutely\n&interval=hourly \n"
+      summary: Get historic rates for one base currency against one or more counter currencies…
+      description: 'This endpoint returns a daily historic rate for a single base currency and one or more counter currencies over a period of time.
+
+
+        https://xecdapi.xe.com/v1/historic_rate/period.csv/?from=USD&to=CAD&start_timestamp=2017-09-01&end_timestamp=2017-11-30&per_page=500
+
+
+        Optional parameters available with Live accounts:
+
+
+        &interval=minutely
+
+        &interval=hourly'
       parameters:
       - name: from
         in: query
@@ -341,6 +362,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getHistoricRatePeriod
+      x-operation-id-source: derived
 components:
   schemas:
     RatePeriod:
@@ -349,22 +372,6 @@ components:
           type: number
         timestamp:
           type: string
-    HistoricRatePeriodResponse:
-      properties:
-        terms:
-          type: string
-        privacy:
-          type: string
-        from:
-          type: string
-        amount:
-          type: number
-        to:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/RatePeriod'
     ErrorResponse:
       properties:
         code:
@@ -389,6 +396,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
+    HistoricRatePeriodResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+        to:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/RatePeriod'
     Rate:
       properties:
         quotecurrency:

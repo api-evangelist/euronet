@@ -9,8 +9,19 @@ paths:
     get:
       tags:
       - Recipient
-      summary: Gets recipients for a currency.
-      description: "Sample requests:\n            \n    GET /recipients?currency=GBP\n            \n\\\nRequired user rights:\n            \n    CanAccessRecipients"
+      summary: Gets recipients for a currency
+      description: 'Sample requests:
+
+
+        GET /recipients?currency=GBP
+
+
+        \
+
+        Required user rights:
+
+
+        CanAccessRecipients'
       operationId: Get
       parameters:
       - name: currency
@@ -88,8 +99,19 @@ paths:
     post:
       tags:
       - Recipient
-      summary: Creates a recipient with the details provided.
-      description: "Sample request:\n            \n    POST /recipients\n            \n\\\nRequired user rights:\n            \n    CanAddRecipient"
+      summary: Creates a recipient with the details provided
+      description: 'Sample request:
+
+
+        POST /recipients
+
+
+        \
+
+        Required user rights:
+
+
+        CanAddRecipient'
       operationId: Create
       responses:
         '200':
@@ -178,8 +200,19 @@ paths:
     delete:
       tags:
       - Recipient
-      summary: Delete a recipient.
-      description: "Sample request:\n            \n    DELETE /recipients/{recipientId}\n            \n\\\nRequired user rights:\n            \n    CanDeleteRecipient"
+      summary: Delete a recipient
+      description: 'Sample request:
+
+
+        DELETE /recipients/{recipientId}
+
+
+        \
+
+        Required user rights:
+
+
+        CanDeleteRecipient'
       operationId: Delete
       parameters:
       - name: recipientId
@@ -200,8 +233,80 @@ paths:
     get:
       tags:
       - Recipient
-      summary: Gets all recipient field definitions for a user for a specified currency and a country.
-      description: "Sample request:\n            \n    GET /recipients/fields/AU/GBP\n            \n\\\nRequired user rights:\n            \n    CanAccessRecipients\n            \n\\\n<details><summary>**Names and descriptions for the fields that can be returned**</summary>\n*   ibanOrAccountNumber - Used if either an IBAN, or an domestic Account Number can be provided.\n*   accountNumber - Account Number (Domestic - with respect to the Bank Address Country Code) for the recipient's bank account.\n*   iban - International Bank Account Number for the recipient's bank account.\n*   nationalClearingCode - National Clearing Code for the recipient's bank.\n*   bankAccountType - The type of bank account. (NOTE: is looking for an integer value that should map to the values stored for each type, e.g. 10 for Savings)\n*   bankBic - Bank Identification Code for the recipient's bank.\n*   bankName - Name of the bank for the recipient's account.\n*   bankAddressLine1 - Line 1 of the address for the recipient's bank.\n*   bankAddressLine2 - Line 2 of the address for the recipient's bank.\n*   bankAddressLine3 - Line 3 of the address for the recipient's bank.\n*   bankAddressCountryCode - Country code for the recipient's bank.\n*   accountName - Name of the recipient on their bank account.\n*   email -  Email for the recipient.\n*   addressLine1 - Line 1 of the address for the recipient.\n*   addressLine2 - Line 2 of the address for the recipient.\n*   addressCountryCode - Country code of the address for the recipient.\n*   paymentReference - Client specified reference when making payments to the recipient.\n*   intermediaryBankNationalClearingCode - National Clearing Code for an intermediary bank.\n*   intermediaryBankBic - Bank Identification Code for an intermediary bank.\n*   intermediaryBankName - Name of the intermediary bank.\n*   intermediaryBankIbanOrAccountNumber - IBAN or Account Number for an intermediary bank.\n*   intermediaryBankAddressLine1 - Line 1 of the address for an intermediary bank.\n*   intermediaryBankAddressLine2 - Line 2 of the address for an intermediary bank.\n*   intermediaryBankAddressLine3 - Line 3 of the address for an intermediary bank.\n*   intermediaryBankAddressCountryCode - Country code for an intermediary bank.\n*   purposeOfPaymentCode - Default purpose of payment code for the recipient.\n*   purposeOfPaymentFreeText - Default purpose of payment free text for the recipient.\n*   nickname - Nickname specified by the client.\n</details>"
+      summary: Gets all recipient field definitions for a user for a specified currency and a…
+      description: 'Sample request:
+
+
+        GET /recipients/fields/AU/GBP
+
+
+        \
+
+        Required user rights:
+
+
+        CanAccessRecipients
+
+
+        \
+
+        **Names and descriptions for the fields that can be returned**
+
+        * ibanOrAccountNumber - Used if either an IBAN, or an domestic Account Number can be provided.
+
+        * accountNumber - Account Number (Domestic - with respect to the Bank Address Country Code) for the recipient''s bank account.
+
+        * iban - International Bank Account Number for the recipient''s bank account.
+
+        * nationalClearingCode - National Clearing Code for the recipient''s bank.
+
+        * bankAccountType - The type of bank account. (NOTE: is looking for an integer value that should map to the values stored for each type, e.g. 10 for Savings)
+
+        * bankBic - Bank Identification Code for the recipient''s bank.
+
+        * bankName - Name of the bank for the recipient''s account.
+
+        * bankAddressLine1 - Line 1 of the address for the recipient''s bank.
+
+        * bankAddressLine2 - Line 2 of the address for the recipient''s bank.
+
+        * bankAddressLine3 - Line 3 of the address for the recipient''s bank.
+
+        * bankAddressCountryCode - Country code for the recipient''s bank.
+
+        * accountName - Name of the recipient on their bank account.
+
+        * email - Email for the recipient.
+
+        * addressLine1 - Line 1 of the address for the recipient.
+
+        * addressLine2 - Line 2 of the address for the recipient.
+
+        * addressCountryCode - Country code of the address for the recipient.
+
+        * paymentReference - Client specified reference when making payments to the recipient.
+
+        * intermediaryBankNationalClearingCode - National Clearing Code for an intermediary bank.
+
+        * intermediaryBankBic - Bank Identification Code for an intermediary bank.
+
+        * intermediaryBankName - Name of the intermediary bank.
+
+        * intermediaryBankIbanOrAccountNumber - IBAN or Account Number for an intermediary bank.
+
+        * intermediaryBankAddressLine1 - Line 1 of the address for an intermediary bank.
+
+        * intermediaryBankAddressLine2 - Line 2 of the address for an intermediary bank.
+
+        * intermediaryBankAddressLine3 - Line 3 of the address for an intermediary bank.
+
+        * intermediaryBankAddressCountryCode - Country code for an intermediary bank.
+
+        * purposeOfPaymentCode - Default purpose of payment code for the recipient.
+
+        * purposeOfPaymentFreeText - Default purpose of payment free text for the recipient.
+
+        * nickname - Nickname specified by the client.'
       operationId: GetRecipientFieldDefinitions
       parameters:
       - name: country
@@ -270,15 +375,45 @@ paths:
           description: Error getting all Recipient Field definitions.
 components:
   schemas:
-    RecipientListResponse:
+    RecipientFieldDefinitions:
+      description: "Details for a recipient field definitions\n            \n\"fieldDefinitions\" - List of recipient field definition.\n\"contentReplacements\" -  A list of replacements values that are applicable to this recipient field definition.\n\"errors\" - A list of errors occured when requesting the field definitions.\n\"infos\" - A list of information for field definitions (if there is any)."
+      type: object
+      properties:
+        fieldDefinitions:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientFieldDefinition'
+        contentReplacements:
+          type: object
+          additionalProperties:
+            type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+        infos:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+    LocalisableString:
+      description: "Details for the localisable string.\n            \n\"externalCode\" - code to indentify the display name.\n\"text\" - Text to display for the field."
+      type: object
+      properties:
+        externalCode:
+          type: string
+        text:
+          type: string
+    RecipientResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
       properties:
         content:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Recipient'
+          $ref: '#/components/schemas/Recipient'
         message:
           type: string
         errors:
@@ -296,6 +431,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
+    RecipientField:
+      type: object
+      properties:
+        name:
+          type: string
+        value:
+          type: string
     Recipient:
       description: "Details for a recipient.\n            \n\"id\" - ID of the recipient.\n\"name\" - Display name of the recipient.\n\"currency\" - Currency code for the recipient's account.\n\"accountNumber\" - Bank account number for the recipient.\n\"accountName\" - Name of the recipient on their bank account.\n\"bankName\" - Name of the bank for the recipient's account.\n\"bankCountry\" - Country where the recipient's bank is located.\n\"nickname\" - Nickname specified by the client.\n\"paymentReference\" - Client specified reference when making payments to the recipient.\n\"purposeOfPaymentCode\" - Default purpose of payment code for the recipient.\n\"purposeOfPaymentFreeText\" - Default purpose of payment free text for the recipient.\n\"bankAddressLine1\" - Line 1 of the address for the recipient’s bank.\n\"bankAddressLine2\" - Line 2 of the address for the recipient’s bank.\n\"bankAddressLine3\" - Line 3 of the address for the recipient’s bank.\n\"bankBic\" - Bank Identification Code for the recipient’s bank.\n\"nationalClearingCode\" - National Clearing Code for the recipient’s bank.\n\"addressLine1\" - Line 1 of the address for the recipient.\n\"addressLine2\" - Line 2 of the address for the recipient.\n\"addressLine3\" - Line 3 of the address for the recipient.\n\"email\" - Email address for the recipient.\n\"intermediaryBankAddressLine1\" - Line 1 of the address for an intermediary bank.\n\"intermediaryBankAddressLine2\" - Line 2 of the address for an intermediary bank.\n\"intermediaryBankAddressLine3\" - Line 3 of the address for an intermediary bank.\n\"intermediaryBankBic\" - Bank Identification Code for an intermediary bank.\n\"intermediaryNationalClearingCode\" - National Clearing Code for an intermediary bank.\n\"intermediaryBankName\" - Name for an intermediary bank.\n\"intermediaryBankAddressCountryCode\" - Country code of the address for an intermediary bank.\n\"intermediaryAccountNumber\" - Account Number for an intermediary bank."
       type: object
@@ -357,6 +499,32 @@ components:
           type: string
         intermediaryAccountNumber:
           type: string
+    RecipientListResponse:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Recipient'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
     RecipientRequest:
       description: "Request body for creating a new recipient.\n            \n\"bankCountryCode\" - Country code of the bank for the recipient.\n\"currencyCode\" - Currency code that the recipient is for.\n\"fields\" - Dynamic set of fields, which will include all the other required/optional fields to create a recipient for the country/currency combination."
       type: object
@@ -401,6 +569,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LocalisableString'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
     RecipientFieldDefinitionsResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -424,86 +612,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
-    RecipientResponse:
-      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/Recipient'
-        message:
-          type: string
-        errors:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        warnings:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        information:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-    RecipientField:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    RecipientFieldDefinitions:
-      description: "Details for a recipient field definitions\n            \n\"fieldDefinitions\" - List of recipient field definition.\n\"contentReplacements\" -  A list of replacements values that are applicable to this recipient field definition.\n\"errors\" - A list of errors occured when requesting the field definitions.\n\"infos\" - A list of information for field definitions (if there is any)."
-      type: object
-      properties:
-        fieldDefinitions:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientFieldDefinition'
-        contentReplacements:
-          type: object
-          additionalProperties:
-            type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-        infos:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
-    Message:
-      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
-      type: object
-      properties:
-        code:
-          type: string
-        data:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-    LocalisableString:
-      description: "Details for the localisable string.\n            \n\"externalCode\" - code to indentify the display name.\n\"text\" - Text to display for the field."
-      type: object
-      properties:
-        externalCode:
-          type: string
-        text:
-          type: string

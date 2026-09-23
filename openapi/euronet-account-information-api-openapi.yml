@@ -2,7 +2,10 @@ openapi: 3.2.0
 info:
   version: 1.0.2
   title: XE Currency Data Account Information API
-  description: "XE Currency Data - Integrate your application with our globally trusted currency data.\n\n Get your free API credentials for 7 days <a href=\"https://xecd.xe.com/account/signup.php?freetrial\">here</a>"
+  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
 servers:
 - url: https://xecdapi.xe.com/v1
 security:
@@ -14,12 +17,8 @@ paths:
     get:
       tags:
       - Account Information
-      summary: 'This endpoint will return basic information for a specific account.
-
-        '
-      description: 'Requires Headers "username" and "password"
-
-        '
+      summary: This endpoint will return basic information for a specific account
+      description: Requires Headers "username" and "password"
       responses:
         '200':
           description: Success
@@ -70,16 +69,10 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
+      operationId: getAccountInfo
+      x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
     AccountInfoResponse:
       properties:
         id:
@@ -97,6 +90,14 @@ components:
         package_limit_remaining:
           type: number
         package_limit_reset:
+          type: string
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
           type: string
   securitySchemes:
     basicAuth:

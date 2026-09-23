@@ -9,8 +9,38 @@ paths:
     get:
       tags:
       - Permission
-      summary: Gets all permissions for the current user.
-      description: "Sample request:\n            \n    GET /permissions\n            \n\\\n<details><summary>**The complete set of permissions are**</summary>\n* OnlineCardSettlementEnabled\n* CanQuote\n* CanQuoteAndCreateTransaction\n* CanUseOnlineDealing\n* CanAccessRecipients\n* CanEditOwnAddress\n* CanAddRecipient\n* CanDeleteRecipient\n* ViewPaymentsAwaitingAuthorisation\n* CanSubmitPayment\n* AllowOnlineForwards\n</details>"
+      summary: Gets all permissions for the current user
+      description: 'Sample request:
+
+
+        GET /permissions
+
+
+        \
+
+        **The complete set of permissions are**
+
+        * OnlineCardSettlementEnabled
+
+        * CanQuote
+
+        * CanQuoteAndCreateTransaction
+
+        * CanUseOnlineDealing
+
+        * CanAccessRecipients
+
+        * CanEditOwnAddress
+
+        * CanAddRecipient
+
+        * CanDeleteRecipient
+
+        * ViewPaymentsAwaitingAuthorisation
+
+        * CanSubmitPayment
+
+        * AllowOnlineForwards'
       operationId: Get
       responses:
         '200':
@@ -32,6 +62,26 @@ paths:
           description: Error getting permissions.
 components:
   schemas:
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
+      type: object
+      properties:
+        code:
+          type: string
+        data:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/StringStringKeyValuePair'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
     StringArrayResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -58,23 +108,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
-    Message:
-      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
-      type: object
-      properties:
-        code:
-          type: string
-        data:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true

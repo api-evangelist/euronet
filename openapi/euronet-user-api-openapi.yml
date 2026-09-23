@@ -33,6 +33,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - User
+      summary: Get user
+      x-summary-source: derived
+      operationId: getUser
+      x-operation-id-source: derived
     post:
       responses:
         '200':
@@ -63,6 +67,10 @@ paths:
         required: true
       tags:
       - User
+      summary: Create user
+      x-summary-source: derived
+      operationId: postUser
+      x-operation-id-source: derived
   /user/login:
     post:
       responses:
@@ -92,6 +100,10 @@ paths:
         required: true
       tags:
       - User
+      summary: Create user login
+      x-summary-source: derived
+      operationId: postUserLogin
+      x-operation-id-source: derived
   /user/logout:
     get:
       responses:
@@ -113,6 +125,10 @@ paths:
       - xeta-drupal-authorizer: []
       tags:
       - User
+      summary: Get user logout
+      x-summary-source: derived
+      operationId: getUserLogout
+      x-operation-id-source: derived
   /user/register:
     post:
       responses:
@@ -142,54 +158,37 @@ paths:
         required: true
       tags:
       - User
+      summary: Create user register
+      x-summary-source: derived
+      operationId: postUserRegister
+      x-operation-id-source: derived
 components:
   schemas:
-    UserAddress:
+    XetaErrorValidationErrorsItem:
       type: object
       required:
-      - countryCode
+      - code
+      - message
       properties:
-        countryCode:
+        code:
           type: string
-          description: ISO 3166-1 alpha-2 country code.
-        administrativeArea:
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
           type: string
-          description: Province.
-        subAdministrativeArea:
+          description: Verbose error description.
+        field:
           type: string
-          description: County / Region.
-        locality:
-          type: string
-          description: City.
-        dependentLocality:
-          type: string
-          description: Unused.
-        postalCode:
-          type: string
-          description: Postal Code / ZIP.
-        thoroughfare:
-          type: string
-          description: Street / Canal / River.
-        premise:
-          type: string
-          description: Unit / Suite / Apartment.
-        subPremise:
-          type: string
-          description: Unused.
-      description: An entity used to represent an address.
-    XetaUserPhone:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Number.
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-        extension:
-          type: string
-          description: Extension.
-      description: An entity used to represent a phone number.
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
     XetaUser:
       type: object
       required:
@@ -250,31 +249,52 @@ components:
           type: string
       title: Xeta User
       description: An entity used to represent a user.
-    XetaErrorValidationErrorsItem:
+    UserPhone:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Number.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        extension:
+          type: string
+          description: Extension.
+      description: An entity used to represent a phone number.
+    XetaUserAddress:
       type: object
       required:
-      - code
-      - message
+      - countryCode
       properties:
-        code:
+        countryCode:
           type: string
-          description: Unique error code.
-          enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
+          description: ISO 3166-1 alpha-2 country code.
+        administrativeArea:
           type: string
-          description: Verbose error description.
-        field:
+          description: Province.
+        subAdministrativeArea:
           type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
+          description: County / Region.
+        locality:
+          type: string
+          description: City.
+        dependentLocality:
+          type: string
+          description: Unused.
+        postalCode:
+          type: string
+          description: Postal Code / ZIP.
+        thoroughfare:
+          type: string
+          description: Street / Canal / River.
+        premise:
+          type: string
+          description: Unit / Suite / Apartment.
+        subPremise:
+          type: string
+          description: Unused.
+      description: An entity used to represent an address.
     User:
       type: object
       properties:
@@ -305,20 +325,7 @@ components:
         xeid:
           type: string
       title: User
-    UserPhone:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Number.
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-        extension:
-          type: string
-          description: Extension.
-      description: An entity used to represent a phone number.
-    XetaUserAddress:
+    UserAddress:
       type: object
       required:
       - countryCode
@@ -378,6 +385,19 @@ components:
             $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
       title: Xeta Error
       description: An entity used to represent all errors.
+    XetaUserPhone:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Number.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        extension:
+          type: string
+          description: Extension.
+      description: An entity used to represent a phone number.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

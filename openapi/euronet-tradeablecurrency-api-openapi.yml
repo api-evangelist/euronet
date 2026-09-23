@@ -9,8 +9,11 @@ paths:
     get:
       tags:
       - TradeableCurrency
-      summary: Get tradeable currencies.
-      description: "Sample request:\n\n    Get /tradeablecurrencies"
+      summary: Get tradeable currencies
+      description: 'Sample request:
+
+
+        Get /tradeablecurrencies'
       operationId: Get
       responses:
         '200':
@@ -32,15 +35,6 @@ paths:
           description: Error getting Tradeable currencies.
 components:
   schemas:
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
     Message:
       description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
       type: object
@@ -52,20 +46,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StringStringKeyValuePair'
-    TradeableCurrency:
+    StringStringKeyValuePair:
       type: object
       properties:
-        amountPrecision:
-          format: int32
-          type: integer
-        isoCode:
+        key:
           type: string
-        name:
+          readOnly: true
+        value:
           type: string
-        canBuy:
-          type: boolean
-        canSell:
-          type: boolean
+          readOnly: true
     TradeableCurrencyListResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -92,3 +81,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
+    TradeableCurrency:
+      type: object
+      properties:
+        amountPrecision:
+          format: int32
+          type: integer
+        isoCode:
+          type: string
+        name:
+          type: string
+        canBuy:
+          type: boolean
+        canSell:
+          type: boolean
