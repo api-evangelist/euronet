@@ -155,6 +155,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     MonthlyAverageResponse:
       properties:
         terms:
@@ -181,14 +189,6 @@ components:
           type: number
         daysInMonth:
           type: number
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

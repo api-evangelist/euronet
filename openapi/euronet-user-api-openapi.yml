@@ -189,6 +189,96 @@ components:
           type: string
           description: Field that triggered the validation error.
       description: An entity used to represent validation errors.
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        middleName:
+          type: string
+        lastName:
+          type: string
+        company:
+          type: string
+        jobTitle:
+          type: string
+        dateOfBirth:
+          type: integer
+        email:
+          type: string
+        address:
+          $ref: '#/components/schemas/UserAddress'
+        password:
+          type: string
+        communicationsConsented:
+          type: boolean
+        phone:
+          $ref: '#/components/schemas/UserPhone'
+        xeid:
+          type: string
+      title: User
+    UserAddress:
+      type: object
+      required:
+      - countryCode
+      properties:
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        administrativeArea:
+          type: string
+          description: Province.
+        subAdministrativeArea:
+          type: string
+          description: County / Region.
+        locality:
+          type: string
+          description: City.
+        dependentLocality:
+          type: string
+          description: Unused.
+        postalCode:
+          type: string
+          description: Postal Code / ZIP.
+        thoroughfare:
+          type: string
+          description: Street / Canal / River.
+        premise:
+          type: string
+          description: Unit / Suite / Apartment.
+        subPremise:
+          type: string
+          description: Unused.
+      description: An entity used to represent an address.
     XetaUser:
       type: object
       required:
@@ -262,6 +352,19 @@ components:
           type: string
           description: Extension.
       description: An entity used to represent a phone number.
+    XetaUserPhone:
+      type: object
+      properties:
+        number:
+          type: string
+          description: Number.
+        countryCode:
+          type: string
+          description: ISO 3166-1 alpha-2 country code.
+        extension:
+          type: string
+          description: Extension.
+      description: An entity used to represent a phone number.
     XetaUserAddress:
       type: object
       required:
@@ -295,109 +398,6 @@ components:
           type: string
           description: Unused.
       description: An entity used to represent an address.
-    User:
-      type: object
-      properties:
-        id:
-          type: integer
-        firstName:
-          type: string
-        middleName:
-          type: string
-        lastName:
-          type: string
-        company:
-          type: string
-        jobTitle:
-          type: string
-        dateOfBirth:
-          type: integer
-        email:
-          type: string
-        address:
-          $ref: '#/components/schemas/UserAddress'
-        password:
-          type: string
-        communicationsConsented:
-          type: boolean
-        phone:
-          $ref: '#/components/schemas/UserPhone'
-        xeid:
-          type: string
-      title: User
-    UserAddress:
-      type: object
-      required:
-      - countryCode
-      properties:
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-        administrativeArea:
-          type: string
-          description: Province.
-        subAdministrativeArea:
-          type: string
-          description: County / Region.
-        locality:
-          type: string
-          description: City.
-        dependentLocality:
-          type: string
-          description: Unused.
-        postalCode:
-          type: string
-          description: Postal Code / ZIP.
-        thoroughfare:
-          type: string
-          description: Street / Canal / River.
-        premise:
-          type: string
-          description: Unit / Suite / Apartment.
-        subPremise:
-          type: string
-          description: Unused.
-      description: An entity used to represent an address.
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
-    XetaUserPhone:
-      type: object
-      properties:
-        number:
-          type: string
-          description: Number.
-        countryCode:
-          type: string
-          description: ISO 3166-1 alpha-2 country code.
-        extension:
-          type: string
-          description: Extension.
-      description: An entity used to represent a phone number.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

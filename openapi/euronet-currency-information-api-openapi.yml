@@ -140,14 +140,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
     CurrencyInfo:
       properties:
         iso:
@@ -162,6 +154,14 @@ components:
           type: string
         currency_symbol_on_right:
           type: boolean
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     CurrencyInfoResponse:
       properties:
         terms:

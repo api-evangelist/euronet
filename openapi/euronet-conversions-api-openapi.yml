@@ -351,12 +351,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    Rate:
-      properties:
-        quotecurrency:
-          type: string
-        mid:
-          type: number
     ConvertToResponse:
       properties:
         terms:
@@ -373,6 +367,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
+    Rate:
+      properties:
+        quotecurrency:
+          type: string
+        mid:
+          type: number
     ConvertFromResponse:
       properties:
         terms:
@@ -389,14 +397,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

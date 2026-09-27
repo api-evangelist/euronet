@@ -366,12 +366,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    RatePeriod:
-      properties:
-        mid:
-          type: number
-        timestamp:
-          type: string
     ErrorResponse:
       properties:
         code:
@@ -380,6 +374,12 @@ components:
           type: string
         documentationUrl:
           type: string
+    Rate:
+      properties:
+        quotecurrency:
+          type: string
+        mid:
+          type: number
     HistoricRateResponse:
       properties:
         terms:
@@ -412,12 +412,12 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/RatePeriod'
-    Rate:
+    RatePeriod:
       properties:
-        quotecurrency:
-          type: string
         mid:
           type: number
+        timestamp:
+          type: string
   securitySchemes:
     basicAuth:
       type: http

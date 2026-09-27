@@ -203,76 +203,6 @@ components:
           type: string
           description: Field that triggered the validation error.
       description: An entity used to represent validation errors.
-    Friend:
-      type: object
-      required:
-      - email
-      - id
-      - lastModifiedDate
-      - name
-      - userId
-      properties:
-        createdBy:
-          type: integer
-          description: Id of the user who created this entity.
-        createdDate:
-          type: integer
-          description: Timestamp of when this entity was created.
-        lastModifiedBy:
-          type: integer
-          description: Id of the user who last modified this entity.
-        lastModifiedDate:
-          type: integer
-          description: Timestamp of when this entity was last modified.
-        id:
-          type: integer
-          description: Unique identifier.
-        userId:
-          type: integer
-          description: Id of the user who owns this friend relationship.
-        name:
-          type: string
-          description: Friend name.
-          minLength: 1
-          maxLength: 191
-          pattern: ^.*\S+.*$
-        email:
-          type: string
-          description: Friend's email address.
-        expenseInvitations:
-          type: array
-          description: List of invitations sent to share an expense with this friend.
-          items:
-            $ref: '#/components/schemas/FriendExpenseInvitationsItem'
-      title: Friend
-      description: An entity used to represent friendship with other users.
-    XetaError:
-      type: object
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - OPTIMISTIC_LOCK
-          - ENTITY_NOT_FOUND
-          - ROUTE_NOT_FOUND
-          - JSON
-          - VALIDATION
-          - UNAUTHORIZED
-          - FORBIDDEN
-          - UNEXPECTED
-          - ENTITY_EXISTS
-          - TOO_MANY_REQUESTS
-        message:
-          type: string
-          description: Verbose error description.
-        validationErrors:
-          type: array
-          description: Verbose validation errors.
-          items:
-            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
-      title: Xeta Error
-      description: An entity used to represent all errors.
     FriendExpenseInvitationsItem:
       type: object
       required:
@@ -319,12 +249,82 @@ components:
           type: number
           description: The amount of the expense that was split with the friend.
       description: An entity used to share expenses with other users.
+    XetaError:
+      type: object
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - OPTIMISTIC_LOCK
+          - ENTITY_NOT_FOUND
+          - ROUTE_NOT_FOUND
+          - JSON
+          - VALIDATION
+          - UNAUTHORIZED
+          - FORBIDDEN
+          - UNEXPECTED
+          - ENTITY_EXISTS
+          - TOO_MANY_REQUESTS
+        message:
+          type: string
+          description: Verbose error description.
+        validationErrors:
+          type: array
+          description: Verbose validation errors.
+          items:
+            $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
+      title: Xeta Error
+      description: An entity used to represent all errors.
     FriendList:
       title: FriendList
       type: array
       description: Friend List object
       items:
         $ref: '#/components/schemas/Friend'
+    Friend:
+      type: object
+      required:
+      - email
+      - id
+      - lastModifiedDate
+      - name
+      - userId
+      properties:
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        id:
+          type: integer
+          description: Unique identifier.
+        userId:
+          type: integer
+          description: Id of the user who owns this friend relationship.
+        name:
+          type: string
+          description: Friend name.
+          minLength: 1
+          maxLength: 191
+          pattern: ^.*\S+.*$
+        email:
+          type: string
+          description: Friend's email address.
+        expenseInvitations:
+          type: array
+          description: List of invitations sent to share an expense with this friend.
+          items:
+            $ref: '#/components/schemas/FriendExpenseInvitationsItem'
+      title: Friend
+      description: An entity used to represent friendship with other users.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey

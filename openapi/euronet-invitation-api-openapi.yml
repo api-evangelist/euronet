@@ -159,6 +159,31 @@ components:
             $ref: '#/components/schemas/XetaErrorValidationErrorsItem'
       title: Xeta Error
       description: An entity used to represent all errors.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
     ExpenseInvitation:
       type: object
       required:
@@ -206,31 +231,6 @@ components:
           description: The amount of the expense that was split with the friend.
       title: Expense Invitation
       description: An entity used to share expenses with other users.
-    XetaErrorValidationErrorsItem:
-      type: object
-      required:
-      - code
-      - message
-      properties:
-        code:
-          type: string
-          description: Unique error code.
-          enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
-          type: string
-          description: Verbose error description.
-        field:
-          type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
   securitySchemes:
     xeta-drupal-authorizer:
       type: apiKey
