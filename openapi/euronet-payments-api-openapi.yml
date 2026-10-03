@@ -258,41 +258,6 @@ paths:
           description: Error getting payment.
 components:
   schemas:
-    UpdatePaymentRequest:
-      description: '"include" - Set to false to exclude a payment, true to include a payment.
-
-        "data" - Data to update the payment with.'
-      type: object
-      properties:
-        include:
-          type: boolean
-        data:
-          $ref: '#/components/schemas/UpdatePaymentData'
-      example:
-        include: false
-        data:
-          recipientName: Leah McWilliams
-          recipientEmail: test@example.com
-          recipientAddress1: 4 Apple Street
-          recipientAddress2: ''
-          recipientAddressCountryCode: US
-          recipientAccountNumberIBAN: '1231231234'
-          recipientBIC: BOFAUS3N
-          recipientNationalClearingCode: ''
-          recipientBankName: Bank Name
-          recipientBankAddress1: 100 North Tryon Street
-          recipientBankAddress2: Charlotte
-          recipientBankAddress3: ''
-          clientPaymentReference: Monthly Contract Pay 743001
-          intermediaryBankName: ''
-          intermediaryBankAddress1: ''
-          intermediaryBankAddress2: ''
-          intermediaryBankAddress3: ''
-          intermediaryBankCountryCode: ''
-          intermediaryAccountNumberIBAN: ''
-          intermediaryBIC: ''
-          intermediaryNationalClearingCode: ''
-          reasonForPayment: Contract Payment
     RecipientInformation:
       description: '"clientUniqueReference" - Client''s reference for a transaction.
 
@@ -347,6 +312,99 @@ components:
           type: string
         recipientBankCountryCode:
           type: string
+        recipientName:
+          type: string
+        recipientEmail:
+          type: string
+        recipientAddress1:
+          type: string
+        recipientAddress2:
+          type: string
+        recipientAddressCountryCode:
+          type: string
+        recipientAccountNumberIBAN:
+          type: string
+        recipientBIC:
+          type: string
+        recipientNationalClearingCode:
+          type: string
+        recipientBankName:
+          type: string
+        recipientBankAddress1:
+          type: string
+        recipientBankAddress2:
+          type: string
+        recipientBankAddress3:
+          type: string
+        clientPaymentReference:
+          type: string
+        intermediaryBankName:
+          type: string
+        intermediaryBankAddress1:
+          type: string
+        intermediaryBankAddress2:
+          type: string
+        intermediaryBankAddress3:
+          type: string
+        intermediaryBankCountryCode:
+          type: string
+        intermediaryAccountNumberIBAN:
+          type: string
+        intermediaryBIC:
+          type: string
+        intermediaryNationalClearingCode:
+          type: string
+        reasonForPayment:
+          type: string
+    UpdatePaymentData:
+      description: 'SWIFT character only fields must match the regular expression: ^[\r\n\sa-zA-Z0-9\/\-:,''\?\(\)\.\+]*$
+
+
+        "recipientName" - Name of the recipient as it is on the bank account. SWIFT characters only.
+
+        "recipientEmail" - Email address of the recipient, if they require an individual payment confirmation.
+
+        "recipientAddress1" - First line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddress2" - Second line of the recipient''s address. SWIFT characters only.
+
+        "recipientAddressCountryCode" - ISO code for the country of the recipient''s address.
+
+        "recipientAccountNumberIban" - Account number or IBAN for the recipient''s bank account. SWIFT characters only.
+
+        "recipientBic" - BIC of the recipient''s bank. SWIFT characters only.
+
+        "recipientNationalClearingCode" - National clearing code of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankName" - Name of the recipient''s bank. SWIFT characters only.
+
+        "recipientBankAddress1" - First line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress2" - Second line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "recipientBankAddress3" - Third line of the address for the recipient’s bank account. SWIFT characters only.
+
+        "clientPaymentReference" - Additional reference that is included in the payment details sent to the bank. SWIFT characters only.
+
+        "intermediaryBankName" - Name of any intermediary bank. SWIFT characters only.
+
+        "intermediaryBankAddress1" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress2" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankAddress3" - First line of the address for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBankCountryCode" - ISO code for the country of any intermediary bank account.
+
+        "intermediaryAccountNumberIban" - Account number or IBAN for any intermediary bank account. SWIFT characters only.
+
+        "intermediaryBic" - BIC of any intermediary bank account. SWIFT characters only.
+
+        "intermediaryNationalClearingCode" - National clearing code of any intermediary bank account.
+
+        "reasonForPayment" - Reason for making the payment. SWIFT characters only.'
+      type: object
+      properties:
         recipientName:
           type: string
         recipientEmail:
@@ -479,6 +537,53 @@ components:
         canEdit:
           type: boolean
           readOnly: true
+    PaymentItemPagedData:
+      description: "Generic Paged data returned for List Items.\n            \n\"content\" - List of Data returned in the response.\n\"totalRecords\" - Result from the request.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/PaymentItem'
+        totalRecords:
+          format: int32
+          type: integer
+    UpdatePaymentRequest:
+      description: '"include" - Set to false to exclude a payment, true to include a payment.
+
+        "data" - Data to update the payment with.'
+      type: object
+      properties:
+        include:
+          type: boolean
+        data:
+          $ref: '#/components/schemas/UpdatePaymentData'
+      example:
+        include: false
+        data:
+          recipientName: Leah McWilliams
+          recipientEmail: test@example.com
+          recipientAddress1: 4 Apple Street
+          recipientAddress2: ''
+          recipientAddressCountryCode: US
+          recipientAccountNumberIBAN: '1231231234'
+          recipientBIC: BOFAUS3N
+          recipientNationalClearingCode: ''
+          recipientBankName: Bank Name
+          recipientBankAddress1: 100 North Tryon Street
+          recipientBankAddress2: Charlotte
+          recipientBankAddress3: ''
+          clientPaymentReference: Monthly Contract Pay 743001
+          intermediaryBankName: ''
+          intermediaryBankAddress1: ''
+          intermediaryBankAddress2: ''
+          intermediaryBankAddress3: ''
+          intermediaryBankCountryCode: ''
+          intermediaryAccountNumberIBAN: ''
+          intermediaryBIC: ''
+          intermediaryNationalClearingCode: ''
+          reasonForPayment: Contract Payment
     PaymentItem:
       description: '"paymentId" - ID of the payment.
 
@@ -561,111 +666,6 @@ components:
           readOnly: true
         hasBeenApproved:
           type: boolean
-    PaymentItemPagedData:
-      description: "Generic Paged data returned for List Items.\n            \n\"content\" - List of Data returned in the response.\n\"totalRecords\" - Result from the request.\n<typeparam name=\"T\">The type of the content.</typeparam>"
-      type: object
-      properties:
-        content:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/PaymentItem'
-        totalRecords:
-          format: int32
-          type: integer
-    UpdatePaymentData:
-      description: 'SWIFT character only fields must match the regular expression: ^[\r\n\sa-zA-Z0-9\/\-:,''\?\(\)\.\+]*$
-
-
-        "recipientName" - Name of the recipient as it is on the bank account. SWIFT characters only.
-
-        "recipientEmail" - Email address of the recipient, if they require an individual payment confirmation.
-
-        "recipientAddress1" - First line of the recipient''s address. SWIFT characters only.
-
-        "recipientAddress2" - Second line of the recipient''s address. SWIFT characters only.
-
-        "recipientAddressCountryCode" - ISO code for the country of the recipient''s address.
-
-        "recipientAccountNumberIban" - Account number or IBAN for the recipient''s bank account. SWIFT characters only.
-
-        "recipientBic" - BIC of the recipient''s bank. SWIFT characters only.
-
-        "recipientNationalClearingCode" - National clearing code of the recipient''s bank. SWIFT characters only.
-
-        "recipientBankName" - Name of the recipient''s bank. SWIFT characters only.
-
-        "recipientBankAddress1" - First line of the address for the recipient’s bank account. SWIFT characters only.
-
-        "recipientBankAddress2" - Second line of the address for the recipient’s bank account. SWIFT characters only.
-
-        "recipientBankAddress3" - Third line of the address for the recipient’s bank account. SWIFT characters only.
-
-        "clientPaymentReference" - Additional reference that is included in the payment details sent to the bank. SWIFT characters only.
-
-        "intermediaryBankName" - Name of any intermediary bank. SWIFT characters only.
-
-        "intermediaryBankAddress1" - First line of the address for any intermediary bank account. SWIFT characters only.
-
-        "intermediaryBankAddress2" - First line of the address for any intermediary bank account. SWIFT characters only.
-
-        "intermediaryBankAddress3" - First line of the address for any intermediary bank account. SWIFT characters only.
-
-        "intermediaryBankCountryCode" - ISO code for the country of any intermediary bank account.
-
-        "intermediaryAccountNumberIban" - Account number or IBAN for any intermediary bank account. SWIFT characters only.
-
-        "intermediaryBic" - BIC of any intermediary bank account. SWIFT characters only.
-
-        "intermediaryNationalClearingCode" - National clearing code of any intermediary bank account.
-
-        "reasonForPayment" - Reason for making the payment. SWIFT characters only.'
-      type: object
-      properties:
-        recipientName:
-          type: string
-        recipientEmail:
-          type: string
-        recipientAddress1:
-          type: string
-        recipientAddress2:
-          type: string
-        recipientAddressCountryCode:
-          type: string
-        recipientAccountNumberIBAN:
-          type: string
-        recipientBIC:
-          type: string
-        recipientNationalClearingCode:
-          type: string
-        recipientBankName:
-          type: string
-        recipientBankAddress1:
-          type: string
-        recipientBankAddress2:
-          type: string
-        recipientBankAddress3:
-          type: string
-        clientPaymentReference:
-          type: string
-        intermediaryBankName:
-          type: string
-        intermediaryBankAddress1:
-          type: string
-        intermediaryBankAddress2:
-          type: string
-        intermediaryBankAddress3:
-          type: string
-        intermediaryBankCountryCode:
-          type: string
-        intermediaryAccountNumberIBAN:
-          type: string
-        intermediaryBIC:
-          type: string
-        intermediaryNationalClearingCode:
-          type: string
-        reasonForPayment:
-          type: string
     UpdatePaymentResponse:
       description: '"status" - Enum value of the status returned when updating a payment.
 

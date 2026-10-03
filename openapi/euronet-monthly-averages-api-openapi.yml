@@ -155,14 +155,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
     MonthlyAverageResponse:
       properties:
         terms:
@@ -181,6 +173,14 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/TOCurrencyISO'
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     TOCurrencyISO:
       properties:
         monthlyAverage:

@@ -121,19 +121,67 @@ paths:
           description: Error getting invoice.
 components:
   schemas:
-    NameAddressAdapter:
-      description: '"accountName" - Name of the account.
+    QuoteSummaryAdapter:
+      description: '"accountId" - ID of the account for the quote.
 
-        "address" - List of lines for the address of the account.'
+        "transactionId" - ID of the transaction that received a quote.
+
+        "transactionReference" - Reference for the transaction that received a quote.
+
+        "settlementSummary" - Details for the settlement of the quote.'
       type: object
       properties:
-        accountName:
+        accountId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        transactionReference:
           type: string
-        address:
+        settlementSummary:
           uniqueItems: false
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/QuoteSettlementSummaryAdapter'
+    CurrencyAmountAdapter:
+      description: '"units" - Amount of the currency.
+
+        "currency" - Type of the currency.'
+      type: object
+      properties:
+        units:
+          format: double
+          type: number
+        currency:
+          type: string
+    InvoiceResponse:
+      description: '"status" - Enum value of the status returned from getting the invoice.
+
+        "statusText" - Text value of the status returned from getting the invoice.
+
+        "invoiceData" - If successful, the invoice is returned.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = InvoiceNotAvailable
+
+            2 = TransactionNotFound'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        invoiceData:
+          $ref: '#/components/schemas/Invoice'
     QuoteSettlementSummaryAdapter:
       description: '"settlementCurrency" - Currency used for the settlement of the transaction.
 
@@ -200,46 +248,49 @@ components:
           $ref: '#/components/schemas/CurrencyAmountAdapter'
         valueDate:
           type: string
-    BankAdapter:
-      description: '"name" - Name of the bank.'
+    Invoice:
+      description: '"accountNumber" - Account number the invoice is for.
+
+        "accountNameAndAddress" - Name of the account and the address for the account.
+
+        "transactionReference" - Reference for the transaction the invoice is for.
+
+        "uploadedBy" - Name of the person who uploaded the transaction and when it was uploaded in UTC format (yyyy-MM-ddThh:mm:ssZ).
+
+        "approvedBy" - Name of the person who approved the quote for the transcation and when it was approved in UTC format (yyyy-MM-ddThh:mm:ssZ).
+
+        "numberOfPayments" - Number of payments within the transaction.
+
+        "numberOfSettlementTypePayments" - Number of payments that are settlements.
+
+        "quoteSummary" - Details for the quote that was approved.
+
+        "settlementBankAccounts" - Bank accounts that are being used to settle the transaction payments.'
       type: object
       properties:
-        name:
+        accountNumber:
           type: string
-    QuoteSummaryAdapter:
-      description: '"accountId" - ID of the account for the quote.
-
-        "transactionId" - ID of the transaction that received a quote.
-
-        "transactionReference" - Reference for the transaction that received a quote.
-
-        "settlementSummary" - Details for the settlement of the quote.'
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        transactionId:
-          format: int32
-          type: integer
+        accountNameAndAddress:
+          $ref: '#/components/schemas/NameAddressAdapter'
         transactionReference:
           type: string
-        settlementSummary:
+        uploadedBy:
+          type: string
+        approvedBy:
+          type: string
+        numberOfPayments:
+          format: int32
+          type: integer
+        numberOfSettlementTypePayments:
+          format: int32
+          type: integer
+        quoteSummary:
+          $ref: '#/components/schemas/QuoteSummaryAdapter'
+        settlementBankAccounts:
           uniqueItems: false
           type: array
           items:
-            $ref: '#/components/schemas/QuoteSettlementSummaryAdapter'
-    CurrencyAmountAdapter:
-      description: '"units" - Amount of the currency.
-
-        "currency" - Type of the currency.'
-      type: object
-      properties:
-        units:
-          format: double
-          type: number
-        currency:
-          type: string
+            $ref: '#/components/schemas/BankAccountAdapter'
     BankAccountAdapter:
       description: '"currency" - Currency of the bank account.
 
@@ -286,73 +337,22 @@ components:
           type: string
         bank:
           $ref: '#/components/schemas/BankAdapter'
-    Invoice:
-      description: '"accountNumber" - Account number the invoice is for.
+    NameAddressAdapter:
+      description: '"accountName" - Name of the account.
 
-        "accountNameAndAddress" - Name of the account and the address for the account.
-
-        "transactionReference" - Reference for the transaction the invoice is for.
-
-        "uploadedBy" - Name of the person who uploaded the transaction and when it was uploaded in UTC format (yyyy-MM-ddThh:mm:ssZ).
-
-        "approvedBy" - Name of the person who approved the quote for the transcation and when it was approved in UTC format (yyyy-MM-ddThh:mm:ssZ).
-
-        "numberOfPayments" - Number of payments within the transaction.
-
-        "numberOfSettlementTypePayments" - Number of payments that are settlements.
-
-        "quoteSummary" - Details for the quote that was approved.
-
-        "settlementBankAccounts" - Bank accounts that are being used to settle the transaction payments.'
+        "address" - List of lines for the address of the account.'
       type: object
       properties:
-        accountNumber:
+        accountName:
           type: string
-        accountNameAndAddress:
-          $ref: '#/components/schemas/NameAddressAdapter'
-        transactionReference:
-          type: string
-        uploadedBy:
-          type: string
-        approvedBy:
-          type: string
-        numberOfPayments:
-          format: int32
-          type: integer
-        numberOfSettlementTypePayments:
-          format: int32
-          type: integer
-        quoteSummary:
-          $ref: '#/components/schemas/QuoteSummaryAdapter'
-        settlementBankAccounts:
+        address:
           uniqueItems: false
           type: array
           items:
-            $ref: '#/components/schemas/BankAccountAdapter'
-    InvoiceResponse:
-      description: '"status" - Enum value of the status returned from getting the invoice.
-
-        "statusText" - Text value of the status returned from getting the invoice.
-
-        "invoiceData" - If successful, the invoice is returned.'
+            type: string
+    BankAdapter:
+      description: '"name" - Name of the bank.'
       type: object
       properties:
-        status:
-          format: int32
-          description: '
-
-            0 = Success
-
-            1 = InvoiceNotAvailable
-
-            2 = TransactionNotFound'
-          enum:
-          - 0
-          - 1
-          - 2
-          type: integer
-        statusText:
+        name:
           type: string
-          readOnly: true
-        invoiceData:
-          $ref: '#/components/schemas/Invoice'

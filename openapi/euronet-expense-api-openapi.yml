@@ -178,31 +178,52 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    XetaErrorValidationErrorsItem:
+    ExpenseExpenseInvitationsItem:
       type: object
       required:
-      - code
-      - message
+      - amount
+      - expenseId
+      - friendId
+      - id
+      - lastModifiedDate
+      - userId
       properties:
-        code:
+        createdBy:
+          type: integer
+          description: Id of the user who created this entity.
+        createdDate:
+          type: integer
+          description: Timestamp of when this entity was created.
+        lastModifiedBy:
+          type: integer
+          description: Id of the user who last modified this entity.
+        lastModifiedDate:
+          type: integer
+          description: Timestamp of when this entity was last modified.
+        id:
+          type: integer
+          description: Unique identifier.
+        invitationStatusName:
           type: string
-          description: Unique error code.
+          description: Status of the invitation.
           enum:
-          - SIZE
-          - 'NULL'
-          - DIGIT
-          - REQUIRED
-          - UNEXPECTED
-          - TRIP
-          - EXPENSE
-          - EMAIL
-        message:
-          type: string
-          description: Verbose error description.
-        field:
-          type: string
-          description: Field that triggered the validation error.
-      description: An entity used to represent validation errors.
+          - ACCEPTED
+          - PENDING
+          - REJECTED
+          - DELETED
+        userId:
+          type: integer
+          description: Id of the user who sent this invitation.
+        friendId:
+          type: integer
+          description: Id of the user the expense was shared with.
+        expenseId:
+          type: integer
+          description: Id of the expense that was shared.
+        amount:
+          type: number
+          description: The amount of the expense that was split with the friend.
+      description: An entity used to share expenses with other users.
     Expense:
       type: object
       required:
@@ -309,52 +330,6 @@ components:
             $ref: '#/components/schemas/ExpenseExpenseInvitationsItem'
       title: Expense
       description: An entity used to record expenses.
-    ExpenseExpenseInvitationsItem:
-      type: object
-      required:
-      - amount
-      - expenseId
-      - friendId
-      - id
-      - lastModifiedDate
-      - userId
-      properties:
-        createdBy:
-          type: integer
-          description: Id of the user who created this entity.
-        createdDate:
-          type: integer
-          description: Timestamp of when this entity was created.
-        lastModifiedBy:
-          type: integer
-          description: Id of the user who last modified this entity.
-        lastModifiedDate:
-          type: integer
-          description: Timestamp of when this entity was last modified.
-        id:
-          type: integer
-          description: Unique identifier.
-        invitationStatusName:
-          type: string
-          description: Status of the invitation.
-          enum:
-          - ACCEPTED
-          - PENDING
-          - REJECTED
-          - DELETED
-        userId:
-          type: integer
-          description: Id of the user who sent this invitation.
-        friendId:
-          type: integer
-          description: Id of the user the expense was shared with.
-        expenseId:
-          type: integer
-          description: Id of the expense that was shared.
-        amount:
-          type: number
-          description: The amount of the expense that was split with the friend.
-      description: An entity used to share expenses with other users.
     XetaError:
       type: object
       properties:
@@ -438,6 +413,31 @@ components:
           type: integer
           description: Id of the expense in this relationship.
       description: An entity used to associate an expense and a trip.
+    XetaErrorValidationErrorsItem:
+      type: object
+      required:
+      - code
+      - message
+      properties:
+        code:
+          type: string
+          description: Unique error code.
+          enum:
+          - SIZE
+          - 'NULL'
+          - DIGIT
+          - REQUIRED
+          - UNEXPECTED
+          - TRIP
+          - EXPENSE
+          - EMAIL
+        message:
+          type: string
+          description: Verbose error description.
+        field:
+          type: string
+          description: Field that triggered the validation error.
+      description: An entity used to represent validation errors.
     ExpenseList:
       title: ExpenseList
       type: array

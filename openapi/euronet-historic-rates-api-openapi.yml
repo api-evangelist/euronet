@@ -366,6 +366,28 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RatePeriod:
+      properties:
+        mid:
+          type: number
+        timestamp:
+          type: string
+    HistoricRatePeriodResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+        to:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/RatePeriod'
     ErrorResponse:
       properties:
         code:
@@ -396,28 +418,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
-    HistoricRatePeriodResponse:
-      properties:
-        terms:
-          type: string
-        privacy:
-          type: string
-        from:
-          type: string
-        amount:
-          type: number
-        to:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/RatePeriod'
-    RatePeriod:
-      properties:
-        mid:
-          type: number
-        timestamp:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
