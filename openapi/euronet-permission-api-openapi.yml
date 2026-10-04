@@ -62,15 +62,6 @@ paths:
           description: Error getting permissions.
 components:
   schemas:
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
     Message:
       description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
       type: object
@@ -108,3 +99,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true

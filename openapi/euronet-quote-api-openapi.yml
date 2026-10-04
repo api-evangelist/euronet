@@ -352,58 +352,6 @@ paths:
         description: Details to update the quote with. If a value is null then the attribute will not be updated.
 components:
   schemas:
-    QuoteResponse:
-      description: '"status" - Enum value for the status of getting/approving the quote.
-
-        "quote" - Details of the quote.'
-      type: object
-      properties:
-        status:
-          format: int32
-          description: '
-
-            0 = Success
-
-            1 = FailedToQuote
-
-            2 = TransactionInvalidStatus
-
-            3 = QuoteLimitExceeded
-
-            4 = QuoteNotFoundOrExpired
-
-            5 = TransactionLoadInProgress
-
-            6 = TransactionQuoteApproved
-
-            7 = TransactionLoadError
-
-            8 = TransactionNotFound
-
-            9 = TransactionDeleted
-
-            10 = SameCurrencyFeeBandNotConfigured
-
-            11 = TermsNotAgreedTo'
-          enum:
-          - 0
-          - 1
-          - 2
-          - 3
-          - 4
-          - 5
-          - 6
-          - 7
-          - 8
-          - 9
-          - 10
-          - 11
-          type: integer
-        statusText:
-          type: string
-          readOnly: true
-        quote:
-          $ref: '#/components/schemas/Quote'
     QuotePaymentSummary:
       description: '"settlementCurrency" - Currency used for the settlement of the transaction.
 
@@ -468,6 +416,86 @@ components:
         quoteId: e42630ea-4214-d7f9-eb94-2f4bb50f6fcf
         accountId: 3124
         agreeToTerms: true
+    QuoteResponse:
+      description: '"status" - Enum value for the status of getting/approving the quote.
+
+        "quote" - Details of the quote.'
+      type: object
+      properties:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = FailedToQuote
+
+            2 = TransactionInvalidStatus
+
+            3 = QuoteLimitExceeded
+
+            4 = QuoteNotFoundOrExpired
+
+            5 = TransactionLoadInProgress
+
+            6 = TransactionQuoteApproved
+
+            7 = TransactionLoadError
+
+            8 = TransactionNotFound
+
+            9 = TransactionDeleted
+
+            10 = SameCurrencyFeeBandNotConfigured
+
+            11 = TermsNotAgreedTo'
+          enum:
+          - 0
+          - 1
+          - 2
+          - 3
+          - 4
+          - 5
+          - 6
+          - 7
+          - 8
+          - 9
+          - 10
+          - 11
+          type: integer
+        statusText:
+          type: string
+          readOnly: true
+        quote:
+          $ref: '#/components/schemas/Quote'
+    QuoteSettlementSummary:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
+
+        "totalFees" - Currency and amount for the total fees of the transfer process.
+
+        "totalNumberOfPayments" - Total number of payments for the transaction.
+
+        "paymentSummary" - Details for the payment of the quote.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        totalSettlementDue:
+          format: double
+          type: number
+        totalFees:
+          format: double
+          type: number
+        totalNumberOfPayments:
+          format: int32
+          type: integer
+        paymentSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuotePaymentSummary'
     Quote:
       description: '"quoteId" - ID of the quote.
 
@@ -544,34 +572,17 @@ components:
         quoteStatusText:
           type: string
           readOnly: true
-    QuoteSettlementSummary:
-      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
-
-        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
-
-        "totalFees" - Currency and amount for the total fees of the transfer process.
-
-        "totalNumberOfPayments" - Total number of payments for the transaction.
-
-        "paymentSummary" - Details for the payment of the quote.'
+    Message:
+      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
       type: object
       properties:
-        settlementCurrency:
+        code:
           type: string
-        totalSettlementDue:
-          format: double
-          type: number
-        totalFees:
-          format: double
-          type: number
-        totalNumberOfPayments:
-          format: int32
-          type: integer
-        paymentSummary:
+        data:
           uniqueItems: false
           type: array
           items:
-            $ref: '#/components/schemas/QuotePaymentSummary'
+            $ref: '#/components/schemas/StringStringKeyValuePair'
     QuoteResponse_2:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -595,6 +606,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Message'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    UpdateQuoteRequest:
+      description: "Request body for updating a quote.\n\nSWIFT characters match the following regular expression: ^[\\r\\n\\sa-zA-Z0-9\\/\\-:,'\\?\\(\\)\\.\\+]*$\n            \n\"amount\" - Optional: Amount of the currency being bought or sold.\n\"recipientId\" - Optional: ID of the recipient to make the payment to.\n\"reference\" - Optional: Reference for the recipient to identify a transaction. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it. SWIFT characters only.\n\"purposeOfPaymentCode\" - Optional: Code for the reason why the client is making the transfer. Cannot be an empty string, if provided. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"purposeOfPaymentFreeText\" - Optional: If allowed for the code, the client can enter their reason for the transfer in text form. SWIFT characters only.\n\"recipientEmailAddress\" - Optional: Email address that will be notified when the payment is made.\n\"privateReference\" - Optional: Private reference for the client to identify a transfer. SWIFT characters only.\n\"valueDate\" - Optional: yyyy-MM-dd - Effective date of the transfer."
+      type: object
+      properties:
+        amount:
+          format: double
+          type: number
+        recipientId:
+          format: int32
+          type: integer
+        reference:
+          type: string
+        purposeOfPaymentCode:
+          type: string
+        purposeOfPaymentFreeText:
+          type: string
+        recipientEmailAddress:
+          type: string
+        privateReference:
+          type: string
+        valueDate:
+          type: string
+      example:
+        amount: 150
+        recipientId: 1234567
+        reference: Reference
+        purposeOfPaymentCode: PRIV_OTHER
+        purposeOfPaymentFreeText: Free text
+        recipientEmailAddress: recip@email.co.uk
+        privateReference: Private reference
+        valueDate: '2019-01-26'
     CreateQuoteRequest:
       description: "Request body for creating a new quote. Quotes expire in around 15 seconds.\n\nSWIFT characters match the following regular expression: ^[\\r\\n\\sa-zA-Z0-9\\/\\-:,'\\?\\(\\)\\.\\+]*$\n            \n\"buyCurrency\" - Code of the currency being converted to.\n\"sellCurrency\" - Code of the currency provided by the client.\n\"buyOrSell\" - 'Buy' or 'Sell': Whether the client is buying or selling the amount of currency.\n\"amount\" - Amount of the currency being bought or sold.\n\"recipientId\" - Optional: ID of the recipient to make the payment to. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"reference\" - Optional: Reference for the recipient to identify a transfer. SWIFT characters only.\n\"purposeOfPaymentCode\" - Optional: Code for the reason why the client is making the transfer. Cannot be an empty string, if provided. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"purposeOfPaymentFreeText\" - Optional: If allowed for the code, the client can enter their reason for the transfer in text form. SWIFT characters only.\n\"recipientEmailAddress\" - Optional: Email address that will be notified when the payment is made.\n\"privateReference\" - Optional: Private reference for the client to identify a transfer. SWIFT characters only.\n\"valueDate\" - Optional: yyyy-MM-dd - Effective date of the transfer."
       required:
@@ -715,57 +766,6 @@ components:
           type: string
         availableDate:
           type: string
-    Message:
-      description: "Details for an error or warning that occured during the request or general information from it.\n            \n\"code\" - Code that can be used to find full details for the message.\n\"data\" - Any relevant data that caused the message, if applicable."
-      type: object
-      properties:
-        code:
-          type: string
-        data:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/StringStringKeyValuePair'
-    UpdateQuoteRequest:
-      description: "Request body for updating a quote.\n\nSWIFT characters match the following regular expression: ^[\\r\\n\\sa-zA-Z0-9\\/\\-:,'\\?\\(\\)\\.\\+]*$\n            \n\"amount\" - Optional: Amount of the currency being bought or sold.\n\"recipientId\" - Optional: ID of the recipient to make the payment to.\n\"reference\" - Optional: Reference for the recipient to identify a transaction. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it. SWIFT characters only.\n\"purposeOfPaymentCode\" - Optional: Code for the reason why the client is making the transfer. Cannot be an empty string, if provided. Note that this is required for a contract to be updated, so if not provided on creation then the quote will need updating to contain it.\n\"purposeOfPaymentFreeText\" - Optional: If allowed for the code, the client can enter their reason for the transfer in text form. SWIFT characters only.\n\"recipientEmailAddress\" - Optional: Email address that will be notified when the payment is made.\n\"privateReference\" - Optional: Private reference for the client to identify a transfer. SWIFT characters only.\n\"valueDate\" - Optional: yyyy-MM-dd - Effective date of the transfer."
-      type: object
-      properties:
-        amount:
-          format: double
-          type: number
-        recipientId:
-          format: int32
-          type: integer
-        reference:
-          type: string
-        purposeOfPaymentCode:
-          type: string
-        purposeOfPaymentFreeText:
-          type: string
-        recipientEmailAddress:
-          type: string
-        privateReference:
-          type: string
-        valueDate:
-          type: string
-      example:
-        amount: 150
-        recipientId: 1234567
-        reference: Reference
-        purposeOfPaymentCode: PRIV_OTHER
-        purposeOfPaymentFreeText: Free text
-        recipientEmailAddress: recip@email.co.uk
-        privateReference: Private reference
-        valueDate: '2019-01-26'
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
 x-refined-from:
 - xe-mass-payments-api-openapi.json
 - xe-payments-api-openapi.json

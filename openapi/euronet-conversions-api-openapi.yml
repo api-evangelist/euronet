@@ -351,22 +351,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ConvertToResponse:
+    ErrorResponse:
       properties:
-        terms:
-          type: string
-        privacy:
-          type: string
-        to:
-          type: string
-        amount:
+        code:
           type: number
-        timestamp:
+        message:
           type: string
-        from:
-          type: array
-          items:
-            $ref: '#/components/schemas/Rate'
+        documentationUrl:
+          type: string
     ConvertFromResponse:
       properties:
         terms:
@@ -383,14 +375,22 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Rate'
-    ErrorResponse:
+    ConvertToResponse:
       properties:
-        code:
+        terms:
+          type: string
+        privacy:
+          type: string
+        to:
+          type: string
+        amount:
           type: number
-        message:
+        timestamp:
           type: string
-        documentationUrl:
-          type: string
+        from:
+          type: array
+          items:
+            $ref: '#/components/schemas/Rate'
     Rate:
       properties:
         quotecurrency:

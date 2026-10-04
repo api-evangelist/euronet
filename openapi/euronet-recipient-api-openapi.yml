@@ -375,22 +375,6 @@ paths:
           description: Error getting all Recipient Field definitions.
 components:
   schemas:
-    RecipientField:
-      type: object
-      properties:
-        name:
-          type: string
-        value:
-          type: string
-    StringStringKeyValuePair:
-      type: object
-      properties:
-        key:
-          type: string
-          readOnly: true
-        value:
-          type: string
-          readOnly: true
     RecipientListResponse:
       description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
       type: object
@@ -400,52 +384,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Recipient'
-        message:
-          type: string
-        errors:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        warnings:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        information:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-    RecipientResponse:
-      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/Recipient'
-        message:
-          type: string
-        errors:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        warnings:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-        information:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/Message'
-    RecipientFieldDefinitionsResponse:
-      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
-      type: object
-      properties:
-        content:
-          $ref: '#/components/schemas/RecipientFieldDefinitions'
         message:
           type: string
         errors:
@@ -474,75 +412,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/StringStringKeyValuePair'
-    RecipientFieldDefinitions:
-      description: "Details for a recipient field definitions\n            \n\"fieldDefinitions\" - List of recipient field definition.\n\"contentReplacements\" -  A list of replacements values that are applicable to this recipient field definition.\n\"errors\" - A list of errors occured when requesting the field definitions.\n\"infos\" - A list of information for field definitions (if there is any)."
+    RecipientField:
       type: object
       properties:
-        fieldDefinitions:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientFieldDefinition'
-        contentReplacements:
-          type: object
-          additionalProperties:
-            type: string
-        errors:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-        infos:
-          type: object
-          additionalProperties:
-            type: object
-            additionalProperties:
-              type: string
-    RecipientRequest:
-      description: "Request body for creating a new recipient.\n            \n\"bankCountryCode\" - Country code of the bank for the recipient.\n\"currencyCode\" - Currency code that the recipient is for.\n\"fields\" - Dynamic set of fields, which will include all the other required/optional fields to create a recipient for the country/currency combination."
-      type: object
-      properties:
-        bankCountryCode:
+        name:
           type: string
-        currencyCode:
+        value:
           type: string
-        fields:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/RecipientField'
-      example:
-        bankCountryCode: GB
-        currencyCode: GBP
-        fields:
-        - name: AccountName
-          value: Account Name
-        - name: AccountNumber
-          value: '12548795'
-        - name: NationalClearingCode
-          value: '132546'
-        - name: BankName
-          value: Bank Name
-        - name: BankAccountType
-          value: '10'
-    RecipientFieldDefinition:
-      description: "Details for a recipient field definition.\n            \n\"fieldName\" - Name of the recipient field.\n\"regEx\" - Allowed format of the field.\n\"required\" - Boolean value to indicate whether the field is mandatory or not.\n\"fieldType\" - Type of the field.\n\"allowedValues\" - Values allowed for the field. If it is null, can enter any value."
-      type: object
-      properties:
-        fieldName:
-          type: string
-        regEx:
-          type: string
-        required:
-          type: boolean
-        fieldType:
-          type: string
-        allowedValues:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/LocalisableString'
     Recipient:
       description: "Details for a recipient.\n            \n\"id\" - ID of the recipient.\n\"name\" - Display name of the recipient.\n\"currency\" - Currency code for the recipient's account.\n\"accountNumber\" - Bank account number for the recipient.\n\"accountName\" - Name of the recipient on their bank account.\n\"bankName\" - Name of the bank for the recipient's account.\n\"bankCountry\" - Country where the recipient's bank is located.\n\"nickname\" - Nickname specified by the client.\n\"paymentReference\" - Client specified reference when making payments to the recipient.\n\"purposeOfPaymentCode\" - Default purpose of payment code for the recipient.\n\"purposeOfPaymentFreeText\" - Default purpose of payment free text for the recipient.\n\"bankAddressLine1\" - Line 1 of the address for the recipient’s bank.\n\"bankAddressLine2\" - Line 2 of the address for the recipient’s bank.\n\"bankAddressLine3\" - Line 3 of the address for the recipient’s bank.\n\"bankBic\" - Bank Identification Code for the recipient’s bank.\n\"nationalClearingCode\" - National Clearing Code for the recipient’s bank.\n\"addressLine1\" - Line 1 of the address for the recipient.\n\"addressLine2\" - Line 2 of the address for the recipient.\n\"addressLine3\" - Line 3 of the address for the recipient.\n\"email\" - Email address for the recipient.\n\"intermediaryBankAddressLine1\" - Line 1 of the address for an intermediary bank.\n\"intermediaryBankAddressLine2\" - Line 2 of the address for an intermediary bank.\n\"intermediaryBankAddressLine3\" - Line 3 of the address for an intermediary bank.\n\"intermediaryBankBic\" - Bank Identification Code for an intermediary bank.\n\"intermediaryNationalClearingCode\" - National Clearing Code for an intermediary bank.\n\"intermediaryBankName\" - Name for an intermediary bank.\n\"intermediaryBankAddressCountryCode\" - Country code of the address for an intermediary bank.\n\"intermediaryAccountNumber\" - Account Number for an intermediary bank."
       type: object
@@ -612,3 +488,127 @@ components:
           type: string
         text:
           type: string
+    RecipientResponse:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/Recipient'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    RecipientRequest:
+      description: "Request body for creating a new recipient.\n            \n\"bankCountryCode\" - Country code of the bank for the recipient.\n\"currencyCode\" - Currency code that the recipient is for.\n\"fields\" - Dynamic set of fields, which will include all the other required/optional fields to create a recipient for the country/currency combination."
+      type: object
+      properties:
+        bankCountryCode:
+          type: string
+        currencyCode:
+          type: string
+        fields:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientField'
+      example:
+        bankCountryCode: GB
+        currencyCode: GBP
+        fields:
+        - name: AccountName
+          value: Account Name
+        - name: AccountNumber
+          value: '12548795'
+        - name: NationalClearingCode
+          value: '132546'
+        - name: BankName
+          value: Bank Name
+        - name: BankAccountType
+          value: '10'
+    RecipientFieldDefinition:
+      description: "Details for a recipient field definition.\n            \n\"fieldName\" - Name of the recipient field.\n\"regEx\" - Allowed format of the field.\n\"required\" - Boolean value to indicate whether the field is mandatory or not.\n\"fieldType\" - Type of the field.\n\"allowedValues\" - Values allowed for the field. If it is null, can enter any value."
+      type: object
+      properties:
+        fieldName:
+          type: string
+        regEx:
+          type: string
+        required:
+          type: boolean
+        fieldType:
+          type: string
+        allowedValues:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/LocalisableString'
+    StringStringKeyValuePair:
+      type: object
+      properties:
+        key:
+          type: string
+          readOnly: true
+        value:
+          type: string
+          readOnly: true
+    RecipientFieldDefinitionsResponse:
+      description: "Generic response returned for each request.\n            \n\"message\" - Result from the request.\n\"content\" - Data returned in the response.\n\"errors\" - Issues while processing the request.\n\"warnings\" - Potential issues while processing the request or with the response data.\n\"information\" - Extra details relating to the response data.\n<typeparam name=\"T\">The type of the content.</typeparam>"
+      type: object
+      properties:
+        content:
+          $ref: '#/components/schemas/RecipientFieldDefinitions'
+        message:
+          type: string
+        errors:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        warnings:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+        information:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/Message'
+    RecipientFieldDefinitions:
+      description: "Details for a recipient field definitions\n            \n\"fieldDefinitions\" - List of recipient field definition.\n\"contentReplacements\" -  A list of replacements values that are applicable to this recipient field definition.\n\"errors\" - A list of errors occured when requesting the field definitions.\n\"infos\" - A list of information for field definitions (if there is any)."
+      type: object
+      properties:
+        fieldDefinitions:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/RecipientFieldDefinition'
+        contentReplacements:
+          type: object
+          additionalProperties:
+            type: string
+        errors:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string
+        infos:
+          type: object
+          additionalProperties:
+            type: object
+            additionalProperties:
+              type: string

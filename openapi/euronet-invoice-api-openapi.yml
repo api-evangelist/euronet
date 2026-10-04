@@ -121,133 +121,6 @@ paths:
           description: Error getting invoice.
 components:
   schemas:
-    QuoteSummaryAdapter:
-      description: '"accountId" - ID of the account for the quote.
-
-        "transactionId" - ID of the transaction that received a quote.
-
-        "transactionReference" - Reference for the transaction that received a quote.
-
-        "settlementSummary" - Details for the settlement of the quote.'
-      type: object
-      properties:
-        accountId:
-          format: int32
-          type: integer
-        transactionId:
-          format: int32
-          type: integer
-        transactionReference:
-          type: string
-        settlementSummary:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/QuoteSettlementSummaryAdapter'
-    CurrencyAmountAdapter:
-      description: '"units" - Amount of the currency.
-
-        "currency" - Type of the currency.'
-      type: object
-      properties:
-        units:
-          format: double
-          type: number
-        currency:
-          type: string
-    InvoiceResponse:
-      description: '"status" - Enum value of the status returned from getting the invoice.
-
-        "statusText" - Text value of the status returned from getting the invoice.
-
-        "invoiceData" - If successful, the invoice is returned.'
-      type: object
-      properties:
-        status:
-          format: int32
-          description: '
-
-            0 = Success
-
-            1 = InvoiceNotAvailable
-
-            2 = TransactionNotFound'
-          enum:
-          - 0
-          - 1
-          - 2
-          type: integer
-        statusText:
-          type: string
-          readOnly: true
-        invoiceData:
-          $ref: '#/components/schemas/Invoice'
-    QuoteSettlementSummaryAdapter:
-      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
-
-        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
-
-        "totalFees" - Currency and amount for the total fees of the transfer process.
-
-        "totalNumberOfPayments" - Total number of payments for the transaction.
-
-        "paymentSummary" - Details for the payment of the quote.'
-      type: object
-      properties:
-        settlementCurrency:
-          type: string
-        totalSettlementDue:
-          $ref: '#/components/schemas/CurrencyAmountAdapter'
-        totalFees:
-          $ref: '#/components/schemas/CurrencyAmountAdapter'
-        totalNumberOfPayments:
-          format: int32
-          type: integer
-        paymentSummary:
-          uniqueItems: false
-          type: array
-          items:
-            $ref: '#/components/schemas/QuotePaymentSummaryAdapter'
-    QuotePaymentSummaryAdapter:
-      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
-
-        "paymentCurrency" - Currency used for the payment of the transaction.
-
-        "baseCurrency" - Base currency for the currency pair.
-
-        "settlementAmount" - Amount for the settlement of the transaction.
-
-        "paymentAmount" - Amount for the payment of the transaction.
-
-        "numberOfPayments" - Number of payments in the transaction.
-
-        "quotedRate" - Agreed rate for the currency conversion when it was quoted.
-
-        "fee" - Amount agreed for the transfer process.
-
-        "valueDate" - yyyy-MM-dd: Effective date of the transfer.'
-      type: object
-      properties:
-        settlementCurrency:
-          type: string
-        paymentCurrency:
-          type: string
-        baseCurrency:
-          type: string
-        settlementAmount:
-          $ref: '#/components/schemas/CurrencyAmountAdapter'
-        paymentAmount:
-          $ref: '#/components/schemas/CurrencyAmountAdapter'
-        numberOfPayments:
-          format: int32
-          type: integer
-        quotedRate:
-          format: double
-          type: number
-        fee:
-          $ref: '#/components/schemas/CurrencyAmountAdapter'
-        valueDate:
-          type: string
     Invoice:
       description: '"accountNumber" - Account number the invoice is for.
 
@@ -291,6 +164,89 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/BankAccountAdapter'
+    QuoteSettlementSummaryAdapter:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "totalSettlementDue" - Currency and amount for the settlement of the transaction.
+
+        "totalFees" - Currency and amount for the total fees of the transfer process.
+
+        "totalNumberOfPayments" - Total number of payments for the transaction.
+
+        "paymentSummary" - Details for the payment of the quote.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        totalSettlementDue:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        totalFees:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        totalNumberOfPayments:
+          format: int32
+          type: integer
+        paymentSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuotePaymentSummaryAdapter'
+    CurrencyAmountAdapter:
+      description: '"units" - Amount of the currency.
+
+        "currency" - Type of the currency.'
+      type: object
+      properties:
+        units:
+          format: double
+          type: number
+        currency:
+          type: string
+    QuotePaymentSummaryAdapter:
+      description: '"settlementCurrency" - Currency used for the settlement of the transaction.
+
+        "paymentCurrency" - Currency used for the payment of the transaction.
+
+        "baseCurrency" - Base currency for the currency pair.
+
+        "settlementAmount" - Amount for the settlement of the transaction.
+
+        "paymentAmount" - Amount for the payment of the transaction.
+
+        "numberOfPayments" - Number of payments in the transaction.
+
+        "quotedRate" - Agreed rate for the currency conversion when it was quoted.
+
+        "fee" - Amount agreed for the transfer process.
+
+        "valueDate" - yyyy-MM-dd: Effective date of the transfer.'
+      type: object
+      properties:
+        settlementCurrency:
+          type: string
+        paymentCurrency:
+          type: string
+        baseCurrency:
+          type: string
+        settlementAmount:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        paymentAmount:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        numberOfPayments:
+          format: int32
+          type: integer
+        quotedRate:
+          format: double
+          type: number
+        fee:
+          $ref: '#/components/schemas/CurrencyAmountAdapter'
+        valueDate:
+          type: string
+    BankAdapter:
+      description: '"name" - Name of the bank.'
+      type: object
+      properties:
+        name:
+          type: string
     BankAccountAdapter:
       description: '"currency" - Currency of the bank account.
 
@@ -337,6 +293,29 @@ components:
           type: string
         bank:
           $ref: '#/components/schemas/BankAdapter'
+    QuoteSummaryAdapter:
+      description: '"accountId" - ID of the account for the quote.
+
+        "transactionId" - ID of the transaction that received a quote.
+
+        "transactionReference" - Reference for the transaction that received a quote.
+
+        "settlementSummary" - Details for the settlement of the quote.'
+      type: object
+      properties:
+        accountId:
+          format: int32
+          type: integer
+        transactionId:
+          format: int32
+          type: integer
+        transactionReference:
+          type: string
+        settlementSummary:
+          uniqueItems: false
+          type: array
+          items:
+            $ref: '#/components/schemas/QuoteSettlementSummaryAdapter'
     NameAddressAdapter:
       description: '"accountName" - Name of the account.
 
@@ -350,9 +329,30 @@ components:
           type: array
           items:
             type: string
-    BankAdapter:
-      description: '"name" - Name of the bank.'
+    InvoiceResponse:
+      description: '"status" - Enum value of the status returned from getting the invoice.
+
+        "statusText" - Text value of the status returned from getting the invoice.
+
+        "invoiceData" - If successful, the invoice is returned.'
       type: object
       properties:
-        name:
+        status:
+          format: int32
+          description: '
+
+            0 = Success
+
+            1 = InvoiceNotAvailable
+
+            2 = TransactionNotFound'
+          enum:
+          - 0
+          - 1
+          - 2
+          type: integer
+        statusText:
           type: string
+          readOnly: true
+        invoiceData:
+          $ref: '#/components/schemas/Invoice'

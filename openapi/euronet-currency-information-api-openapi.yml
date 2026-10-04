@@ -140,16 +140,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    CurrencyInfoResponse:
-      properties:
-        terms:
-          type: string
-        privacy:
-          type: string
-        currencies:
-          type: array
-          items:
-            $ref: '#/components/schemas/CurrencyInfo'
     CurrencyInfo:
       properties:
         iso:
@@ -164,6 +154,16 @@ components:
           type: string
         currency_symbol_on_right:
           type: boolean
+    CurrencyInfoResponse:
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/CurrencyInfo'
     ErrorResponse:
       properties:
         code:
