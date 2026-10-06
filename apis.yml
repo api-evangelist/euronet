@@ -57,7 +57,7 @@ tags:
 - Acquiring
 - Cross-Border Payments
 created: '2026-07-24'
-modified: '2026-07-24'
+modified: '2026-10-06'
 specificationVersion: '0.23'
 apis:
 - aid: euronet:dandelion-cross-border-payments-api
@@ -743,6 +743,8 @@ apis:
   - type: APIReference
     url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
 common:
+- url: https://www.euronet.com/feed/
+  type: BlogRSS
 - type: AgentSkill
   url: skills/euronet-cross-border-payment.md
 - type: AgenticAccess
