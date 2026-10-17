@@ -366,6 +366,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     Rate:
       properties:
         quotecurrency:
@@ -393,14 +401,6 @@ components:
         mid:
           type: number
         timestamp:
-          type: string
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
           type: string
     HistoricRatePeriodResponse:
       properties:

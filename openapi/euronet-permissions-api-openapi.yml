@@ -39,6 +39,12 @@ paths:
           description: Error getting permissions.
 components:
   schemas:
+    Permission:
+      description: '"name" - Permission name.'
+      type: object
+      properties:
+        name:
+          type: string
     PermissionResponse:
       description: '"status" - Enum value of the status returned from getting the account''s permissions.
 
@@ -78,9 +84,3 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Permission'
-    Permission:
-      description: '"name" - Permission name.'
-      type: object
-      properties:
-        name:
-          type: string

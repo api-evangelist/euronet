@@ -140,6 +140,14 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ErrorResponse:
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentationUrl:
+          type: string
     CurrencyInfo:
       properties:
         iso:
@@ -164,14 +172,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CurrencyInfo'
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
   securitySchemes:
     basicAuth:
       type: http
