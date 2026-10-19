@@ -173,34 +173,6 @@ apis:
     url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
   - type: APIReference
     url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
-- aid: euronet:euronet-conversions-api
-  name: Euronet Worldwide Conversions API
-  description: The Conversions API from Euronet Worldwide — 2 operation(s) for conversions.
-  humanURL: https://xecdapi.xe.com/docs/v1/
-  baseURL: https://xecdapi.xe.com/v1
-  tags:
-  - Conversion
-  tags_raw:
-  - Conversions
-  properties:
-  - type: OpenAPI
-    url: openapi/euronet-conversions-api-openapi.yml
-  - type: Documentation
-    url: https://xecdapi.xe.com/docs/v1/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
-  - type: Signup
-    url: https://xecd.xe.com/account/signup.php?freetrial
-  - type: Documentation
-    url: https://www.xe.com/platform/payments-api/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
 - aid: euronet:euronet-currency-information-api
   name: Euronet Worldwide Currency Information API
   description: >-
@@ -282,32 +254,6 @@ apis:
     url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
   - type: APIReference
     url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
-- aid: euronet:euronet-historic-rates-api
-  name: Euronet Worldwide Historic Rates API
-  description: The Historic Rates API from Euronet Worldwide — 2 operation(s) for historic rates.
-  humanURL: https://xecdapi.xe.com/docs/v1/
-  baseURL: https://xecdapi.xe.com/v1
-  tags:
-  - Historic Rates
-  properties:
-  - type: OpenAPI
-    url: openapi/euronet-historic-rates-api-openapi.yml
-  - type: Documentation
-    url: https://xecdapi.xe.com/docs/v1/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
-  - type: Signup
-    url: https://xecd.xe.com/account/signup.php?freetrial
-  - type: Documentation
-    url: https://www.xe.com/platform/payments-api/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
 - aid: euronet:euronet-invitation-api
   name: Euronet Worldwide Invitation API
   description: The Invitation API from Euronet Worldwide — 2 operation(s) for invitation.
@@ -346,32 +292,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/euronet-invoice-api-openapi.yml
-  - type: Documentation
-    url: https://xecdapi.xe.com/docs/v1/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
-  - type: Signup
-    url: https://xecd.xe.com/account/signup.php?freetrial
-  - type: Documentation
-    url: https://www.xe.com/platform/payments-api/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
-- aid: euronet:euronet-monthly-averages-api
-  name: Euronet Worldwide Monthly Averages API
-  description: The Monthly Averages API from Euronet Worldwide — 1 operation(s) for monthly averages.
-  humanURL: https://xecdapi.xe.com/docs/v1/
-  baseURL: https://xecdapi.xe.com/v1
-  tags:
-  - Monthly Averages
-  properties:
-  - type: OpenAPI
-    url: openapi/euronet-monthly-averages-api-openapi.yml
   - type: Documentation
     url: https://xecdapi.xe.com/docs/v1/
   - type: APIReference
@@ -530,32 +450,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/euronet-recipient-api-openapi.yml
-  - type: Documentation
-    url: https://xecdapi.xe.com/docs/v1/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
-  - type: Signup
-    url: https://xecd.xe.com/account/signup.php?freetrial
-  - type: Documentation
-    url: https://www.xe.com/platform/payments-api/
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
-  - type: APIReference
-    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
-- aid: euronet:euronet-stats-api
-  name: Euronet Worldwide Stats API
-  description: The Stats API from Euronet Worldwide — 1 operation(s) for stats.
-  humanURL: https://xecdapi.xe.com/docs/v1/
-  baseURL: https://xecdapi.xe.com/v1
-  tags:
-  - Stats
-  properties:
-  - type: OpenAPI
-    url: openapi/euronet-stats-api-openapi.yml
   - type: Documentation
     url: https://xecdapi.xe.com/docs/v1/
   - type: APIReference
@@ -738,6 +632,115 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/euronet-xeta-api-openapi.yml
+  - type: Documentation
+    url: https://xecdapi.xe.com/docs/v1/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
+  - type: Signup
+    url: https://xecd.xe.com/account/signup.php?freetrial
+  - type: Documentation
+    url: https://www.xe.com/platform/payments-api/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
+- aid: euronet:euronet-alternative-source-exchange-rates-api
+  name: Euronet Worldwide Alternative Source Exchange Rates API
+  description: >-
+    The Alternative Source Exchange Rates API from Euronet Worldwide — 1 operation(s) for alternative
+    source exchange rates.
+  humanURL: https://public.dandelionpayments.com/
+  baseURL: https://xecdapi.xe.com/v1
+  tags:
+  - Alternative Source Exchange Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/euronet-alternative-source-exchange-rates-api-openapi.yml
+  - type: Documentation
+    url: https://xecdapi.xe.com/docs/v1/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
+  - type: Signup
+    url: https://xecd.xe.com/account/signup.php?freetrial
+  - type: Documentation
+    url: https://www.xe.com/platform/payments-api/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
+- aid: euronet:euronet-bid-ask-rates-beta-api
+  name: Euronet Worldwide Bid & Ask Rates (Beta) API
+  description: >-
+    The Bid & Ask Rates (Beta) API from Euronet Worldwide — 1 operation(s) for bid & ask rates (beta).
+  humanURL: https://public.dandelionpayments.com/
+  baseURL: https://xecdapi.xe.com/v1
+  tags:
+  - Bid & Ask Rates (Beta)
+  properties:
+  - type: OpenAPI
+    url: openapi/euronet-bid-ask-rates-beta-api-openapi.yml
+  - type: Documentation
+    url: https://xecdapi.xe.com/docs/v1/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
+  - type: Signup
+    url: https://xecd.xe.com/account/signup.php?freetrial
+  - type: Documentation
+    url: https://www.xe.com/platform/payments-api/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
+- aid: euronet:euronet-central-bank-exchange-rates-api
+  name: Euronet Worldwide Central Bank Exchange Rates API
+  description: >-
+    The Central Bank Exchange Rates API from Euronet Worldwide — 1 operation(s) for central bank exchange
+    rates.
+  humanURL: https://public.dandelionpayments.com/
+  baseURL: https://xecdapi.xe.com/v1
+  tags:
+  - Central Bank Exchange Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/euronet-central-bank-exchange-rates-api-openapi.yml
+  - type: Documentation
+    url: https://xecdapi.xe.com/docs/v1/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi/1.0.2
+  - type: Signup
+    url: https://xecd.xe.com/account/signup.php?freetrial
+  - type: Documentation
+    url: https://www.xe.com/platform/payments-api/
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_payments/1.3.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xe-api_mass_payments/0.4.1
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xecdapi-tradable/1.0.0
+  - type: APIReference
+    url: https://app.swaggerhub.com/apis/XE.com/xeta/v1.0.0
+- aid: euronet:euronet-mid-market-rates-api
+  name: Euronet Worldwide Mid-market Rates API
+  description: The Mid-market Rates API from Euronet Worldwide — 6 operation(s) for mid-market rates.
+  humanURL: https://public.dandelionpayments.com/
+  baseURL: https://xecdapi.xe.com/v1
+  tags:
+  - Mid-market Rates
+  properties:
+  - type: OpenAPI
+    url: openapi/euronet-mid-market-rates-api-openapi.yml
   - type: Documentation
     url: https://xecdapi.xe.com/docs/v1/
   - type: APIReference

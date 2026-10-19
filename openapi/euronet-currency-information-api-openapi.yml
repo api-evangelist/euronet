@@ -1,19 +1,20 @@
 openapi: 3.2.0
 info:
-  version: 1.0.2
-  title: XE Currency Data Currency Information API
-  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+  title: Xe Currency Data Currency Information API
+  description: 'Xe Currency Data - Integrate your application with our globally trusted currency data.
 
 
     Get your free API credentials for 7 days here'
+  version: '1.0'
 servers:
-- url: https://xecdapi.xe.com/v1
+- url: https://xecdapi.xe.com
 security:
+- bearerAuth: []
 - basicAuth: []
 tags:
 - name: Currency Information
 paths:
-  /currencies:
+  /v1/currencies:
     get:
       tags:
       - Currency Information
@@ -25,31 +26,130 @@ paths:
       parameters:
       - name: iso
         in: query
-        description: "OPTIONAL – Comma separated list of ISO 4217 codes. This will limit the data returned to only those currencies that are specified. If this parameter is omitted, this endpoint will return results for all currencies. \n\n It is a prefix match; you can provide it with one, two, or three characters and it will return a list of all the currencies with ISO 4217 codes that match. \n\n A list of acceptable ISO 4217 currency codes can be found here:http://www.xe.com/iso4217.php"
-        required: false
+        description: 'OPTIONAL – Comma separated list of ISO 4217 codes. This will limit the data returned to only those currencies that are specified. If this parameter is omitted, this endpoint will return results for all currencies.</br></br> It is a prefix match; you can provide it with one, two, or three characters and it will return a list of all the currencies with ISO 4217 codes that match.</br></br> A list of acceptable ISO 4217 currency codes can be found here: http://www.xe.com/iso4217.php'
         schema:
           type: string
       - name: obsolete
         in: query
         description: OPTIONAL – If 'true' then endpoint will display currencies that are obsolete but for which historical data is available
-        required: false
         schema:
           type: boolean
       - name: language
         in: query
-        description: 'OPTIONAL – Default is en. Specified as an RFC-1766-compliant language tag.
-
-
-          Languages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK.'
-        required: false
+        description: 'OPTIONAL – Default is en. Specified as an RFC-1766-compliant language tag.</br></br>Languages available: ar, de, en, es, fr, it, ja, pt, sv, zh-CN, zh-HK.'
         schema:
           type: string
       - name: additionalInfo
         in: query
         description: OPTIONAL - If 'symbol' then returns 'currency_symbol' and 'currency_symbol_on_right' in response
-        required: false
         schema:
           type: string
+      - name: crypto
+        in: query
+        description: 'OPTIONAL – If ''true'' then this endpoint will return data for the following crypto currencies: ADA, ARB, AVAX, BCH, BNB, BTC, DAI, DOGE, DOT, ETH, EURC, LINK, LTC, LUNA, POL, SOL, TRX, UNI, USDC, USDP, USDT, XLM and XRP.'
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CurrencyInfoResponse'
+              example:
+                terms: https://www.xe.com/legal
+                privacy: https://www.xe.com/privacy
+                currencies:
+                - iso: EUR
+                  currency_name: Euro
+                  is_obsolete: false
+                  currency_symbol: €
+                  currency_symbol_on_right: false
+                - iso: USD
+                  currency_name: US Dollar
+                  is_obsolete: false
+                  currency_symbol: $
+                  currency_symbol_on_right: false
+        '304':
+          description: Not Modified
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      operationId: getV1Currencies
+      x-operation-id-source: derived
+  /v2/currencies:
+    get:
+      tags:
+      - Currency Information
+      summary: Access currency lifecycle metadata
+      description: 'This endpoint returns lifecycle metadata for every currency the API carries - when the currency was introduced and withdrawn, the first and last date rates are available for it, the currency that replaced it, the peg used to convert between the two, and whether the code belongs to ISO 4217.
+
+
+        Use it to map a date to the correct code before requesting a rate.
+
+
+        This endpoint takes no parameters, and always includes obsolete currencies - unlike /v1/currencies, it needs no obsolete parameter.
+
+
+        Also available as XML and CSV by appending .xml or .csv to the path.
+
+
+        A peg exists to keep a long series continuous across a currency transition. Values derived from one are arithmetic, not observed market rates.'
       responses:
         '200':
           description: OK
@@ -60,15 +160,6 @@ paths:
             Last-Modified:
               schema:
                 type: string
-            X-RateRequest-Limit:
-              schema:
-                type: number
-            X-RateRequest-Remaining:
-              schema:
-                type: number
-            X-RateRequest-Reset:
-              schema:
-                type: number
             X-RateLimit-Limit:
               schema:
                 type: number
@@ -81,7 +172,35 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CurrencyInfoResponse'
+                $ref: '#/components/schemas/V2CurrencyInfoResponse'
+              example:
+                terms: https://www.xe.com/legal
+                privacy: https://www.xe.com/privacy
+                currencies:
+                - currency_code: ADA
+                  currency_name: Cardano
+                  is_iso_4217: false
+                  asset_class: crypto
+                  status: active
+                  rates_from: '2021-03-19'
+                  currency_symbol: ₳
+                  currency_symbol_on_right: false
+                - currency_code: AED
+                  currency_name: Emirati Dirham
+                  is_iso_4217: true
+                  asset_class: fiat
+                  status: active
+                  rates_from: '1998-11-30'
+                  peg:
+                    type: hard_peg
+                    from:
+                      amount: 3.6725
+                      currency: AED
+                    to:
+                      amount: 1
+                      currency: USD
+                  currency_symbol: د.إ
+                  currency_symbol_on_right: false
         '304':
           description: Not Modified
           headers:
@@ -91,15 +210,6 @@ paths:
             Last-Modified:
               schema:
                 type: string
-            X-RateRequest-Limit:
-              schema:
-                type: number
-            X-RateRequest-Remaining:
-              schema:
-                type: number
-            X-RateRequest-Reset:
-              schema:
-                type: number
             X-RateLimit-Limit:
               schema:
                 type: number
@@ -109,46 +219,58 @@ paths:
             X-RateLimit-Reset:
               schema:
                 type: number
-          content:
-            application/json:
-              schema: {}
         '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/Forbidden'
         '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/TooManyRequests'
         '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      operationId: getCurrencies
+          $ref: '#/components/responses/InternalServerError'
+      operationId: getV2Currencies
       x-operation-id-source: derived
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 1
+            message: Bad credentials
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    TooManyRequests:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 4
+            message: Current interval rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 3
+            message: Monthly rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: An unexpected error occurred
   schemas:
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
     CurrencyInfo:
+      type: object
       properties:
         iso:
           type: string
@@ -156,13 +278,73 @@ components:
           type: string
         is_obsolete:
           type: boolean
-        superseded_by:
+        superceded_by:
           type: string
         currency_symbol:
           type: string
         currency_symbol_on_right:
           type: boolean
+    V2CurrencyPeg:
+      type: object
+      description: Fixed conversion between this currency and its successor. A value produced by applying a peg is continuity only, not an observed market rate.
+      properties:
+        type:
+          type: string
+          description: redenomination for a rescaling of the same currency, hard_peg for a fixed rate against a different one.
+        from:
+          $ref: '#/components/schemas/V2CurrencyPegSide'
+        to:
+          $ref: '#/components/schemas/V2CurrencyPegSide'
+    V2CurrencyInfo:
+      type: object
+      description: Optional members are absent where they do not apply - an active currency carries no withdrawn_on, rates_until or successor, and only a redenominated or pegged currency carries a peg.
+      properties:
+        currency_code:
+          type: string
+          description: ISO 4217 code, or an Xe extension where is_iso_4217 is false.
+        currency_name:
+          type: string
+        is_iso_4217:
+          type: boolean
+          description: False for the Xe extensions - the offshore code CNH and the cryptocurrencies. Precious metals, XDR and XEU are ISO 4217 codes, so filtering on this flag keeps them.
+        asset_class:
+          type: string
+          description: 'One of: fiat, crypto, metal, basket, inflation_indexed.'
+        status:
+          type: string
+          description: 'One of: active, obsolete.'
+        introduced_on:
+          type: string
+          format: date
+          description: Date the currency entered circulation.
+        withdrawn_on:
+          type: string
+          format: date
+          description: Date the currency left circulation.
+        rates_from:
+          type: string
+          format: date
+          description: First date a rate is available. This can precede introduced_on where the series continues a predecessor currency - euro coverage starts in 1995 because it continues the ECU. Reading that earlier span requires obsolete=true.
+        rates_until:
+          type: string
+          format: date
+          description: Last date a rate is available.
+        replaces:
+          type: array
+          description: Codes this currency replaced.
+          items:
+            type: string
+        successor:
+          type: string
+          description: Code that replaced this currency.
+        peg:
+          $ref: '#/components/schemas/V2CurrencyPeg'
+        currency_symbol:
+          type: string
+        currency_symbol_on_right:
+          type: boolean
     CurrencyInfoResponse:
+      type: object
       properties:
         terms:
           type: string
@@ -172,7 +354,38 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CurrencyInfo'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentation_url:
+          type: string
+    V2CurrencyInfoResponse:
+      type: object
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        currencies:
+          type: array
+          items:
+            $ref: '#/components/schemas/V2CurrencyInfo'
+    V2CurrencyPegSide:
+      type: object
+      properties:
+        amount:
+          type: number
+        currency:
+          type: string
   securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key created on your Xe Currency Data account's API page, sent as a Bearer token in the Authorization header.
     basicAuth:
       type: http
       scheme: basic

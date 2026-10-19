@@ -1,0 +1,259 @@
+openapi: 3.2.0
+info:
+  title: Xe Currency Data Bid & Ask Rates (Beta) API
+  description: 'Xe Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
+  version: '1.0'
+servers:
+- url: https://xecdapi.xe.com
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Bid & Ask Rates (Beta)
+paths:
+  /v1/bid_ask:
+    get:
+      tags:
+      - Bid & Ask Rates (Beta)
+      summary: Convert from one base currency to one or multiple counter currencies
+      description: 'This feature is in beta. Access and functionality may evolve. If you’d like to participate, please sign up for our free trial.
+
+
+        This endpoint provides indicative spot bid-ask pricing, updated every 10 seconds and sourced
+
+        from aggregated institutional liquidity. Data is informational only and may contain inaccuracies
+
+        during the beta phase.
+
+
+        Endpoint Example
+
+
+        https://xecdapi.xe.com/v1/bid_ask?from=GBP&to=EUR,USD
+
+
+        Supported Currencies
+
+
+        The Bid & Ask (Beta) endpoint supports the following currencies: AUD, BRL, CAD, CHF, CNH, DKK, EUR, GBP, JPY, NOK, NZD, PLN, SEK, USD
+
+
+        Any pair can be requested in either direction (as from or to), with the following exceptions involving CNH (offshore Chinese yuan):
+
+
+        CNH is not available with BRL, DKK, or PLN in either direction.
+
+
+        CNH is supported only as the target currency for NOK and SEK:
+
+        from=NOK&to=CNH and from=SEK&to=CNH are available,
+
+        but from=CNH&to=NOK and from=CNH&to=SEK are not.
+
+
+        The rates provided are indicative spot bid-ask prices derived from aggregated institutional
+
+        liquidity sources and refreshed every 10 seconds. As this feature is in beta, behaviour and
+
+        coverage may change, and occasional inaccuracies or inconsistencies may occur. These rates are
+
+        intended for informational use only and should not be relied upon for financial reporting or
+
+        decision-making.'
+      parameters:
+      - name: from
+        in: query
+        description: Currency to convert from (ISO code).
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: Comma separated list of currencies to convert to (ISO codes).
+        required: true
+        schema:
+          type: string
+      - name: decimal_places
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example 1 USD to EUR = 0.874852 with decimal_places=3, the output returned will be EUR = 0.875
+        schema:
+          type: number
+      responses:
+        '200':
+          description: Successful retrieval of bid/ask rates
+          headers:
+            X-Request-Id:
+              description: Unique request identifier
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              description: Total requests allowed in current window
+              schema:
+                type: integer
+            X-RateLimit-Remaining:
+              description: Requests remaining in current window
+              schema:
+                type: integer
+            X-RateLimit-Reset:
+              description: Unix timestamp when rate limit resets
+              schema:
+                type: integer
+            X-RateRequest-Limit:
+              description: Total rate requests allowed
+              schema:
+                type: integer
+            X-RateRequest-Remaining:
+              description: Remaining rate requests
+              schema:
+                type: integer
+            X-RateRequest-Reset:
+              description: Unix timestamp when rate request quota resets
+              schema:
+                type: integer
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidAskResponse'
+              example:
+                terms: https://www.xe.com/legal
+                privacy: https://www.xe.com/privacy
+                rates:
+                - timestamp: '2026-09-24T14:25:21'
+                  from: GBP
+                  to: EUR
+                  bid: 1.162301856
+                  ask: 1.1624282679
+                - timestamp: '2026-09-24T14:25:21'
+                  from: GBP
+                  to: USD
+                  bid: 1.3220781505
+                  ask: 1.3222372129
+        '400':
+          description: Invalid request parameters or BidAskException. May include field-specific validation errors.
+          content:
+            application/json:
+              schema:
+                allOf:
+                - $ref: '#/components/schemas/BidAskErrorResponse'
+                - type: object
+                  properties:
+                    fieldErrors:
+                      type: object
+                      additionalProperties:
+                        type: string
+                      description: Map of field names to validation error messages (present only for validation errors)
+              example:
+                code: 17
+                message: Invalid request parameters
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+                fieldErrors:
+                  to: Currency must be one of AUD, BRL, CAD, CHF, CNH, DKK, EUR, GBP, JPY, NOK, NZD, PLN, SEK, USD
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidAskErrorResponse'
+              example:
+                code: 1
+                message: Bad credentials
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidAskErrorResponse'
+              example:
+                code: 3
+                message: Monthly rate limit exceeded.
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidAskErrorResponse'
+              example:
+                code: 0
+                message: No static resource direct/v1/bid-ask
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '429':
+          description: Too Many Requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BidAskErrorResponse'
+              example:
+                code: 4
+                message: Current interval rate limit exceeded.
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '500':
+          description: Internal Server Error
+          content:
+            text/plain:
+              schema:
+                type: string
+              example: An unexpected error occurred
+      operationId: getV1BidAsk
+      x-operation-id-source: derived
+components:
+  schemas:
+    BidAskErrorResponse:
+      type: object
+      properties:
+        code:
+          type: integer
+          description: Error code
+        message:
+          type: string
+          description: Error message describing the issue
+        documentation_url:
+          type: string
+          description: Link to API documentation
+        fieldErrors:
+          type: object
+          additionalProperties:
+            type: string
+          description: Per-field validation messages, when present
+    BidAskRate:
+      type: object
+      properties:
+        from:
+          type: string
+          description: base currency ISO code
+        to:
+          type: string
+          description: quote currency ISO code
+        bid:
+          type: number
+          description: bid price
+        ask:
+          type: number
+          description: ask price
+        timestamp:
+          type: string
+          format: date-time
+          description: The time the rate was valid for.
+    BidAskResponse:
+      type: object
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/BidAskRate'
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key created on your Xe Currency Data account's API page, sent as a Bearer token in the Authorization header.
+    basicAuth:
+      type: http
+      scheme: basic

@@ -1,87 +1,112 @@
 openapi: 3.2.0
 info:
-  version: 1.0.2
-  title: XE Currency Data Account Information API
-  description: 'XE Currency Data - Integrate your application with our globally trusted currency data.
+  title: Xe Currency Data Account Information API
+  description: 'Xe Currency Data - Integrate your application with our globally trusted currency data.
 
 
     Get your free API credentials for 7 days here'
+  version: '1.0'
 servers:
-- url: https://xecdapi.xe.com/v1
+- url: https://xecdapi.xe.com
 security:
+- bearerAuth: []
 - basicAuth: []
 tags:
 - name: Account Information
 paths:
-  /account_info:
+  /v1/account_info:
     get:
       tags:
       - Account Information
       summary: This endpoint will return basic information for a specific account
-      description: Requires Headers "username" and "password"
+      description: Requires authentication over HTTPS with either an API key sent as a Bearer token or Basic authentication (Username and Password).
       responses:
         '200':
           description: Success
           headers:
-            X-RateRequest-Limit:
-              schema:
-                type: number
             X-RateRequest-Remaining:
-              schema:
-                type: number
-            X-RateRequest-Reset:
-              schema:
-                type: number
-            X-RateLimit-Limit:
               schema:
                 type: number
             X-RateLimit-Remaining:
               schema:
                 type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
             X-RateLimit-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
               schema:
                 type: number
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/AccountInfoResponse'
+              example:
+                id: 00000000-0000-0000-0000-000000000000
+                organization: Example Organization
+                package: EXAMPLE_PACKAGE
+                service_start_timestamp: '2026-01-15T00:00:00Z'
+                package_limit_duration: MONTHLY
+                package_limit: 10000
+                package_limit_remaining: 8342
+                package_limit_reset: '2026-09-01T00:00:00Z'
         '401':
-          description: Unauthorized
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/Unauthorized'
         '403':
-          description: Forbidden
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/Forbidden'
         '429':
-          description: Too Many Requests
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
+          $ref: '#/components/responses/TooManyRequests'
         '500':
-          description: Internal Server Error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ErrorResponse'
-      operationId: getAccountInfo
+          $ref: '#/components/responses/InternalServerError'
+      operationId: getV1AccountInfo
       x-operation-id-source: derived
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 1
+            message: Bad credentials
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    TooManyRequests:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 4
+            message: Current interval rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 3
+            message: Monthly rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: An unexpected error occurred
   schemas:
-    ErrorResponse:
-      properties:
-        code:
-          type: number
-        message:
-          type: string
-        documentationUrl:
-          type: string
     AccountInfoResponse:
+      type: object
       properties:
         id:
           type: string
@@ -99,7 +124,20 @@ components:
           type: number
         package_limit_reset:
           type: string
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentation_url:
+          type: string
   securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key created on your Xe Currency Data account's API page, sent as a Bearer token in the Authorization header.
     basicAuth:
       type: http
       scheme: basic

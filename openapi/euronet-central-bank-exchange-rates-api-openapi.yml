@@ -1,0 +1,298 @@
+openapi: 3.2.0
+info:
+  title: Xe Currency Data Central Bank Exchange Rates API
+  description: 'Xe Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
+  version: '1.0'
+servers:
+- url: https://xecdapi.xe.com
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Central Bank Exchange Rates
+paths:
+  /v1/central_bank_rate:
+    get:
+      tags:
+      - Central Bank Exchange Rates
+      summary: Central bank exchange rates from currency of central bank to one or multiple…
+      description: 'In the example below, the endpoint converts from CAD to all available currencies for the Bank of Canada (the asterisk * represents ALL currencies).
+
+        https://xecdapi.xe.com/v1/central_bank_rate.csv/?central_bank=CAN&to=*&amount=1
+
+
+        Note on Central Bank Data Coverage: Some Central Banks may experience temporary data gaps due to source website changes or access restrictions. For these banks, we continue to provide historical data and are working to restore full coverage.'
+      parameters:
+      - name: central_bank
+        in: query
+        description: "REQUIRED – Three letter codes representing the specific central bank you are querying for. The time(s) specified below highlights the time rates published by each respective central bank updates within the API service.</br>\n| Code | Country | Name | Posts | Available at (UTC) | Effective for | Bid/Ask\n|:---: |:---: |:---: |:---: |:---: |:---: |:---: |\n| AFG | Afghanistan | The Afghanistan Bank | Daily | 13:00 | Same day | ✓\n| AGO | Angola | National Bank of Angola | Daily | 14:00 | Same day | \n| ALB | Albania | Bank of Albania | Daily | 13:00 | Same day | ✓\n| ALBB | Albania | Bank of Albania (Bi-Weekly) | Monthly | Mid and End of Month | Previous Week | \n| ARM | Armenia | Central Bank of Armenia | Daily | 13:00 | Same day | \n| AUS | Australia | Reserve Bank of Australia | Daily | 08:00 | Same day | \n| AZE | Azerbaijan | The Central Bank of the Republic of Azerbaijan | Daily | 07:00 | Same day | \n| BEAC | Central African States | [The Bank Of Central African States (Banque des États de l'Afrique Centrale)](https://en.wikipedia.org/wiki/Bank_of_Central_African_States) | Daily | 09:00 | Same day | ✓\n| BGD | Bangladesh | Central Bank of Bangladesh | Daily | 06:00 | Same day | ✓\n| BGR | Bulgaria | Bulgarian National Bank | Daily | 17:00 | Same day | \n| BHR | Bahrain | Central Bank of Bahrain | Daily | 05:00 | Same day | \n| BHS | Bahamas | Central Bank of The Bahamas | Daily | 06:00 | Same day | ✓\n| BIH | Bosnia and Herzegovina | The Central Bank of Bosnia and Herzegovina | Daily | 02:00 | Same day | ✓\n| BLZ | Belize | Central Bank of Belize | Daily | 17:00 | Same day | ✓\n| BOL | Bolivia | Central Bank of Bolivia | Daily | 22:00 | Same day | \n| BRA | Brazil | Central Bank of Brazil | Daily | 18:00 | Same day | ✓\n| CAN | Canada | Bank of Canada | Daily | 23:00 | Same day | \n| CAR | Eastern Caribbean States | [Eastern Caribbean Central Bank](https://en.wikipedia.org/wiki/Eastern_Caribbean_Central_Bank) | Daily | 13:00 | Same day | \n| CHE | Switzerland | Swiss National Bank | Daily | 13:00 | Same day | \n| CHL | Chile | Central Bank of Chile | Daily | 04:00 | Same day | \n| CHN | China | China Foreign Exchange Trade System | Hourly | Hourly | Same day | ✓\n| COL | Colombia | Bank of the Colombian Republic (Banco de la República) | Daily | 17:00 | Same day | ✓\n| CRI | Costa Rica | Central Bank of Costa Rica (Banco Central de Costa Rica) | Daily | 01:00 | Same day | ✓\n| CZE | Czechia | Czech National Bank | Daily | 15:00 | Same day | \n| DNK | Denmark | National Bank of Denmark (Danmarks Nationalbank) | Daily | 16:00 | Same day | \n| DOM | Dominican Republic | Central Bank of the Dominican Republic (Banco Central de la República Dominicana) | Daily | 22:00 | Same day | \n| DZA | Algeria | Bank of Algeria (Last seen 2026-09-16) | Daily |  | Same day | ✓\n| ECB | European Union | [European Central Bank](https://en.wikipedia.org/wiki/European_Central_Bank) | Daily | 16:00 | Same day | \n| EGY | Egypt | Central Bank of Egypt | Daily | 14:00 | Same day | ✓\n| FJI | Fiji | Reserve Bank of Fiji | Daily | 22:00 | Same day | \n| GBR | United Kingdom of Great Britain and Northern Ireland | Bank of England | Daily | 11:00 | Same day | \n| GEO | Georgia | National Bank of Georgia | Daily | 14:00 | Same day | \n| GHA | Ghana | Bank of Ghana | Daily | 18:00 | Same day | ✓\n| GTM | Guatemala | Bank of Guatemala | Daily | 16:00 | Same day | ✓\n| GUY | Guyana | Bank of Guyana | Daily | 17:00 | Same day | ✓\n| HKG | Hong Kong | Hong Kong Monetary Authority | Daily | 01:00 | Same day | ✓\n| HND | Honduras | Central Bank of Honduras | Daily | 01:00 | Same day | ✓\n| HUN | Hungary | Hungarian National Bank (Magyar Nemzeti Bank) | Daily | 12:00 | Same day | \n| IDN | Indonesia | Bank Indonesia | Daily | 02:00 | Same day | ✓\n| IND | India | Reserve Bank of India | Daily | 09:00 | Same day | \n| IRQ | Iraq | Central Bank of Iraq | Daily | 08:00 | Same day | \n| ISL | Iceland | Central Bank of Iceland | Daily | 17:00 | Same day | \n| ISR | Israel | Bank of Israel | Daily | 00:00 | Same day | \n| JAM | Jamaica | Bank of Jamaica | Daily | 18:00 | Same day | ✓\n| JPN | Japan | Bank of Japan | Daily | 09:00 | Same day | ✓\n| KAZ | Kazakhstan | National Bank of Kazakhstan | Daily | 16:00 | Same day | \n| KEN | Kenya | Central Bank of Kenya | Daily | 08:00 | Same day | \n| KOR | Korea | Seoul Money Brokerage Services | Daily | 01:00 | Same day | \n| LAO | Lao People's Democratic Republic | Bank of the Lao P.D.R | Daily | 03:00 | Same day | ✓\n| LBN | Lebanon | Bank of Lebanon (Banque du Liban) (Last seen 2024-10-21) | Every 6 weeks |  | Same day | \n| LKA | Sri Lanka | The Central Bank of Sri Lanka | Daily | 04:00 | Same day | \n| MAR | Morocco | Central Bank of the Kingdom of Morocco (Bank Al-Maghrib) | Daily | 17:00 | Same day | \n| MDA | Moldova | National Bank of Moldova | Daily | 02:00 | Same day | \n| MEX | Mexico | Bank of Mexico | Daily | 20:00 | Same day | \n| MEXM | Mexico | Bank of Mexico (Monthly) | Monthly | End of Month | Same Month | \n| MMR | Myanmar | Central Bank of Myanmar | Daily | 14:00 | Same day | \n| MNG | Mongolia | Central Bank of Mongolia | Daily | 11:00 | Same day | \n| MOZ | Mozambique | Bank of Mozambique (Banco de Moçambique) | Daily | 14:00 | Same day | ✓\n| MRT | Mauritania | Central Bank of Mauritania (Banque Centrale de Mauritanie) | Weekly | 13:00 | Same day | \n| MYS | Malaysia | Bank Negara Malaysia | Daily | 10:00 | Same day | ✓\n| NAM | Namibia | Bank of Namibia | Daily | 08:00 | Same day | \n| NGA | Nigeria | Central Bank of Nigeria | Daily | 18:00 | Previous Day | ✓\n| NIC | Nicaragua | Central Bank of Nicaragua (Banco Central De Nicaragua) | Daily | 16:00 | Same day | ✓\n| NOR | Norway | Central Bank of Norway (Norges Bank) | Daily | 16:00 | Same day | \n| NZL | New Zealand | Reserve Bank of New Zealand | Daily | 03:00 | Same day | \n| OMN | Oman | Central Bank of Oman | Daily | 07:00 | Same day | ✓\n| PAK | Pakistan | State Bank of Pakistan | Daily | 12:00 | Same day | \n| PER | Peru | Central Reserve Bank of Peru (Banco Central de Reserva del Perú) | Daily | 20:00 | Previous Day | ✓\n| PHL | Philippines | Central Bank of the Philippines (Bangko Sentral ng Pilipinas) | Daily | 02:00 | Same day | \n| PNG | Papua New Guinea | Bank of Papua New Guinea (Last seen 2025-10-23) | Daily |  | Same day | \n| POL | Poland | National Bank of Poland | Daily | 12:00 | Same day | \n| POLW | Poland | National Bank of Poland (Table B) | Weekly | Wednesday | Same Week | \n| PRY | Paraguay | Central Bank of Paraguay (Last seen 2025-05-26) | Daily |  | Same day | \n| QAT | Qatar | Qatar Central Bank | Daily | 09:00 | Same day | \n| ROU | Romania | National Bank of Romania | Daily | 12:00 | Same day | \n| RUS | Russian Federation | Central Bank of the Russian Federation | Daily | 16:00 | Previous Day | \n| SAU | Saudi Arabia | Saudi Central Bank | Daily | 22:00 | Same day | \n| SGP | Singapore | Monetary Authority of Singapore | Daily | 10:00 | Same day | \n| SRB | Serbia | National Bank of Serbia | Daily | 08:00 | Same day | ✓\n| SSD | South Sudan | Bank of South Sudan (Last seen 2025-11-12) | Daily |  | Same day | ✓\n| SVN | Slovenia | Bank of Slovenia | Daily | 16:00 | Same day | \n| SWE | Sweden | Sweden's Central Bank (Sveriges Riksbank) | Daily | 17:00 | Same day | \n| SYC | Seychelles | Central Bank of Seychelles | Daily | 14:00 | Same day | ✓\n| SYR | Syrian Arab Republic | Central Bank of Syria (Last seen 2025-02-05) | Daily |  | Same day | ✓\n| THA | Thailand | Bank of Thailand | Daily | 12:00 | Same day | ✓\n| TJK | Tajikistan | National Bank of Tajikistan | Daily | 13:00 | Same day | \n| TKM | Turkmenistan | Central Bank of Turkmenistan | Daily | 13:00 | Same day | \n| TUN | Tunisia | Central Bank of Tunisia | Daily | 10:00 | Same day | \n| TUR | Turkey | Central Bank of the Republic of Turkey | Daily | 13:00 | Same day | ✓\n| TWN | Taiwan | Central Bank of the Republic of China (Taiwan) | Daily | 10:00 | Same day | \n| TZA | Tanzania, United Republic of | Bank of Tanzania | Daily | 22:00 | Same day | ✓\n| UAE | United Arab Emirates | Central Bank of the UAE | Daily | 16:00 | Same day | \n| UGA | Uganda | Bank of Uganda | Daily | 08:00 | Same day | ✓\n| UKR | Ukraine | National Bank of Ukraine | Daily | 02:00 | Same day | \n| URY | Uruguay | Central Bank of Uruguay | Daily | 22:00 | Same day | \n| USA | United States of America | US Federal Reserve Bank of New York | Weekly | Monday | Previous Week | \n| UZB | Uzbekistan | The Central Bank of the Republic of Uzbekistan | Daily | 13:00 | Same day | \n| VEN | Venezuela | Central Bank of Venezuela (Banco Central de Venezuela) | Daily | 22:00 | Same day | ✓\n| VNM | Vietnam | State Bank of Vietnam | Daily | 17:00 | Same day | ✓\n| YEM | Yemen | Central Bank of Yemen (Last seen 2025-04-29) | Daily |  | Same day | ✓\n| ZAF | South Africa | South African Reserve Bank | Daily | 10:00 | Same day | \n| ZMB | Zambia | Bank of Zambia | Daily | 09:00 | Same day | ✓\n| ZWE | Zimbabwe | Reserve Bank of Zimbabwe | Daily | 01:00 | Same day | ✓\n"
+        required: true
+        schema:
+          type: string
+      - name: to
+        in: query
+        description: Comma separated list of to currencies ISO 4217 codes.  This will limit the data returned to only those currencies you are interested in. Use an asterisk * to convert all currencies.
+        required: true
+        schema:
+          type: string
+      - name: amount
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.</br>
+        required: false
+        schema:
+          type: number
+          default: 1
+      - name: date
+        in: query
+        description: OPTIONAL – YYYY-MM-DD format - request rates for a particular past date.  Rates are often not posted on weekends and holidays.  bid and ask are not available yet for past rates
+        required: false
+        schema:
+          type: string
+      - name: use_bank_date
+        in: query
+        description: 'OPTIONAL – If ‘true’, the timestamp field of a current rate is the issuing bank’s own local calendar date in YYYY-MM-DD format, rather than a UTC instant that reads as the previous day west of the bank. Example: a European Central Bank rate returned as 2026-08-26T22:00:00Z is dated 2026-08-27 by the bank; requests that specify a date already return YYYY-MM-DD, so the parameter has no effect there.'
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: inverse
+        in: query
+        description: 'OPTIONAL – If ‘true’, the endpoint will include inverse rates. An inverse rate is a quote for which the base currency and counter currency are switched. An inverse is calculated by dividing one by the exchange rate. Example: If the exchange rate for 1 USD to EUR = 0.874852, then the inverse rate would be 1/0.874852 = 1.14305, meaning that US$1.14305 would buy 1 euro.'
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: decimal_places
+        in: query
+        description: 'OPTIONAL – This parameter can be used to specify the number of decimal places included in the output. Example: if 1 USD to EUR = 0.874852, adding decimal_places=3 to the query will result in the endpoint returning EUR = 0.875'
+        required: false
+        schema:
+          type: number
+          default: 20
+      - name: margin
+        in: query
+        description: 'OPTIONAL – This parameter can be used to add a margin (+/-) to the exchange rate. Example: adding margin=2.05 to the query will result in the endpoint returning the current exchange rates with a +2.05% margin'
+        required: false
+        schema:
+          type: number
+          default: 0
+      - name: fields
+        in: query
+        description: Comma separated list of fields.  One or more of "mid", "bid" or "ask".  Bid and ask are only available when requesting the current bank rate.
+        required: false
+        schema:
+          type: string
+          default: mid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CentralBankExchangeRateResponse'
+              example:
+                centralBankCode: BRA
+                centralBankName: Central Bank of Brazil
+                terms: https://www.xe.com/legal
+                privacy: https://www.xe.com/privacy
+                from: BRL
+                amount: 1.0
+                timestamp: '2026-09-23T03:00:00Z'
+                to:
+                - quotecurrency: EUR
+                  mid: 0.1707358716
+                  inverse: 5.857
+                  bid: 0.170718383
+                  ask: 0.1707533638
+                - quotecurrency: USD
+                  mid: 0.1945109023
+                  inverse: 5.1411
+                  bid: 0.1944995527
+                  ask: 0.1945222533
+        '304':
+          description: Not Modified
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 34
+                message: Invalid central_bank ZZZ
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 1
+                message: Bad credentials
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+            text/plain:
+              schema:
+                type: string
+              example: 'Endpoint not authorized. Feature missing: CENTRAL_BANK_RATES'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      operationId: getV1CentralBankRate
+      x-operation-id-source: derived
+components:
+  schemas:
+    CentralBankExchangeRateResponse:
+      type: object
+      properties:
+        centralBankCode:
+          type: string
+        centralBankName:
+          type: string
+        terms:
+          type: string
+        privacy:
+          type: string
+        from:
+          type: string
+        amount:
+          type: number
+        timestamp:
+          type: string
+        to:
+          type: array
+          items:
+            $ref: '#/components/schemas/CentralBankRate'
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentation_url:
+          type: string
+    CentralBankRate:
+      type: object
+      properties:
+        quotecurrency:
+          type: string
+        mid:
+          type: number
+        inverse:
+          type: number
+        bid:
+          type: number
+        ask:
+          type: number
+  responses:
+    TooManyRequests:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 4
+            message: Current interval rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 3
+            message: Monthly rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: An unexpected error occurred
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key created on your Xe Currency Data account's API page, sent as a Bearer token in the Authorization header.
+    basicAuth:
+      type: http
+      scheme: basic

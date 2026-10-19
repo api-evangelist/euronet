@@ -1,0 +1,296 @@
+openapi: 3.2.0
+info:
+  title: Xe Currency Data Alternative Source Exchange Rates API
+  description: 'Xe Currency Data - Integrate your application with our globally trusted currency data.
+
+
+    Get your free API credentials for 7 days here'
+  version: '1.0'
+servers:
+- url: https://xecdapi.xe.com
+security:
+- bearerAuth: []
+- basicAuth: []
+tags:
+- name: Alternative Source Exchange Rates
+paths:
+  /v1/alternative_source_rate:
+    get:
+      tags:
+      - Alternative Source Exchange Rates
+      summary: Foreign exchange rates posted by private banks, exchange markets, government…
+      description: 'In the example below, the endpoint will display all exchange ratesvreported by Maybank (the asterisk * represents ALL currencies).
+
+
+        https://xecdapi.xe.com/v1/alternative_source_rate?source=maybank&iso=*
+
+
+        Note on Alternative Source Rate Coverage: Some sources may experience temporary
+
+        data gaps due to source website changes or access restrictions. For these
+
+        sources, we continue to provide historical data and are working to restore
+
+        full coverage.'
+      parameters:
+      - name: source
+        in: query
+        description: "REQUIRED – Use the following source codes to represent the specific source you are querying for. The time(s) specified below highlights the time rates are published by each respective source within the API service.</br>\n| Source | Country | Name | Posts | Available at (UTC) | Effective for | Bid/Ask\n|:---: |:---: |:---: |:---: |:---: |:---: |:---: |\n| anz | Australia | ANZ Investment Bank | Daily | 16:00 | Same day | ✓\n| anz-fj | Fiji | ANZ Investment Bank (Fiji Markets) | Daily | 23:00 | Same day | ✓\n| bazg | Switzerland | Federal Office for Customs and Border Security | Daily | 07:00 | Same day | \n| belarus_republic | Belarus | Republic of Belarus Official Website | Daily | 08:00 | Same day | \n| bmf | Germany | Federal Ministry of Finance | Monthly | 1st of month | Previous Month | \n| BNA | Argentina | Bank of the Argentine Nation (Banco de la Nación Argentina) | Daily | 17:00 | Same day | ✓\n| brazil_ptax | Brazil | Central Bank of Brazil PTAX | Daily | 18:00 | Same day | ✓\n| citibank-vn | Vietnam | Citibank Vietnam Markets | Daily | 11:00 | Same day | ✓\n| commerzbank | Germany | Commerzbank | Daily | 01:00 | Same day | ✓\n| cyprus_customs | Cyprus | Cyprus Customs & Excise Department | Monthly | End of Month | Same Month | \n| egypt | Egypt | Central Bank of Egypt (Market Rate) | Daily | 14:00 | Same day | ✓\n| HKAB | Hong Kong | Hong Kong Association of Banks | Daily | 01:00 | Same day | ✓\n| indonesia_treasury | Indonesia | Indonesia Treasury (Badan Kebijakan Fiskal) | Daily | 01:00 | Same day | \n| ireland_revenue | Ireland | Revenue - Irish Tax and Customs | Monthly | Monthly | Same Month | \n| maybank | Malaysia | Maybank | Daily | 06:00 | Same day | ✓\n| mitsubishi_ufg | Japan | Mitsubishi UFJ Financial Group (Mitsubishi UFJ Financial Group) | Daily | 03:00 | Same day | ✓\n| NatWest | United Kingdom of Great Britain and Northern Ireland | National Westminster Bank | Daily | 09:00 | Same day | ✓\n| nzfma | New Zealand | New Zealand Financial Markets Association | Daily | 03:00 | Same day | \n| peru-sbs | Peru | Superintendency of Banking, Insurance and Private Pension Fund Administrators (Superintendencia de Banca, Seguros y AFP (República del Perú)) | Daily | 19:00 | Same day | ✓\n| SFC | Colombia | Financial Superintendence of Colombia | Daily | 22:00 | Same day | \n| taiwan_customs | Taiwan | Customs Administration, Ministry of Finance (Taiwan Customs Administration) | Monthly | On days 1, 11, 21 of each month | Same Month | ✓\n| uganda_ra | Uganda | Uganda Revenue Authority | Monthly | 1st of month | Same Month | \n| vietcom | Vietcombank | Joint Stock Commercial Bank for Foreign Trade of Vietnam | Daily | 17:00 | Same day | ✓\n"
+        required: true
+        schema:
+          type: string
+      - name: iso
+        in: query
+        description: OPTIONAL - Comma separated list of to currencies ISO 4217 codes. This will limit the data returned to only those currencies you are interested in.
+        required: false
+        schema:
+          type: string
+          default: '*'
+      - name: amount
+        in: query
+        description: OPTIONAL – This parameter can be used to specify the amount you want to convert, if an amount is not specified then 1 is assumed.</br>
+        required: false
+        schema:
+          type: number
+          default: 1
+      - name: date
+        in: query
+        description: OPTIONAL – YYYY-MM-DD format - request latest rates on, or before given date. Rates are often not posted on weekends and holidays.  For sources that provide rates multiple times a day, use YYYY-MM-DDTHH:MM format to request rates at, or before, a time.
+        required: false
+        schema:
+          type: string
+      - name: inverse
+        in: query
+        description: OPTIONAL – If ‘true’, the endpoint will respond with the inverse of the exchange rates.
+        required: false
+        schema:
+          type: boolean
+          default: false
+      - name: decimal_places
+        in: query
+        description: 'OPTIONAL – is parameter can be used to specify the number of decimal places included in the output. Example: if 1 USD to EUR = 0.874852, adding decimal_places=3 to the query will result in the endpoint returning EUR = 0.875'
+        required: false
+        schema:
+          type: number
+          default: 20
+      - name: margin
+        in: query
+        description: 'OPTIONAL – This parameter can be used to add a margin (+/-) to the exchange rate. Example: adding margin=2.05 to the query will result in the endpoint returning the current exchange rates with a +2.05% margin.  '
+        required: false
+        schema:
+          type: number
+          default: 0
+      - name: fields
+        in: query
+        description: OPTIONAL - Comma separated list of fields. One or more of "mid", "bid" or "ask".
+        required: false
+        schema:
+          type: string
+          default: mid
+      responses:
+        '200':
+          description: OK
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlternativeSourceExchangeRateResponse'
+              example:
+                terms: https://www.xe.com/legal
+                privacy: https://www.xe.com/privacy
+                source: HKAB
+                name: Hong Kong Association of Banks
+                amount: 1.0
+                timestamp: '2026-09-23T16:00:00Z'
+                rates:
+                - fromCurrency: AUD
+                  toCurrency: HKD
+                  mid: 5.5168
+                  bid: 5.4365
+                  ask: 5.597
+                - fromCurrency: BND
+                  toCurrency: HKD
+                  mid: 6.1258
+                  bid: 6.061
+                  ask: 6.1905
+        '304':
+          description: Not Modified
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            ETag:
+              schema:
+                type: string
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            Last-Modified:
+              schema:
+                type: string
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+        '400':
+          description: Bad Request
+          headers:
+            X-RateRequest-Remaining:
+              schema:
+                type: number
+            X-RateLimit-Remaining:
+              schema:
+                type: number
+            X-RateRequest-Reset:
+              schema:
+                type: number
+            X-RateLimit-Reset:
+              schema:
+                type: number
+            X-RateLimit-Limit:
+              schema:
+                type: number
+            X-RateRequest-Limit:
+              schema:
+                type: number
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 40
+                message: 'Missing required parameter: source'
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+              example:
+                code: 1
+                message: Bad credentials
+                documentation_url: https://developers.xe.com/docs/currency-data-api
+            text/plain:
+              schema:
+                type: string
+              example: 'Endpoint not authorized. Feature missing: ALT_SOURCE_RATES'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '429':
+          $ref: '#/components/responses/TooManyRequests'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+      operationId: getV1AlternativeSourceRate
+      x-operation-id-source: derived
+components:
+  schemas:
+    AlternativeSourceExchangeRateResponse:
+      type: object
+      properties:
+        terms:
+          type: string
+        privacy:
+          type: string
+        source:
+          type: string
+        name:
+          type: string
+        amount:
+          type: number
+        timestamp:
+          type: string
+        rates:
+          type: array
+          items:
+            $ref: '#/components/schemas/AlternativeSourceRate'
+    AlternativeSourceRate:
+      type: object
+      properties:
+        fromCurrency:
+          type: string
+        toCurrency:
+          type: string
+        mid:
+          type: number
+        bid:
+          type: number
+        ask:
+          type: number
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: number
+        message:
+          type: string
+        documentation_url:
+          type: string
+  responses:
+    TooManyRequests:
+      description: Too Many Requests
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 4
+            message: Current interval rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+          example:
+            code: 3
+            message: Monthly rate limit exceeded.
+            documentation_url: https://developers.xe.com/docs/currency-data-api
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        text/plain:
+          schema:
+            type: string
+          example: An unexpected error occurred
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      description: API key created on your Xe Currency Data account's API page, sent as a Bearer token in the Authorization header.
+    basicAuth:
+      type: http
+      scheme: basic
